@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: "Consolas", monospace;
+            font-size: 14px;
+            color: darkslategrey;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+        }
+        
+        /* Scrollbar Styling (Windows 98 style) */
+        *::-webkit-scrollbar {
+            width: 12px;
+            height: 16px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: #F2F2F2;
+            image-rendering: pixelated;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            border-top: 1px solid #a0d0a0;
+            border-left: 1px solid #a0d0a0;
+            border-right: 1px solid darkslategray;
+            border-bottom: 1px solid darkslategray;
+            box-shadow: inset 1px 1px 0 0 #F2F2F2, inset -1px -1px 0 0 darkslategray;
+            background-color: #a0d0a0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .box {
+            background-color: #f2f2f2;
+            border: 1.5px solid darkslategrey;
+            box-shadow: 3px 3px 0 darkslategrey;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .title-box {
+            padding: 5px 20px;
+            background-color: #a0d0a0;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            padding: 0;
+            color: darkslategrey;
+        }
+        
+        .banner {
+            width: 100%;
+            height: 220px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+        
+        .intro {
+            padding: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .columns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .section-title {
+            background-color: darkslategray;
+            color: #f2f2f2;
+            border-bottom: 1px solid #999;
+            padding: 10px;
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .scrollable-content {
+            height: 130px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .section-content p {
+            margin: 5px 0;
+        }
+        
+        a {
+            color: darkslategrey;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            text-decoration: none;
+            color: #a0d0a0;
+        }
+        
+        .likes {
+            width: auto;
+            float: none;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box title-box">
+            <h1>Holy freaking airball.</h1>
+        </div>
+        
+        <div class="box">
+            <div class="banner">
+<img src="https://files.catbox.moe/gplugh.png" alt="Banner image" style="height: 220px">
+            </div>
+            
+            <div class="intro" style="height:200px">
+                <p>Hiya, I'm Rango LF, a first year in the Department of Mechanical and Industrial Engineering at the University of Toronto.</p>
+              <center>
+                              <p><b>Like what you see? <a href="https://neocities.org/site/wriorango" target="_blank">Follow my site</a></b></p>
+            </center>
+            </div>
+        </div>
+        
+        <div class="columns">
+            <div class="column box" style="height: 200px;">
+                <h2 class="section-title"><b>TO DO LIST</b></h2>
+                <div class="section-content scrollable-content">
+                        <li>Finish Ellie & Abby shrine</li>
+                        <li>Finish Iliad AU shrine</li>
+                        <li>Finish Lysandra's page</li>
+                </div>
+            </div>
+            
+            <div class="column box" style="height: 200px">
+                <h2 class="section-title"><b>CURRENTLY</b></h2>
+                <div class="section-content">
+
+                <p><strong>NEWEST BLOG POST:</strong> <a href="https://rango.bearblog.dev/current-happenings-july-august-2025/" target="blank"> Current Happenings (July/August 2025).</a></p>
+                    <p><strong>LISTENING TO:</strong> Kendrick Lamar</p>
+                    <p><strong>FEELING:</strong> <a href="https://www.imood.com/users/rango7987"><img src="https://moods.imood.com/display/uname-rango7987/imood.gif" alt="The current mood of rango7987 at www.imood.com" border="0" style="height: 20px;"></a></p>
+
+                    </div>
+            </div>
+        </div>
+        
+        <div class="box">
+            <h2 style="margin-top:5px; color: #f2f2f2; padding: 5px; background-color: darkslategray"><b>CREDITS</b></h2>
+            <p>Other websites I took inspiration from: <a href="https://ribo.zone/free/layouts/" target="_blank">Cyanobacteria by Ribozone</a> & <a href="https://oyasumimi.neocities.org/?z=/home" target="_blank">Oyasumimi</a> & <a href="https://sweetfish.site/" target="_blank">sweetfish</a></p>
+            <p>Achilles painting header: <a href="https://www.tumblr.com/wolfythewitch" target="_blank">Wolfy the Witch</a></p>
+            <p>Stamps & blinkies: <a href="https://blinkies.neocities.org/" target="_blank">The blinkie hoard</a> & <a href="https://pixelsafari.neocities.org/" target="_blank">Pixel safari</a> & <a href="https://adriansblinkiecollection.neocities.org/blinkies" target="_blank">Adrian's collection</a></p>
+        </div>
+    </div>
+</body>
+</html>

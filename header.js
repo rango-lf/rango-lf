@@ -13,7 +13,7 @@ function createHeader() {
         <a href="about.html">about</a>
         <a href="construction.html"><s>blog</s></a>
         <a href="construction.html"><s>advice</s></a>
-        <a href="construction.html"><s>experience and projects</s></a>
+        <a href="construction.html"><s>experience & projects</s></a>
         <a href="construction.html"><s>links & resources</s></a>
       </nav>
       <nav class="mobile-nav" id="mobile-nav">
@@ -21,7 +21,7 @@ function createHeader() {
         <a href="about.html">about</a>
         <a href="construction.html"><s>blog</s></a>
         <a href="construction.html"><s>advice</s></a>
-        <a href="construction.html"><s>experience and projects</s></a>
+        <a href="construction.html"><s>experience & projects</s></a>
         <a href="construction.html"><s>links & resources</s></a>
       </nav>
     </header>

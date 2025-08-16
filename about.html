@@ -1,208 +1,553 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>About Me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            font-family: "Consolas", monospace;
-            font-size: 14px;
-            color: darkslategrey;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.6;
-        }
-        
-        /* Scrollbar Styling (Windows 98 style) */
-        *::-webkit-scrollbar {
-            width: 12px;
-            height: 16px;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
+  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
+ <script src="header.js"></script>
+  <title>ABOUT ME</title>
+  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
+  <meta name="author" content="Rango L.F.">
+  
+  <style>
+    /* Root settings */
+    :root {
+      /* column widths */
+      --widthSidebar: 250px;
+      --widthContent: 820px;
 
-        *::-webkit-scrollbar-track {
-            background-color: #F2F2F2;
-            image-rendering: pixelated;
-        }
+      /* general page and text colours */
+      --colorBackground: #f2f2f2;
+      --colorText: darkslategray;
+      --colorLink: darkslategrey;
 
-        *::-webkit-scrollbar-thumb {
-            border-top: 1px solid #a0d0a0;
-            border-left: 1px solid #a0d0a0;
-            border-right: 1px solid darkslategray;
-            border-bottom: 1px solid darkslategray;
-            box-shadow: inset 1px 1px 0 0 #F2F2F2, inset -1px -1px 0 0 darkslategray;
-            background-color: #a0d0a0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .box {
-            background-color: #f2f2f2;
-            border: 1.5px solid darkslategrey;
-            box-shadow: 3px 3px 0 darkslategrey;
-            padding: 20px;
-            position: relative;
-        }
-        
-        .title-box {
-            padding: 5px 20px;
-            background-color: #a0d0a0;
-        }
-        
-        h1 {
-            font-size: 28px;
-            margin: 0;
-            padding: 0;
-            color: darkslategrey;
-        }
-        
-        h2.section-title {
-            background-color: darkslategray;
-            color: #f2f2f2;
-            border-bottom: 1px solid #999;
-            padding: 10px;
-            margin: 0;
-            font-size: 18px;
-        }
-        
-        .columns {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .column {
-            flex: 1;
-        }
-        
-        .section-content {
-            padding: 15px;
-        }
-        
-        .scrollable-content {
-            max-height: 230px;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        
-        a {
-            color: darkslategrey;
-            text-decoration: underline;
-        }
-        
-        a:hover {
-            text-decoration: none;
-            color: #a0d0a0;
-        }
-        
-        .profile-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 10px;
-            margin: -5px;
-        }
-        
-        .profile-pic {
-            width: 150px;
-            height: 200px;
-            border-radius: 10px;
-        }
-        
-        .profile-pic:hover {
-            box-shadow: 0 0 10px #a0d0a0;
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
-        
-        .profile-details table {
-            font-family: monospace;
-            text-align: left;
-            font-size: 15px;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        .profile-details th, .profile-details td {
-            padding: 8px;
-        }
-        
-        .pride-flags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 15px;
-        }
-        
-        .pride-flags img {
-            height: 15px;
-        }
-        
-        .pride-flags img:hover {
-            box-shadow: 0 0 10px #a0d0a0;
-            transform: scale(1.1);
-            transition: all 0.2s ease;
-        }
-        
-        .character-gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            padding: 10px 0;
-        }
-        
-        .character-gallery a {
-            flex: 0 0 auto;
-        }
-        
-        .character-gallery img {
-            height: 150px;
-            transition: all 0.2s ease;
-        }
-        
-        .character-gallery img:hover {
-            box-shadow: 0 0 10px #a0d0a0;
-            transform: scale(1.1);
-        }
-        
-        .divider {
-            width: 100%;
-            text-align: center;
-            margin: 15px 0;
-        }
-    </style>
+      /* accent colours */
+      --colorPrimary: #a0d0a0;
+      --colorSecondary: #a0d0a0;
+      --colorTertiary: #a0d0a0;
+
+      /* border and box shadow colours */ 
+      --colorBorder: darkslategrey;
+      --colorShadow: darkslategrey;
+
+      /* background colour for the sections */
+      --colorBackgroundMain: #f2f2f2;
+
+      /* fonts */
+      --fontText: 'DM Mono', sans-serif;
+      --fontTitle: 'w95fa', monospace;
+
+      /* borders */
+      --borderSolid: 1.5px solid darkslategrey;
+      --borderDotted: 1.5px dotted darkslategrey;
+      --borderTree: 1.5px solid darkslategrey;
+
+      /* gallery settings */
+      --columnCount: 2;
+      --columnGap: 8px;
+
+      /* background image FOR ALL PAGES */
+      --imageBackground: none;
+    }
+
+    /* Global site structure */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--fontText);
+      color: var(--colorText);
+      background-color: var(--colorBackground);
+      background-image: var(--imageBackground);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      padding-top: 60px; /* Space for fixed header */
+    }
+
+    /* Permanent header navigation */
+    .permanent-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--colorBackground);
+      border-bottom: var(--borderDotted);
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .permanent-header .logo {
+      font-family: var(--fontTitle);
+      font-weight: bold;
+      color: var(--colorText);
+      text-decoration: none;
+      margin-right: auto;
+    }
+
+    /* Hamburger menu button - hidden on desktop */
+    .hamburger-menu {
+      display: none;
+    }
+
+    .hamburger-toggle {
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      color: var(--colorText);
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .hamburger-toggle:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    /* Desktop navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: none;
+      padding: 0;
+    }
+
+    .desktop-nav a {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      padding: 6px 12px;
+      font-size: 15px;
+    }
+
+    .desktop-nav a:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    /* Mobile navigation - hidden by default */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--colorBackground);
+      border-top: var(--borderSolid);
+      border-bottom: var(--borderSolid);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex-direction: column;
+      padding: 8px 16px;
+      z-index: 1001;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .mobile-nav a:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    .mobile-nav a:last-child {
+      margin-bottom: 0;
+    }
+
+    main {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    main > .sidebar {
+      flex: 0 0 var(--widthSidebar);
+      padding: 1em;
+    }
+
+    main > .content {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1 1 20em;
+      max-width: var(--widthContent);
+      padding: 1em;
+    }
+
+    footer {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      width: 100%;
+      border-top: var(--borderDotted);
+      background-color: var(--colorBackground);
+      padding: 0 1em;
+      font-size: 0.7em;
+      margin-top: auto;
+    }
+
+    /* Title box styling - compact and aligned with content width */
+    .title-box {
+      background-color: var(--colorPrimary);
+      border: var(--borderSolid);
+      box-shadow: 3px 3px 0 var(--colorShadow);
+      padding: 8px 16px;
+      margin: 0 1em 15px 1em;
+      width: calc(100% - 2em);
+      max-width: calc(var(--widthContent) - 2em);
+    }
+
+    .title-box h1 {
+      margin: 0;
+      padding: 0;
+      font-family: var(--fontTitle);
+      font-size: 1.5em;
+      text-transform: uppercase;
+    }
+
+    /* Widget styling with borders and shadows */
+    .sidebar > .widget {
+      background-color: var(--colorBackgroundMain);
+      border: var(--borderSolid);
+      box-shadow: 0.3em 0.3em var(--colorShadow);
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .sidebar > .widget h3 {
+      margin: 0 0 8px 0;
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      font-size: 1em;
+    }
+
+    .sidebar > .widget p {
+      margin: 8px 0 0 0;
+      font-size: 0.9em;
+    }
+
+    .sidebar > .widget img {
+      width: 100%;
+      margin: 8px 0;
+      border: 1px solid var(--colorBorder);
+    }
+
+    /* Global text settings */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--fontTitle);
+      word-wrap: break-word;
+    }
+
+    p {
+      font-family: var(--fontText);
+    }
+
+    b {
+      color: var(--colorSecondary);
+    }
+
+    a {
+      color: var(--colorLink);
+    }
+
+    a:hover {
+      color: var(--colorBackground);
+      background-color: var(--colorLink);
+    }
+
+    button, .button {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background-color: var(--colorPrimary);
+      border: 1px solid var(--colorPrimary);
+      padding: 8px 12px;
+    }
+
+    button:hover, .button:hover {
+      background-color: var(--colorBackgroundMain);
+      color: var(--colorText);
+    }
+
+    hr {
+      border: 0;
+      border-top: var(--borderDotted);
+      margin: 1em 0;
+      width: 100%;
+    }
+
+    blockquote {
+      margin: 1.5em;
+      padding-left: 1.5em;
+      border-left: 1px solid var(--colorSecondary);
+    }
+
+    /* Sections */
+    section {
+      border: 1.5px solid var(--colorBorder);
+      background-color: var(--colorBackgroundMain);
+      color: var(--colorText);
+      padding: 1em;
+      box-shadow: 0.5em 0.5em var(--colorBorder);
+      margin: 0 1em 2em 1em;
+      width: calc(100% - 2em);
+    }
+
+    section h1 {
+      text-transform: uppercase;
+      padding: 0 1em;
+      color: var(--colorBackground);
+      background: var(--colorText);
+    }
+
+    section h2 {
+      border-bottom: 1px solid var(--colorBorder);
+    }
+
+    section img {
+      width: auto;
+      border: 1px solid var(--colorBorder);
+    }
+
+    section p {
+      padding: 0 1em;
+      max-inline-size: 700px;
+    }
+
+    /* Flex columns */
+    section > .flex-columns {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .flex-columns > .flex-text {
+      width: 70%;
+    }
+
+    .flex-columns > .flex-image {
+      width: 25%;
+      margin: 15px;
+    }
+
+    .flex-columns > .flex-image > img {
+      width: auto;
+      padding: 0 1em;
+    }
+
+    /* Half width sections */
+    .half-width {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      min-height: 300px;
+    }
+
+    .half-width section {
+      width: calc(50% - 2em);
+      margin: 0 1em 2em 1em;
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 768px) {
+      body {
+        padding-top: 60px; /* Adjusted for mobile header height */
+      }
+
+      .permanent-header {
+        padding: 8px 12px;
+      }
+
+      /* Show hamburger menu on mobile */
+      .hamburger-menu {
+        display: block;
+      }
+
+      /* Hide desktop nav on mobile */
+      .desktop-nav {
+        display: none;
+      }
+
+      main {
+        flex-direction: column;
+      }
+
+      main > .sidebar {
+        flex: none;
+        width: 100%;
+        order: 2;
+        padding: 8px;
+      }
+
+      main > .content {
+        order: 1;
+        padding: 8px;
+        max-width: 100%;
+      }
+
+      .title-box {
+        margin: 0 0 15px 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      section {
+        margin: 0 0 2em 0;
+        width: 100%;
+      }
+
+      section > .flex-columns {
+        flex-direction: column;
+      }
+
+      .flex-columns > .flex-text,
+      .flex-columns > .flex-image {
+        width: 100%;
+      }
+
+      .half-width {
+        flex-direction: column;
+      }
+
+      .half-width section {
+        width: 100%;
+        margin: 0 0 2em 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hamburger-toggle {
+        padding: 6px 8px;
+        font-size: 14px;
+      }
+
+      .mobile-nav a {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="box title-box">
-            <h1>ABOUT ME.</h1>
-        </div>
-            <div class="box">
-            <div class="profile-info">
-                <img class="profile-pic" src="https://rangowritings.wordpress.com/wp-content/uploads/2024/01/img_3562.jpeg" alt="Profile Picture">
-                <div class="profile-details">
-                    <p>Most people call me Rango, but other variations of my name include "Commander", Django", "Tango", and "Rambo". You may refer to me however you like.</p>
-    <p>I was originally born in Richmond; a small city that is part of the Greater Vancouver Area. I was above average throughout high school, I'd say, but quite unhappy most of the time. Both my father (civ) and older sister (engphys) are engineers from UBC, so I chose UofT out of spite.</p>
-                </div>
-                </div>
-                                <p>Driven by my intense high school hyperfixation on Chernobyl, I'm interested in nuclear engineering--particularly the development of Gen III+ and IV nuclear reactors. I hope to complete a degree in mechanical engineering with a specialisation in this field and practical experience with CANDU and/or SMR models.</p>
-            <p>In real life, I unfortunately do not look exactly as pictured above. If you see a nerdy Asian guy with a stupid haircut, a Lenovo Yoga laptop, a copy of Homer's <i>The Iliad</i>, and a vaguely lesbian vibe--that's probably me.</p>
-        </div>
-        
-       
-        
-       
-        </div>
+  <!-- Permanent header navigation -->
+  
+
+  <main>
+    <div class="sidebar"> 
+      <!-- Sidebar widgets with box styling -->
+
+
+      <div class="widget">
+        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
+                  <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
+          <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
+        <a style="font-size: 25px" href="https://github.com/rango-lf"</a><i class="fa-brands fa-github"></i></a>
+        <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
+      </div>
+        <div class="widget">
+        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
+      </div>
+    <img src="https://rainy.gay/pride/bv/progress.png"> <img src="https://rainy.gay/pride/bv/lesbian.png">
+      </div>
     </div>
+
+    <div class="content">
+      <!-- Compact title box aligned with content -->
+      <div class="title-box">
+        <h1>ABOUT ME.</h1>
+      </div>
+
+      <!-- Sample iframe to show alignment -->
+      <section>
+            <div class="flex-columns">
+              <div class="flex-image">
+                <img src="https://rangowritings.wordpress.com/wp-content/uploads/2024/01/img_3562.jpeg" style="height: 170px; border: none">
+              </div>
+              <div class="flex-text">
+                <p style="font-size: 15px">Most people call me Rango, but other variations of my name include "Commander", Django", "Tango", and "Rambo". I prefer masculine terminology (he/him) when referring to me.</p>
+    <p style="font-size: 15px">I was originally born in Richmond; a small city that is part of the Greater Vancouver Area. I was above average in high school but quite unhappy most of the time. Both my father (civ) and older sister (engphys) are engineers from UBC, so I chose UofT out of spite.</p>
+                                             </div>
+               <p style="font-size: 15px">Driven by my intense high school hyperfixation on Chernobyl, I'm interested in nuclear engineering--particularly the development of Gen III+ and IV nuclear reactors. I intend to complete a Bachelor's degree in mechanical engineering with a specialisation in energy systems and mechatronics, while gaining some practical experience with nuclear energy in the process. Afterwards, I'd like to pursue a research Master's degree in nuclear reactor physics (if I survive undergrad... that is).</p>
+            <p style="font-size: 15px">In real life, I unfortunately do not look exactly as pictured above. If you see a nerdy Asian guy with a stupid haircut, a Lenovo Yoga laptop, a copy of Homer's <i>The Iliad</i>, and a vaguely lesbian vibe--that's probably me. Don't be afraid to talk to me!</p>
+        </div>
+          
+      </section>
+
+
+    </div>
+  </main>
+
+  <footer>
+    <p>rango l.f. / 2025</p>
+    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobile-nav');
+      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
+      
+      mobileNav.classList.toggle('active');
+      
+      // Toggle hamburger icon between bars and X
+      if (mobileNav.classList.contains('active')) {
+        hamburgerIcon.className = 'fas fa-times';
+      } else {
+        hamburgerIcon.className = 'fas fa-bars';
+      }
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const mobileNav = document.getElementById('mobile-nav');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+      if (!hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
+        mobileNav.classList.remove('active');
+        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
+      }
+    });
+
+    // Close mobile menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const mobileNav = document.getElementById('mobile-nav');
+        mobileNav.classList.remove('active');
+        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
+      }
+    });
+  </script>
 </body>
 </html>

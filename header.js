@@ -11,7 +11,7 @@ function createHeader() {
       <nav class="desktop-nav">
         <a href="index.html">home</a>
         <a href="about.html">about</a>
-        <a href="construction.html">blog</a>
+        <a href="blog.html">blog</a>
         <a href="construction.html"><s>advice</s></a>
         <a href="construction.html"><s>experience & projects</s></a>
         <a href="construction.html"><s>links & resources</s></a>
@@ -19,7 +19,7 @@ function createHeader() {
       <nav class="mobile-nav" id="mobile-nav">
         <a href="index.html">home</a>
         <a href="about.html">about</a>
-        <a href="construction.html">blog</a>
+        <a href="blog.html">blog</a>
         <a href="construction.html"><s>advice</s></a>
         <a href="construction.html"><s>experience & projects</s></a>
         <a href="construction.html"><s>links & resources</s></a>

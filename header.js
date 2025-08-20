@@ -12,14 +12,14 @@ function createHeader() {
         <a href="index.html">home</a>
         <a href="about.html">about</a>
         <a href="blog.html">blog</a>
-        <a href="advice.html">advice</a>
+        <a href="advice.html">advice & resources</a>
         <a href="construction.html"><s>experience & projects</s></a>
       </nav>
       <nav class="mobile-nav" id="mobile-nav">
         <a href="index.html">home</a>
         <a href="about.html">about</a>
         <a href="blog.html">blog</a>
-        <a href="advice.html">advice</a>
+        <a href="advice.html">advice & resources</a>
         <a href="construction.html"><s>experience & projects</s></a>
       </nav>
     </header>

@@ -366,17 +366,39 @@
       padding: 0 1em;
     }
 
-    /* Half width sections */
-    .half-width {
+    /* Two-column layout for bottom sections */
+    .two-column-container {
       display: flex;
       flex-flow: row wrap;
       width: 100%;
-      min-height: 300px;
+      gap: 0;
     }
 
-    .half-width section {
-      width: calc(50% - 2em);
+    .two-column-container section {
+      flex: 1;
+      min-width: 300px;
       margin: 0 1em 2em 1em;
+    }
+
+    /* Ensure equal height for the two columns */
+    .two-column-container section {
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-content {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .section-content ul {
+      margin: 0;
+      padding-left: 1.5em;
+    }
+
+    .section-content li {
+      margin-bottom: 0.5em;
     }
 
     /* Mobile responsiveness */
@@ -436,13 +458,15 @@
         width: 100%;
       }
 
-      .half-width {
+      /* Stack columns vertically on mobile */
+      .two-column-container {
         flex-direction: column;
       }
 
-      .half-width section {
-        width: 100%;
+      .two-column-container section {
         margin: 0 0 2em 0;
+        width: 100%;
+        height: auto;
       }
     }
 
@@ -473,14 +497,13 @@
         <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
                   <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
           <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
-        <a style="font-size: 25px" href="https://github.com/rango-lf"</a><i class="fa-brands fa-github"></i></a>
+        <a style="font-size: 25px" href="https://github.com/rango-lf"><i class="fa-brands fa-github"></i></a>
         <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
       </div>
         <div class="widget">
         <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
       </div>
     <img src="https://rainy.gay/pride/bv/progress.png"> <img src="https://rainy.gay/pride/bv/lesbian.png">
-      </div>
     </div>
 
     <div class="content">
@@ -489,7 +512,7 @@
         <h1>ABOUT ME.</h1>
       </div>
 
-      <!-- Sample iframe to show alignment -->
+      <!-- Main about section -->
       <section>
             <div class="flex-columns">
               <div class="flex-image">
@@ -499,13 +522,34 @@
                 <p style="font-size: 15px">Most people call me Rango, but other variations of my name include "Commander", Django", "Tango", and "Rambo". I prefer masculine terminology (he/him) when referring to me.</p>
     <p style="font-size: 15px">I was originally born in Richmond; a small city that is part of the Greater Vancouver Area. I was above average in high school but quite unhappy most of the time. Both my father (civ) and older sister (engphys) are engineers from UBC, so I chose UofT out of spite.</p>
                                              </div>
-               <p style="font-size: 15px">Driven by my intense high school hyperfixation on Chernobyl, I'm interested in nuclear engineering--particularly the development of Gen III+ and IV nuclear reactors. I intend to complete a Bachelor's degree in mechanical engineering with a specialisation in energy systems and mechatronics, while gaining some practical experience with nuclear energy in the process. Afterwards, I'd like to pursue a research Master's degree in nuclear reactor physics (if I survive undergrad... that is).</p>
-            <p style="font-size: 15px">In real life, I unfortunately do not look exactly as pictured above. If you see a nerdy Asian guy with a stupid haircut, a Lenovo Yoga laptop, a copy of Homer's <i>The Iliad</i>, and a vaguely lesbian vibe--that's probably me. Don't be afraid to talk to me!</p>
-        </div>
-          
+            </div>
+               <p style="font-size: 15px">Driven by my intense high school hyperfixation on Chernobyl, I'm gunning for nuclear engineering--particularly the development of Gen III+ and IV nuclear reactors. I intend to complete a Bachelor's degree in mechanical engineering with a specialisation in energy systems and mechatronics, while gaining some practical experience with nuclear energy in the process. Afterwards, I'd like to pursue a research Master's degree in nuclear reactor physics (if I survive undergrad... that is).</p>
+            <p style="font-size: 15px">In real life, I unfortunately do not look exactly as pictured above. If you see a nerdy Asian guy with a stupid haircut, a Lenovo Yoga laptop, a copy of Homer's <i>The Iliad</i>, and a vaguely lesbian vibe--that's probably me. I can usually be found on the 2nd floor of Myhal when I'm not in class or busy with something else. Don't be afraid to talk to me!</p>
       </section>
 
-
+      <!-- Two-column layout for Recent Updates and Currently sections -->
+      <div class="two-column-container">
+        <section>
+          <h2>TALK TO ME ABOUT</h2>
+          <div class="section-content">
+            <ul>
+              <li>Chernobyl</li>
+              <li><i>The Iliad</i>, <i>The Odyssey</i>, the Trojan War Cycle, etc.</li>
+              <li>Kendrick Lamar</li>
+              <li>EPIC: The Musical</li>
+              <li>Video games (e.g. The Last of Us, The Sims 4, Resident Evil, Hades)</li>
+              <li>Fanfiction</li>
+            </ul>
+          </div>
+        </section>
+            
+        <section>
+          <h2><b>WIP</b></h2>
+          <div class="section-content">
+            <p>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 

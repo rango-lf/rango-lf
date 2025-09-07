@@ -409,6 +409,89 @@
       border-left: 1px solid var(--colorSecondary);
     }
 
+    /* Improved list styling with better spacing */
+    li {
+      margin-bottom: 12px;
+      line-height: 1.6;
+      padding-left: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 16px 0;
+    }
+
+    /* Nested lists with reduced spacing */
+    ul ul {
+      margin: 8px 0 8px 0;
+    }
+
+    ul ul li {
+      margin-bottom: 8px;
+    }
+
+    ul ul ul li {
+      margin-bottom: 6px;
+    }
+
+    /* Details and Summary styling for collapsible sections */
+    details {
+      margin: 16px 0;
+      background-color: var(--colorBackgroundMain);
+    }
+
+    summary {
+      font-family: var(--fontTitle);
+      font-size: 1.1em;
+      font-weight: normal;
+      padding: 8px 16px;
+      cursor: pointer;
+      background-color: transparent;
+      border-bottom: 1px solid var(--colorBorder);
+      transition: background-color 0.2s ease;
+      user-select: none;
+      scroll-margin-top: 80px;
+      list-style: none;
+      outline: none;
+    }
+
+    summary:hover {
+      background-color: var(--colorPrimary);
+      color: var(--colorText);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::marker {
+      display: none;
+    }
+
+    summary::before {
+      content: "▶";
+      display: inline-block;
+      margin-right: 8px;
+      transition: transform 0.2s ease;
+      font-size: 0.8em;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details .details-content {
+      padding: 16px;
+    }
+
+    details .details-content > *:first-child {
+      margin-top: 0;
+    }
+
+    details .details-content > *:last-child {
+      margin-bottom: 0;
+    }
+
     /* Sections */
     section {
       border: 1.5px solid var(--colorBorder);
@@ -563,6 +646,25 @@
         width: 100%;
         margin: 0 0 2em 0;
       }
+
+      /* Mobile list spacing adjustments */
+      li {
+        margin-bottom: 10px;
+      }
+
+      ul ul li {
+        margin-bottom: 6px;
+      }
+
+      /* Mobile details/summary adjustments */
+      summary {
+        padding: 10px 12px;
+        font-size: 1em;
+      }
+
+      details .details-content {
+        padding: 12px;
+      }
     }
 
     @media screen and (max-width: 480px) {
@@ -574,6 +676,20 @@
       .mobile-nav a {
         padding: 6px 10px;
         font-size: 12px;
+      }
+
+      /* Further mobile adjustments for very small screens */
+      li {
+        margin-bottom: 8px;
+      }
+
+      summary {
+        padding: 8px 10px;
+        font-size: 0.95em;
+      }
+
+      details .details-content {
+        padding: 10px;
       }
     }
   </style>
@@ -621,143 +737,255 @@
         <p>Feel free to reach out if you have specific questions or suggestions for new topics.</p>
       </section>
 
-            <section id="engineering-specific">
+      <section id="engineering-specific">
         <h1>ENGINEERING-SPECIFIC ADVICE</h1>
         
-        <h2 id="first-year-survival">First Year Survival Guide</h2>
-        <p>WIP</p>
+        <details id="first-year-survival">
+          <summary>First Year Survival Guide</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="capstone-projects">Courses</h2>
-        <p>WIP</p>
-        <li>Check out <a href="https://arnav-patil-12.github.io/notes/year-one/">Arnav's course notes</a> for all first-year Core 8 courses.</li>
+        <details id="capstone-projects">
+          <summary>Courses</summary>
+          <div class="details-content">
+            <p>WIP</p>
+            <ul>
+              <li>Check out <a href="https://arnav-patil-12.github.io/notes/year-one/">Arnav's course notes</a> for all first-year Core 8 courses.</li>
+            </ul>
+          </div>
+        </details>
 
-        <h2 id="discipline-selection">Discipline Selection</h2>
-        <p>WIP</p>
+        <details id="discipline-selection">
+          <summary>Discipline Selection</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="design-teams">Design Teams & Clubs</h2>
-        <p>WIP</p>
-
+        <details id="design-teams">
+          <summary>Design Teams & Clubs</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
 
       <section id="academics">
         <h1>ACADEMIC RESOURCES</h1>
         
-        <h2 id="study-tips">Study Tips & Strategies</h2>
-        <p>WIP</p>
+        <details id="study-tips">
+          <summary>Study Tips & Strategies</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="time-management">Time Management</h2>
-        <p>WIP</p>
+        <details id="time-management">
+          <summary>Time Management</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="course-selection">Course Selection</h2>
-        <p>WIP</p>
+        <details id="course-selection">
+          <summary>Course Selection</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
 
       <section id="campus-life">
         <h1>CAMPUS LIFE</h1>
         
-        <h2 id="clubs-activities">Clubs & Activities</h2>
-        <p>WIP</p>
+        <details id="clubs-activities">
+          <summary>Clubs & Activities</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="networking">RESIDENCE</h2>
-        <p>WIP</p>
+        <details id="networking">
+          <summary>Residence</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="work-life-balance">Commuting</h2>
-        <li>Check out the <a href="https://commuter.skule.ca/resources-tips">Skule Commuter Students Directorship</a> for more resources and tips! Most of the ones below are taken straight from their site.</li>
-        <li>Try to be productive on your commute (given you don't get motion sick easily). If your commute is longer than 40 minutes, you might want to do some light work, read, or catch up on sleep.</li>
-        <li>Practice your commute route before school starts so you know how long it takes, where you need to transfer, and any short-cuts you can take.</li>
-        <li>Not always possible, but try to avoid rush hours from 7:30-9:30 AM or 4:30-6:30 PM.</li>
-        <li>Arrive at your destination at least 5-10 minutes before class starts. You can plan this out with the Transit app, Google Maps, or Apple Maps.</li>
-        <li>If you are commuting from Queen’s park, try to walk through Medical Science Building which will save you a solid 2-3 minutes each time.</li>
-        <li>After your initial payment using your PRESTO card (for TTC, GO, and most local transit systems) you can travel free of cost for the next two hours.</li>
-        <li>If you live close to the UofT Mississauga campus, you can take a shuttle bus between there and St.George. Rides are $7 with a $650 semester pass.</li>
-        <li><b>For the GO Trains:</b></li>
-        <ul><li>GO Train schedules are usually very accurate, and doors close 1-2 minutes before departure.</li>
-        <li>If you are travelling from Oakville, Brampton, or Milton, a GO train is likely your best method of commute.</li>
-        <li>Get off at Union Station, and take Line 1 up to Queen's Park Station.</li>
-        <li>Don’t forget to set a default trip. If your PRESTO card has a default trip set for travel between two stations, you only have to tap on it. If you take a trip that begins or ends at a different station, you have to tap on and off.</li>
-        <ul><li>If you forget to tap off at the end of your trip, you will be charged the fare to the last stop on the line. You can always appeal a refund by filling out the webform on <a href="https://www.gotransit.com/en">gotransit.com</a>.</li></ul></ul>
-        <li><b>For the TTC:</b></li>
-        <ul><li>TTC has completely inconsistent schedules that are (often) delayed by traffic, weather, etc.</li>
-        <ul><li>TTC trains are usually every 2-3 mins during rush hour and 4-5 mins during off-peak hours.</li></ul>
-        <ul><li>I recommend downloading an app, such as the TTC Watch for Toronto, and using the official <a href="https://www.ttc.ca/service-alerts">TTC website</a> for real-time tracking and updates.</li></ul>
-        <li>If you are travelling from Kipling, Vaughan, or North York, the TTC subway is likely your best method of commute.</li>
-        <li>There are four subway stations on or very near the University of Toronto: Queen's Park Station, Museum Station, St. George Station and Spadina Station. Queen's Park is the the closest to the Engineering Buildings.</li>
-        <lu><li>If you commuting from Finch Side (Line 1), you can walk to campus from College station (about a 12-minute walk).</li></lu>
-</ul>
+        <details id="work-life-balance">
+          <summary>Commuting</summary>
+          <div class="details-content">
+            <ul>
+              <li>Check out the <a href="https://commuter.skule.ca/resources-tips">Skule Commuter Students Directorship</a> for more resources and tips! Most of the ones below are taken straight from their site.</li>
+              <li>Try to be productive on your commute (given you don't get motion sick easily). If your commute is longer than 40 minutes, you might want to do some light work, read, or catch up on sleep.</li>
+              <li>Practice your commute route before school starts so you know how long it takes, where you need to transfer, and any short-cuts you can take.</li>
+              <li>Not always possible, but try to avoid rush hours from 7:30-9:30 AM or 4:30-6:30 PM.</li>
+              <li>Arrive at your destination at least 5-10 minutes before class starts. You can plan this out with the Transit app, Google Maps, or Apple Maps.</li>
+              <li>If you are commuting from Queen's park, try to walk through Medical Science Building which will save you a solid 2-3 minutes each time.</li>
+              <li>After your initial payment using your PRESTO card (for TTC, GO, and most local transit systems) you can travel free of cost for the next two hours.</li>
+              <li>If you live close to the UofT Mississauga campus, you can take a shuttle bus between there and St.George. Rides are $7 with a $650 semester pass.</li>
+              <li><b>For the GO Trains:</b>
+                <ul>
+                  <li>GO Train schedules are usually very accurate, and doors close 1-2 minutes before departure.</li>
+                  <li>If you are travelling from Oakville, Brampton, or Milton, a GO train is likely your best method of commute.</li>
+                  <li>Get off at Union Station, and take Line 1 up to Queen's Park Station.</li>
+                  <li>Don't forget to set a default trip. If your PRESTO card has a default trip set for travel between two stations, you only have to tap on it. If you take a trip that begins or ends at a different station, you have to tap on and off.
+                    <ul>
+                      <li>If you forget to tap off at the end of your trip, you will be charged the fare to the last stop on the line. You can always appeal a refund by filling out the webform on <a href="https://www.gotransit.com/en">gotransit.com</a>.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><b>For the TTC:</b>
+                <ul>
+                  <li>TTC has completely inconsistent schedules that are (often) delayed by traffic, weather, etc.
+                    <ul>
+                      <li>TTC trains are usually every 2-3 mins during rush hour and 4-5 mins during off-peak hours.</li>
+                    </ul>
+                    <ul>
+                      <li>I recommend downloading an app, such as the TTC Watch for Toronto, and using the official <a href="https://www.ttc.ca/service-alerts">TTC website</a> for real-time tracking and updates.</li>
+                    </ul>
+                  </li>
+                  <li>If you are travelling from Kipling, Vaughan, or North York, the TTC subway is likely your best method of commute.</li>
+                  <li>There are four subway stations on or very near the University of Toronto: Queen's Park Station, Museum Station, St. George Station and Spadina Station. Queen's Park is the the closest to the Engineering Buildings.</li>
+                  <li>If you commuting from Finch Side (Line 1), you can walk to campus from College station (about a 12-minute walk).</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </details>
       </section>
 
       <section id="career-development">
         <h1>CAREER DEVELOPMENT</h1>
         
-        <h2 id="internships">Internships & Co-op</h2>
-        <p>WIP</p>
+        <details id="internships">
+          <summary>Internships & Co-op</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="resume-tips">Resume & Cover Letter Tips</h2>
-        <p>WIP</p>
+        <details id="resume-tips">
+          <summary>Resume & Cover Letter Tips</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-<h2 id="interview-prep">Networking</h2>
-        <p>WIP</p>
+        <details id="interview-prep-networking">
+          <summary>Networking</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
         
-        <h2 id="interview-prep">Interview Preparation</h2>
-        <p>WIP</p>
-
+        <details id="interview-prep">
+          <summary>Interview Preparation</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
 
       <section id="finances">
         <h1>FINANCES</h1>
         
-                <h2 id="side-hustles">Other Freebies & Discounts(!!)</h2>
-        <p>P.S. Most of these require you to present your TCard or student email.</p>
-          <li>10% off groceries on purchases over $50 at Maisie’s Independent City Market (in the Manulife Centre at Bay and Bloor). Discount is only available on Tuesdays.</li>
-          <li>Free student Tuesdays at the Royal Ontario Museum</li>
-          <li>15% discount on Shopper's Drug Mart on Bloor St.</li>
-          <li>Free condoms, lube, menstrual products, peer counselling, and more at the <a  href="https://www.secutoronto.org/">Sexual Education Centre</a>.
-        <li>Discounted Admit One and Great Escape movie passes at any Cineplex location.</li>
-        <li>The <a href="https://www.isic.org/">International Student Identity Card (ISIC)</a> provides discounts for almost everything. Virtual cards are a $20 one-time purchase.</a>
- <li>A <a href="https://onesearch.library.utoronto.ca/ic/available-software">list of free software</a> for engineering students, including instructions on how to activate them.</li>
-      <li>Engineering students can get free black-and-white printing at any ECF lab. See quota details <a href="https://undergrad.engineering.utoronto.ca/campus-facilities/engineering-computing-facility-ecf/ecf-printing/printers-paper-quota/">here</a></li>
-      <li>Discounts for software (e.g. Microsoft Project, Visual Studio Enterprise, Adobe CC, Norton AntiVirus, etc.) through <a href="https://uoft.onthehub.com/WebStore/Security/Signin.aspx?rurl=%2fWebStore%2fProductsByMajorVersionList.aspx%3fcmi_cs%3d1%26cmi_mnuMain%3df189368a-f0a6-e811-8109-000d3af41938">OnTheHub</a></li>
-      <li>Free video, film, and TV streaming services through <a href="https://onesearch.library.utoronto.ca/streaming-video">UofT Libraries</a></li>
-      <li>The <a href="https://www.reddit.com/r/Piracy/wiki/megathread/">r/Piracy Wiki Megathread </a> for almost all digital media, but shhhhh.... you didn't hear it from me.</li>
+        <details id="side-hustles">
+          <summary>Other Freebies & Discounts(!!)</summary>
+          <div class="details-content">
+            <p>P.S. Most of these require you to present your TCard or student email.</p>
+            <ul>
+              <li>10% off groceries on purchases over $50 at Maisie's Independent City Market (in the Manulife Centre at Bay and Bloor). Discount is only available on Tuesdays.</li>
+              <li>Free student Tuesdays at the Royal Ontario Museum</li>
+              <li>15% discount on Shopper's Drug Mart on Bloor St.</li>
+              <li>Free condoms, lube, menstrual products, peer counselling, and more at the <a  href="https://www.secutoronto.org/">Sexual Education Centre</a>.</li>
+              <li>Discounted Admit One and Great Escape movie passes at any Cineplex location.</li>
+              <li>The <a href="https://www.isic.org/">International Student Identity Card (ISIC)</a> provides discounts for almost everything. Virtual cards are a $20 one-time purchase.</li>
+              <li>A <a href="https://onesearch.library.utoronto.ca/ic/available-software">list of free software</a> for engineering students, including instructions on how to activate them.</li>
+              <li>Engineering students can get free black-and-white printing at any ECF lab. See quota details <a href="https://undergrad.engineering.utoronto.ca/campus-facilities/engineering-computing-facility-ecf/ecf-printing/printers-paper-quota/">here</a></li>
+              <li>Discounts for software (e.g. Microsoft Project, Visual Studio Enterprise, Adobe CC, Norton AntiVirus, etc.) through <a href="https://uoft.onthehub.com/WebStore/Security/Signin.aspx?rurl=%2fWebStore%2fProductsByMajorVersionList.aspx%3fcmi_cs%3d1%26cmi_mnuMain%3df189368a-f0a6-e811-8109-000d3af41938">OnTheHub</a></li>
+              <li>Free video, film, and TV streaming services through <a href="https://onesearch.library.utoronto.ca/streaming-video">UofT Libraries</a></li>
+              <li>The <a href="https://www.reddit.com/r/Piracy/wiki/megathread/">r/Piracy Wiki Megathread </a> for almost all digital media, but shhhhh.... you didn't hear it from me.</li>
+            </ul>
+          </div>
+        </details>
         
-        <h2 id="budgeting">Budgeting</h2>
-        <p>WIP</p>
+        <details id="budgeting">
+          <summary>Budgeting</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="scholarships">Scholarships & Financial Aid</h2>
-        <p>WIP</p>
+        <details id="scholarships">
+          <summary>Scholarships & Financial Aid</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="side-hustles">Work-Study & Other Part-time Work</h2>
-        <p>WIP</p>
+        <details id="side-hustles-work">
+          <summary>Work-Study & Other Part-time Work</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
-
 
       <section id="tech-tools">
         <h1>TECH & TOOLS</h1>
         
-        <h2 id="software-recommendations">Tech Requirements</h2>
-        <p>WIP</p>
+        <details id="software-recommendations">
+          <summary>Tech Requirements</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="productivity-apps">Productivity Apps</h2>
-        <p>WIP</p>
-        <li>Check out this <a href="https://paint-tractor-7ee.notion.site/Homebase-hankun-s-template-rev-1-16965582d36d801cb92ad476637c6811">Notion template</a> designed specifically for UofT Engineering students. Made by Hankun.</li>
+        <details id="productivity-apps">
+          <summary>Productivity Apps</summary>
+          <div class="details-content">
+            <p>WIP</p>
+            <ul>
+              <li>Check out this <a href="https://paint-tractor-7ee.notion.site/Homebase-hankun-s-template-rev-1-16965582d36d801cb92ad476637c6811">Notion template</a> designed specifically for UofT Engineering students. Made by Hankun.</li>
+            </ul>
+          </div>
+        </details>
 
-        <h2 id="printing-fabrication-and-more">Printing & Fabrication</h2>
-        <p>WIP</p>
-        
+        <details id="printing-fabrication-and-more">
+          <summary>Printing & Fabrication</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
-
 
       <section id="faq">
         <h1>FREQUENTLY ASKED QUESTIONS</h1>
         
-        <h2 id="admission-questions">Admission & Application Questions</h2>
-        <p>WIP</p>
+        <details id="admission-questions">
+          <summary>Admission & Application Questions</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="program-questions">Program-Specific Questions</h2>
-        <p>WIP</p>
+        <details id="program-questions">
+          <summary>Program-Specific Questions</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
 
-        <h2 id="general-questions">General University Questions</h2>
-        <p>WIP</p>
+        <details id="general-questions">
+          <summary>General University Questions</summary>
+          <div class="details-content">
+            <p>WIP</p>
+          </div>
+        </details>
       </section>
     </div>
   </main>
@@ -773,7 +1001,7 @@
       if (window.innerWidth <= 768) return; // Don't generate TOC on mobile
       
       const toc = document.getElementById('toc');
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
+      const headings = document.querySelectorAll('section h1, summary');
       
       toc.innerHTML = '';
       
@@ -794,7 +1022,7 @@
         };
         
         // Add appropriate class based on heading level
-        if (heading.tagName === 'H2') {
+        if (heading.tagName === 'SUMMARY') {
           a.className = 'toc-level-2';
         } else if (heading.tagName === 'H3') {
           a.className = 'toc-level-3';
@@ -809,6 +1037,14 @@
     function scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
+        // If it's a summary element, open the details
+        if (element.tagName === 'SUMMARY') {
+          const details = element.closest('details');
+          if (details && !details.open) {
+            details.open = true;
+          }
+        }
+        
         element.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -862,7 +1098,7 @@
     function highlightCurrentSection() {
       if (window.innerWidth <= 768) return; // Don't highlight on mobile
       
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
+      const headings = document.querySelectorAll('section h1, summary');
       const scrollPosition = window.scrollY + 120; // Slightly increased offset for better accuracy
       
       let currentSection = '';

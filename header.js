@@ -14,7 +14,7 @@ function createHeader() {
         <a href="blog.html">blog</a>
         <a href="advice.html">advice & resources</a>
         <a href="construction.html"><s>experience & projects</s></a>
-        <a href="Resume - Rango Lee-Fu (3).pdf"><s>resume</s></a>
+        <a href="Resume - Rango Lee-Fu (3).pdf" target="_blank">resume</a>
       </nav>
       <nav class="mobile-nav" id="mobile-nav">
         <a href="index.html">home</a>
@@ -22,7 +22,7 @@ function createHeader() {
         <a href="blog.html">blog</a>
         <a href="advice.html">advice & resources</a>
         <a href="construction.html"><s>experience & projects</s></a>
-        <a href="Resume - Rango Lee-Fu (3).pdf"><s>resume</s></a>
+        <a href="Resume - Rango Lee-Fu (3).pdf" target="_blank">resume</a>
       </nav>
     </header>
   `;

@@ -1,0 +1,543 @@
+/* Indie Portfolio - Retro Mac OS Aesthetic */
+
+@font-face {
+  font-family: "Chicago";
+  src: url("fonts/ChicagoFLF.ttf");
+}
+
+@font-face {
+  font-family: 'Monaco';
+  src: url('https://cinni.net/fonts/basiic.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('https://files.catbox.moe/ow75jm.jpg');
+  background-size: 800px;
+  background-position: 20% 80%;
+  background-color: #e8e8e8;
+  font-family: 'Monaco', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  border-bottom: 2px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+  height: 32px;
+}
+
+.header-logo {
+  font-family: "Chicago", monospace;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  letter-spacing: 0.5px;
+}
+
+.header-logo:hover {
+  color: blue;
+}
+
+.menu {
+  display: flex;
+  margin-left: auto;
+}
+
+.header ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  gap: 15px;
+}
+
+.header li {
+  font-family: "Chicago", monospace;
+}
+
+.header a {
+  color: black;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: blue;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* Main Content Area */
+.main-content {
+  margin-top: 60px;
+  min-height: calc(100vh - 200px);
+}
+
+/* Hero / Home Card Stack */
+.home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  min-height: 500px;
+}
+
+.home-card {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+}
+
+.card-stack {
+  position: relative;
+}
+
+.card {
+  position: relative;
+  z-index: 4;
+  background-color: white;
+  border: 2px solid black;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.card-shadow-1,
+.card-shadow-2,
+.card-shadow-3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 2px solid black;
+  box-sizing: border-box;
+}
+
+.card-shadow-1 {
+  top: 6px;
+  left: 6px;
+  z-index: 3;
+}
+
+.card-shadow-2 {
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.card-shadow-3 {
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  background-color: black;
+}
+
+/* Card Content */
+.card h1 {
+  font-family: 'Monaco', monospace;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.card h2 {
+  font-family: "Chicago", monospace;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #666;
+  font-weight: normal;
+}
+
+.card p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.card-links {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.card-links a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid black;
+  font-family: "Chicago", monospace;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: black;
+  transition: all 0.1s;
+}
+
+.card-links a:hover {
+  background: black;
+  color: white;
+}
+
+/* Window Component (for other sections) */
+.window {
+  border: 2px solid black;
+  background: white;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.window-bar {
+  border-bottom: 2px solid black;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  background: white;
+  user-select: none;
+}
+
+.window-title {
+  font-family: "Chicago", monospace;
+  font-size: 0.9rem;
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.window-content {
+  padding: 30px;
+}
+
+.window-content h3 {
+  font-family: "Chicago", monospace;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.window-content p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.window-content a {
+  color: blue;
+  text-decoration: none;
+}
+
+.window-content a:hover {
+  text-decoration: underline;
+}
+
+/* Grid for Icons/Links */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.icon-item a {
+  font-family: 'Monaco', monospace;
+  font-size: 0.85rem;
+  color: black;
+  text-decoration: none;
+}
+
+.icon-item a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar Windows */
+.sidebar-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.sidebar-window {
+  border: 2px solid black;
+  background: white;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.sidebar-window .window-content {
+  padding: 20px;
+  font-size: 0.85rem;
+}
+
+.sidebar-window .window-content p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Two-column grid for windows */
+.windows-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.windows-grid .window {
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  background: white;
+  border-top: 2px solid black;
+  padding: 15px 10px;
+  margin-top: 80px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Monaco', monospace;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.footer-links a {
+  color: black;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: blue;
+}
+
+.footer-links svg {
+  display: block;
+}
+
+/* Button Styles */
+.button-88 {
+  display: inline-block;
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid black;
+  font-family: "Chicago", monospace;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  transition: all 0.1s;
+}
+
+.button-88:hover {
+  background: black;
+  color: white;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+}
+
+.button-88:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    font-family: "Chicago", monospace;
+    font-size: 1.3rem;
+  }
+
+  .menu-icon::before {
+    content: "☰";
+    font-size: 1.2rem;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 15px;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    border-top: 2px solid black;
+    margin-top: 10px;
+    padding: 15px 0;
+    margin-left: 0;
+  }
+
+  .header ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu-btn:checked ~ .menu {
+    display: flex;
+  }
+
+  .home-section {
+    padding: 60px 20px;
+  }
+
+  .card {
+    padding: 30px 20px;
+  }
+
+  .card h1 {
+    font-size: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  .card-shadow-1,
+  .card-shadow-2,
+  .card-shadow-3 {
+    display: none;
+  }
+
+  .sidebar-section {
+    grid-template-columns: 1fr;
+  }
+
+  .windows-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .window-content {
+    padding: 20px;
+  }
+
+  .main-content {
+    margin-top: 50px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.85rem;
+  }
+
+  .header {
+    padding: 6px 10px;
+  }
+
+  .home-section {
+    padding: 40px 15px;
+  }
+
+  .card {
+    padding: 25px 15px;
+  }
+
+  .window-content {
+    padding: 15px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.window {
+  animation: fadeInUp 0.5s ease-out;
+}

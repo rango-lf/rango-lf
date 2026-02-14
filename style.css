@@ -18,8 +18,6 @@
 
 body {
   background-image: url('https://files.catbox.moe/ow75jm.jpg');
-  background-size: 800px;
-  background-position: 20% 80%;
   background-color: #e8e8e8;
   font-family: 'Monaco', monospace;
   font-size: 0.9rem;
@@ -352,7 +350,7 @@ body {
 .footer {
   background: white;
   border-top: 2px solid black;
-  padding: 15px 10px;
+  padding: 15px 20px;
   margin-top: 80px;
 }
 
@@ -413,6 +411,33 @@ body {
 .button-88:active {
   transform: translate(1px, 1px);
   box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+/* List styles - excluding header navigation */
+.window-content ul li,
+.card ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  
+}
+
+.window-content ul ul li,
+.card ul ul li {
+  margin: 8px 12px 0;
+  margin-bottom: 8px;
+  
+}
+
+.window-content ol li,
+.card ol li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Header navigation list items should not inherit content list styles */
+.header ul li {
+  margin-bottom: 0;
+  line-height: normal;
 }
 
 /* Mobile Responsive */

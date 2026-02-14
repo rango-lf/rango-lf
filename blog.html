@@ -1,692 +1,277 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
-  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
- <script src="header.js"></script>
-  <title>ABOUT ME</title>
-  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
-  <meta name="author" content="Rango L.F.">
-  
-  <style>
-    /* Root settings */
-    :root {
-      /* column widths */
-      --widthSidebar: 250px;
-      --widthContent: 820px;
-
-      /* general page and text colours */
-      --colorBackground: #f2f2f2;
-      --colorText: darkslategray;
-      --colorLink: darkslategrey;
-
-      /* accent colours */
-      --colorPrimary: #a0d0a0;
-      --colorSecondary: #a0d0a0;
-      --colorTertiary: #a0d0a0;
-
-      /* border and box shadow colours */ 
-      --colorBorder: darkslategrey;
-      --colorShadow: darkslategrey;
-
-      /* background colour for the sections */
-      --colorBackgroundMain: #f2f2f2;
-
-      /* fonts */
-      --fontText: 'DM Mono', sans-serif;
-      --fontTitle: 'w95fa', monospace;
-
-      /* borders */
-      --borderSolid: 1.5px solid darkslategrey;
-      --borderDotted: 1.5px dotted darkslategrey;
-      --borderTree: 1.5px solid darkslategrey;
-
-      /* gallery settings */
-      --columnCount: 2;
-      --columnGap: 8px;
-
-      /* background image FOR ALL PAGES */
-      --imageBackground: none;
-    }
-
-    /* Global site structure */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-flow: column;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--fontText);
-      color: var(--colorText);
-      background-color: var(--colorBackground);
-      background-image: var(--imageBackground);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding-top: 60px; /* Space for fixed header */
-    }
-
-    /* Permanent header navigation */
-    .permanent-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--colorBackground);
-      border-bottom: var(--borderDotted);
-      padding: 8px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .permanent-header .logo {
-      font-family: var(--fontTitle);
-      font-weight: bold;
-      color: var(--colorText);
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    /* Hamburger menu button - hidden on desktop */
-    .hamburger-menu {
-      display: none;
-    }
-
-    .hamburger-toggle {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger-toggle:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Desktop navigation */
-    .desktop-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: none;
-      padding: 0;
-    }
-
-    .desktop-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 6px 12px;
-      font-size: 15px;
-    }
-
-    .desktop-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Mobile navigation - hidden by default */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--colorBackground);
-      border-top: var(--borderSolid);
-      border-bottom: var(--borderSolid);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex-direction: column;
-      padding: 8px 16px;
-      z-index: 1001;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-
-    .mobile-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .mobile-nav a:last-child {
-      margin-bottom: 0;
-    }
-
-    main {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;
-      flex: 1;
-    }
-
-    main > .sidebar {
-      flex: 0 0 var(--widthSidebar);
-      padding: 1em;
-    }
-
-    main > .content {
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 20em;
-      max-width: var(--widthContent);
-      padding: 1em;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      width: 100%;
-      border-top: var(--borderDotted);
-      background-color: var(--colorBackground);
-      padding: 0 1em;
-      font-size: 0.7em;
-      margin-top: auto;
-    }
-
-    /* Title box styling - compact and aligned with content width */
-    .title-box {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 15px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .title-box h1 {
-      margin: 0;
-      padding: 0;
-      font-family: var(--fontTitle);
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    /* Widget styling with borders and shadows */
-    .sidebar > .widget {
-      background-color: var(--colorBackgroundMain);
-      border: var(--borderSolid);
-      box-shadow: 0.3em 0.3em var(--colorShadow);
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-
-    .sidebar > .widget h3 {
-      margin: 0 0 8px 0;
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      font-size: 1em;
-    }
-
-    .sidebar > .widget p {
-      margin: 8px 0 0 0;
-      font-size: 0.9em;
-    }
-
-    .sidebar > .widget img {
-      width: 100%;
-      margin: 8px 0;
-      border: 1px solid var(--colorBorder);
-    }
-
-    /* Global text settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--fontTitle);
-      word-wrap: break-word;
-    }
-
-    p {
-      font-family: var(--fontText);
-    }
-
-    b {
-      color: var(--colorSecondary);
-    }
-
-    a {
-      color: var(--colorLink);
-    }
-
-    a:hover {
-      color: var(--colorBackground);
-      background-color: var(--colorLink);
-    }
-
-    button, .button {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background-color: var(--colorPrimary);
-      border: 1px solid var(--colorPrimary);
-      padding: 8px 12px;
-    }
-
-    button:hover, .button:hover {
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-    }
-
-    hr {
-      border: 0;
-      border-top: var(--borderDotted);
-      margin: 1em 0;
-      width: 100%;
-    }
-
-    blockquote {
-      margin: 1.5em;
-      padding-left: 1.5em;
-      border-left: 1px solid var(--colorSecondary);
-    }
-
-    /* Sections */
-    section {
-      border: 1.5px solid var(--colorBorder);
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-      padding: 1em;
-      box-shadow: 0.5em 0.5em var(--colorBorder);
-      margin: 0 1em 2em 1em;
-      width: calc(100% - 2em);
-    }
-
-    section h1 {
-      text-transform: uppercase;
-      padding: 0 1em;
-      color: var(--colorBackground);
-      background: var(--colorText);
-    }
-
-    section h2 {
-      border-bottom: 1px solid var(--colorBorder);
-    }
-
-    section img {
-      width: auto;
-      border: 1px solid var(--colorBorder);
-    }
-
-    section p {
-      padding: 0 1em;
-      max-inline-size: 700px;
-    }
-
-    /* Flex columns */
-    section > .flex-columns {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    .flex-columns > .flex-text {
-      width: 70%;
-    }
-
-    .flex-columns > .flex-image {
-      width: 25%;
-      margin: 15px;
-    }
-
-    .flex-columns > .flex-image > img {
-      width: auto;
-      padding: 0 1em;
-    }
-
-    /* Half width sections */
-    .half-width {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      min-height: 300px;
-    }
-
-    .half-width section {
-      width: calc(50% - 2em);
-      margin: 0 1em 2em 1em;
-    }
-
-    /* Tag filter styles */
-    .tag-filters {
-      margin: 0 1em 20px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .tag-filter {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      font-family: var(--fontTitle);
-      font-size: 12px;
-      padding: 4px 8px;
-      margin: 2px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.2s;
-    }
-
-    .tag-filter:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .tag-filter.active {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-      box-shadow: inset 2px 2px 0 rgba(0,0,0,0.2);
-    }
-
-    /* blog post list */
-    ul.blog-posts {
-      list-style-type: none;
-      padding: unset;
-    }
-
-    ul.blog-posts li {
-      display: flex;
-      margin-bottom: 20px;
-      padding: 10px;
-      background-color: var(--colorBackgroundMain);
-      border: 1.5px solid darkslategrey;
-      box-shadow: 2px 2px 0 darkslategray;
-      flex-direction: column;
-      transition: opacity 0.3s ease;
-    }
-
-    ul.blog-posts li.hidden {
-      display: none;
-    }
-
-    .blog-post-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    ul.blog-posts li time {
-      font-style: normal;
-      font-weight: bold;
-      flex: 0 0 130px;
-      margin-right: 15px;
-    }
-
-    .blog-post-title {
-      flex: 1;
-      font-weight: bold;
-    }
-
-    .blog-post-tags {
-      margin-top: 8px;
-    }
-
-    .tag {
-      background: var(--colorSecondary);
-      border: 1px solid var(--colorBorder);
-      color: var(--colorText);
-      font-size: 10px;
-      padding: 2px 6px;
-      margin: 2px 2px 2px 0;
-      border-radius: 3px;
-      display: inline-block;
-    }
-
-    /* Mobile responsiveness */
-    @media screen and (max-width: 768px) {
-      body {
-        padding-top: 60px;
-      }
-
-      .permanent-header {
-        padding: 8px 12px;
-      }
-
-      .hamburger-menu {
-        display: block;
-      }
-
-      .desktop-nav {
-        display: none;
-      }
-
-      main {
-        flex-direction: column;
-      }
-
-      main > .sidebar {
-        flex: none;
-        width: 100%;
-        order: 2;
-        padding: 8px;
-      }
-
-      main > .content {
-        order: 1;
-        padding: 8px;
-        max-width: 100%;
-      }
-
-      .title-box {
-        margin: 0 0 15px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .tag-filters {
-        margin: 0 0 20px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      section {
-        margin: 0 0 2em 0;
-        width: 100%;
-      }
-
-      section > .flex-columns {
-        flex-direction: column;
-      }
-
-      .flex-columns > .flex-text,
-      .flex-columns > .flex-image {
-        width: 100%;
-      }
-
-      .half-width {
-        flex-direction: column;
-      }
-
-      .half-width section {
-        width: 100%;
-        margin: 0 0 2em 0;
-      }
-
-      .blog-post-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      ul.blog-posts li time {
-        flex: none;
-        margin-right: 0;
-        margin-bottom: 5px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hamburger-toggle {
-        padding: 6px 8px;
-        font-size: 14px;
-      }
-
-      .mobile-nav a {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <main>
-    <div class="sidebar"> 
-      <div class="widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
-        <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
-        <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
-        <a style="font-size: 25px" href="https://github.com/rango-lf"><i class="fa-brands fa-github"></i></a>
-        <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
-      </div>
-      <div class="widget">
-        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
-      </div>
-      <img src="https://rainy.gay/pride/bv/progress.png"> 
-
-    </div>
-
-    <div class="content">
-      <div class="title-box">
-        <h1>BLOG.</h1>
-      </div>
-
-      <!-- Tag filters -->
-      <div class="tag-filters">
-        <button class="tag-filter active" data-tag="all">All Posts</button>
-        <button class="tag-filter" data-tag="personal">Personal</button>
-        <button class="tag-filter" data-tag="advice">Advice</button>
-        <button class="tag-filter" data-tag="projects">Projects</button>
-        <button class="tag-filter" data-tag="university">University</button>
-        <button class="tag-filter" data-tag="thoughts">Thoughts</button>
-      </div>
-
-      <section>
-        <h1>2025</h1>
-        <ul class="blog-posts" id="blog-posts-list">
-          <li data-tags="university,advice">
-            <div class="blog-post-header">
-              <time datetime="2025-08-04T03:00Z">Sept. 23, 2025</time>
-              <a href="aps162-propaganda.html" class="blog-post-title">APS162 Propaganda</a>
-            </div>
-            <div class="blog-post-tags">
-              <span class="tag">university</span>
-              <span class="tag">advice</span>
-            </div>
-          </li>
-
-        <ul class="blog-posts" id="blog-posts-list">
-          <li data-tags="university,personal">
-            <div class="blog-post-header">
-              <time datetime="2025-08-04T03:00Z">Nov. 1, 2025</time>
-              <a href="in-my-bag.html" class="blog-post-title">Obligatory "What's in my Bag" Post</a>
-            </div>
-            <div class="blog-post-tags">
-              <span class="tag">university</span>
-              <span class="tag">personal</span>
-            </div>
-          </li>
-
-         
-        </ul>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <p>rango l.f. / 2025</p>
-    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-  </footer>
-
-  <script>
-    // Tag filtering functionality
-    const tagFilters = document.querySelectorAll('.tag-filter');
-    const blogPosts = document.querySelectorAll('#blog-posts-list li');
-
-    tagFilters.forEach(filter => {
-      filter.addEventListener('click', () => {
-        const selectedTag = filter.dataset.tag;
-        
-        // Update active filter
-        tagFilters.forEach(f => f.classList.remove('active'));
-        filter.classList.add('active');
-        
-        // Filter posts
-        blogPosts.forEach(post => {
-          const postTags = post.dataset.tags ? post.dataset.tags.split(',') : [];
-          
-          if (selectedTag === 'all' || postTags.includes(selectedTag)) {
-            post.classList.remove('hidden');
-          } else {
-            post.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    function toggleMobileMenu() {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-      
-      mobileNav.classList.toggle('active');
-      
-      if (mobileNav.classList.contains('active')) {
-        hamburgerIcon.className = 'fas fa-times';
-      } else {
-        hamburgerIcon.className = 'fas fa-bars';
-      }
-    }
-
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (hamburgerMenu && !hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
-      }
-    });
-
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        const mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav) {
-          mobileNav.classList.remove('active');
-          document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog - rango lf</title>
+    <meta name="description" content="thoughts, updates, and writings">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
+    <style>
+        /* Blog-specific styles */
+        .tag-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
         }
-      }
-    });
-  </script>
+
+        .tag-filter {
+            background: white;
+            border: 2px solid black;
+            color: black;
+            font-family: "Chicago", monospace;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .tag-filter:hover {
+            background: black;
+            color: white;
+        }
+
+        .tag-filter.active {
+            background: black;
+            color: white;
+        }
+
+        .blog-posts {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .blog-posts li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border: 2px solid black;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-posts li.hidden {
+            display: none;
+        }
+
+        .blog-post-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+            gap: 15px;
+        }
+
+        .blog-posts li time {
+            font-family: "Chicago", monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            min-width: 120px;
+        }
+
+        .blog-post-title {
+            flex: 1;
+            font-family: 'Monaco', monospace;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .blog-post-title a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .blog-post-title a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .blog-post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #666;
+            font-family: "Chicago", monospace;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .blog-post-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .blog-posts li time {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header loaded via JS -->
+    <div id="header-container"></div>
+
+    <div class="main-content">
+        <!-- Blog Intro -->
+        <section class="home-section">
+            <div class="home-card">
+                <div class="card-stack">
+                    <div class="card">
+                        <h1>blog</h1>
+                        <h2>thoughts, updates, and random writings</h2>
+                        <p>
+                            a collection of posts about engineering, university life, projects, 
+                            and whatever else is on my mind. filter by tags to find what you're 
+                            looking for.
+                        </p>
+                    </div>
+                    <div class="card-shadow-1"></div>
+                    <div class="card-shadow-2"></div>
+                    <div class="card-shadow-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="wrapper">
+            <!-- Tag Filters -->
+            <div class="window">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">filter by topic</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <div class="tag-filters">
+                        <button class="tag-filter active" data-tag="all">all posts</button>
+                        <button class="tag-filter" data-tag="personal">personal</button>
+                        <button class="tag-filter" data-tag="advice">advice</button>
+                        <button class="tag-filter" data-tag="projects">projects</button>
+                        <button class="tag-filter" data-tag="university">university</button>
+                        <button class="tag-filter" data-tag="thoughts">thoughts</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2025 Posts -->
+            <div class="window" style="margin-top: 30px;">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">2025</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <ul class="blog-posts" id="blog-posts-list">
+                        <li data-tags="university,personal">
+                            <div class="blog-post-header">
+                                <time datetime="2025-11-01">Nov. 1, 2025</time>
+                                <div class="blog-post-title">
+                                    <a href="in-my-bag.html">Obligatory "What's in my Bag" Post</a>
+                                </div>
+                            </div>
+                            <div class="blog-post-tags">
+                                <span class="tag">university</span>
+                                <span class="tag">personal</span>
+                            </div>
+                        </li>
+
+                        <li data-tags="university,advice">
+                            <div class="blog-post-header">
+                                <time datetime="2025-09-23">Sept. 23, 2025</time>
+                                <div class="blog-post-title">
+                                    <a href="aps162-propaganda.html">APS162 Propaganda</a>
+                                </div>
+                            </div>
+                            <div class="blog-post-tags">
+                                <span class="tag">university</span>
+                                <span class="tag">advice</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Future years can be added here -->
+            <!-- Example structure for 2024:
+            <div class="window" style="margin-top: 30px;">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">2024</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <ul class="blog-posts">
+                        <li data-tags="thoughts,personal">
+                            <div class="blog-post-header">
+                                <time datetime="2024-12-15">Dec. 15, 2024</time>
+                                <div class="blog-post-title">
+                                    <a href="post-title.html">Post Title Here</a>
+                                </div>
+                            </div>
+                            <div class="blog-post-tags">
+                                <span class="tag">thoughts</span>
+                                <span class="tag">personal</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            -->
+
+        </div>
+    </div>
+
+    <!-- Footer loaded via JS -->
+    <div id="footer-container"></div>
+
+    <script src="components.js"></script>
+    <script>
+        // Tag filtering functionality
+        const tagFilters = document.querySelectorAll('.tag-filter');
+        const blogPosts = document.querySelectorAll('.blog-posts li');
+
+        tagFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const selectedTag = filter.dataset.tag;
+                
+                // Update active filter
+                tagFilters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                
+                // Filter posts
+                blogPosts.forEach(post => {
+                    const postTags = post.dataset.tags ? post.dataset.tags.split(',') : [];
+                    
+                    if (selectedTag === 'all' || postTags.includes(selectedTag)) {
+                        post.classList.remove('hidden');
+                    } else {
+                        post.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

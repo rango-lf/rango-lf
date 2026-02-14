@@ -3,13 +3,6 @@ const sidebarContent = `
   <div class="title">RANGO L.F.</div>
   <div class="subtitle">engineering thoughts & projects</div>
 
-  <div class="profile">
-    <p class="profile-desc">
-      <b><u>OBLIGATORY DISCLAIMER</u></b><br>
-     <p style="font-size: 10px; margin-top: 12px;">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any questions or concerns, please contact me.</p>
-    </p>
-  </div>
-
   <br>
   <div class="menu">
     <a href="index.html">home</a>
@@ -18,6 +11,7 @@ const sidebarContent = `
     <a href="blog.html">blog</a>
     <a href="resources.html">resources</a>
   </div>
+  <br>
  <!-- SKULE WebRing -->
     <div class="webring-widget">
       <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=prev">←</a>

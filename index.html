@@ -5,47 +5,549 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
   <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
+ <script src="header.js"></script>
   <title>RANGO L.F. - Engineering Blog</title>
   <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
   <meta name="author" content="Rango L.F.">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <style>
+    /* Root settings */
+    :root {
+      /* column widths */
+      --widthSidebar: 250px;
+      --widthContent: 820px;
+
+      /* general page and text colours */
+      --colorBackground: #f2f2f2;
+      --colorText: darkslategray;
+      --colorLink: darkslategrey;
+
+      /* accent colours */
+      --colorPrimary: #a0d0a0;
+      --colorSecondary: #a0d0a0;
+      --colorTertiary: #a0d0a0;
+
+      /* border and box shadow colours */ 
+      --colorBorder: darkslategrey;
+      --colorShadow: darkslategrey;
+
+      /* background colour for the sections */
+      --colorBackgroundMain: #f2f2f2;
+
+      /* fonts */
+      --fontText: 'DM Mono', sans-serif;
+      --fontTitle: 'w95fa', monospace;
+
+      /* borders */
+      --borderSolid: 1.5px solid darkslategrey;
+      --borderDotted: 1.5px dotted darkslategrey;
+      --borderTree: 1.5px solid darkslategrey;
+
+      /* gallery settings */
+      --columnCount: 2;
+      --columnGap: 8px;
+
+      /* background image FOR ALL PAGES */
+      --imageBackground: none;
+    }
+
+    /* Global site structure */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--fontText);
+      color: var(--colorText);
+      background-color: var(--colorBackground);
+      background-image: var(--imageBackground);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      padding-top: 60px; /* Space for fixed header */
+    }
+
+    /* Permanent header navigation */
+    .permanent-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--colorBackground);
+      border-bottom: var(--borderDotted);
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .permanent-header .logo {
+      font-family: var(--fontTitle);
+      font-weight: bold;
+      color: var(--colorText);
+      text-decoration: none;
+      margin-right: auto;
+    }
+
+    /* Hamburger menu button - hidden on desktop */
+    .hamburger-menu {
+      display: none;
+    }
+
+    .hamburger-toggle {
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      color: var(--colorText);
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .hamburger-toggle:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    /* Desktop navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: none;
+      padding: 0;
+    }
+
+    .desktop-nav a {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      padding: 6px 12px;
+      font-size: 15px;
+    }
+
+    .desktop-nav a:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    /* Mobile navigation - hidden by default */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--colorBackground);
+      border-top: var(--borderSolid);
+      border-bottom: var(--borderSolid);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex-direction: column;
+      padding: 8px 16px;
+      z-index: 1001;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background: var(--colorPrimary);
+      border: var(--borderSolid);
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .mobile-nav a:hover {
+      background-color: var(--colorBorder);
+      color: var(--colorBackground);
+    }
+
+    .mobile-nav a:last-child {
+      margin-bottom: 0;
+    }
+
+    main {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    main > .sidebar {
+      flex: 0 0 var(--widthSidebar);
+      padding: 1em;
+    }
+
+    main > .content {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1 1 20em;
+      max-width: var(--widthContent);
+      padding: 1em;
+    }
+
+    footer {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      width: 100%;
+      border-top: var(--borderDotted);
+      background-color: var(--colorBackground);
+      padding: 0 1em;
+      font-size: 0.7em;
+      margin-top: auto;
+    }
+
+    /* Title box styling - compact and aligned with content width */
+    .title-box {
+      background-color: var(--colorPrimary);
+      border: var(--borderSolid);
+      box-shadow: 3px 3px 0 var(--colorShadow);
+      padding: 8px 16px;
+      margin: 0 1em 15px 1em;
+      width: calc(100% - 2em);
+      max-width: calc(var(--widthContent) - 2em);
+    }
+
+    .title-box h1 {
+      margin: 0;
+      padding: 0;
+      font-family: var(--fontTitle);
+      font-size: 1.5em;
+      text-transform: uppercase;
+    }
+
+    /* Widget styling with borders and shadows */
+    .sidebar > .widget {
+      background-color: var(--colorBackgroundMain);
+      border: var(--borderSolid);
+      box-shadow: 0.3em 0.3em var(--colorShadow);
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .sidebar > .widget h3 {
+      margin: 0 0 8px 0;
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      font-size: 1em;
+    }
+
+    .sidebar > .widget p {
+      margin: 8px 0 0 0;
+      font-size: 0.9em;
+    }
+
+    .sidebar > .widget img {
+      width: 100%;
+      margin: 8px 0;
+      border: 1px solid var(--colorBorder);
+    }
+
+    /* Global text settings */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--fontTitle);
+      word-wrap: break-word;
+    }
+
+    p {
+      font-family: var(--fontText);
+    }
+
+    b {
+      color: darkslategrey;
+    }
+
+    a {
+      color: var(--colorLink);
+    }
+
+    a:hover {
+      color: var(--colorBackground);
+      background-color: var(--colorLink);
+    }
+
+    button, .button {
+      font-family: var(--fontTitle);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--colorText);
+      background-color: var(--colorPrimary);
+      border: 1px solid var(--colorPrimary);
+      padding: 8px 12px;
+    }
+
+    button:hover, .button:hover {
+      background-color: var(--colorBackgroundMain);
+      color: var(--colorText);
+    }
+
+    hr {
+      border: 0;
+      border-top: var(--borderDotted);
+      margin: 1em 0;
+      width: 100%;
+    }
+
+    blockquote {
+      margin: 1.5em;
+      padding-left: 1.5em;
+      border-left: 1px solid var(--colorSecondary);
+    }
+
+    /* Sections */
+    section {
+      border: 1.5px solid var(--colorBorder);
+      background-color: var(--colorBackgroundMain);
+      color: var(--colorText);
+      padding: 1em;
+      box-shadow: 0.5em 0.5em var(--colorBorder);
+      margin: 0 1em 2em 1em;
+      width: calc(100% - 2em);
+    }
+
+    section h1 {
+      text-transform: uppercase;
+      padding: 0 1em;
+      color: var(--colorBackground);
+      background: var(--colorText);
+    }
+
+    section h2 {
+      border-bottom: 1px solid var(--colorBorder);
+    }
+
+    section img {
+      width: 100%;
+      border: 1px solid var(--colorBorder);
+    }
+
+    section p {
+      padding: 0 1em;
+      max-inline-size: 700px;
+    }
+
+    /* Flex columns */
+    section > .flex-columns {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .flex-columns > .flex-text {
+      width: 60%;
+    }
+
+    .flex-columns > .flex-image {
+      width: 40%;
+    }
+
+    .flex-columns > .flex-image > img {
+      width: 100%;
+      padding: 0 1em;
+    }
+
+    /* Half width sections */
+    .half-width {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      min-height: 300px;
+    }
+
+    .half-width section {
+      width: calc(50% - 2em);
+      margin: 0 1em 2em 1em;
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 768px) {
+      body {
+        padding-top: 60px; /* Adjusted for mobile header height */
+      }
+
+      .permanent-header {
+        padding: 8px 12px;
+      }
+
+      /* Show hamburger menu on mobile */
+      .hamburger-menu {
+        display: block;
+      }
+
+      /* Hide desktop nav on mobile */
+      .desktop-nav {
+        display: none;
+      }
+
+      main {
+        flex-direction: column;
+      }
+
+      main > .sidebar {
+        flex: none;
+        width: 100%;
+        order: 2;
+        padding: 8px;
+      }
+
+      main > .content {
+        order: 1;
+        padding: 8px;
+        max-width: 100%;
+      }
+
+      .title-box {
+        margin: 0 0 15px 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      section {
+        margin: 0 0 2em 0;
+        width: 100%;
+      }
+
+      section > .flex-columns {
+        flex-direction: column;
+      }
+
+      .flex-columns > .flex-text,
+      .flex-columns > .flex-image {
+        width: 100%;
+      }
+
+      .half-width {
+        flex-direction: column;
+      }
+
+      .half-width section {
+        width: 100%;
+        margin: 0 0 2em 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hamburger-toggle {
+        padding: 6px 8px;
+        font-size: 14px;
+      }
+
+      .mobile-nav a {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Sidebar navigation - loaded dynamically from sidebar.js -->
-  <div class="sidebar" id="sidebar"></div>
+  <!-- Permanent header navigation -->
+  
 
-  <!-- Main content area -->
-  <div class="main">
-    <div class="page">
-      <div class="window">
-        <div class="window-title">Welcome</div>
-        <div class="window-content">
-          <h1>HOLY MACKEREL!</h1>
-          
-          <img src="https://smithandandersen.com/sites/default/files/styles/tablet_12_column_image/public/2022-03/UofT-Myhal_BannerSize-01_2270x1335.jpg?itok=E8kTEpvY" alt="Myhal Building">
-          <p style="font-size: 10px; margin-top: 4px;">^ one of my favourite buildings, Myhal.</p>
-          
-          <p><b>THIS SITE IS UNDERGOING A RENOVATION. PLEASE MIND THE MESS!</b></p>
-          
-          <p>Hello, I'm Rango LF, a first-year student in the Department of Mechanical and Industrial Engineering at the University of Toronto.</p>
+  <main>
+    <div class="sidebar"> 
+      <!-- Sidebar widgets with box styling -->
 
-          <p>Welcome to my semi-professional website, where I intend to share my experiences, advice, and resources as an engineering student. This site also doubles as a portfolio to showcase my work and experience across the years.</p>
-          
-          <p>If you have questions, ideas, concerns, or just want to connect, please feel free to reach out. Otherwise, thank you for being here. I hope you enjoy your stay.</p>
-          
-          <p>Oh, and before you leave, why not try <a href="45dessert.pdf">this recipe</a> my friend made?</p>
-        </div>
+
+      <div class="widget">
+        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
+                  <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
+          <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
+        <a style="font-size: 25px" href="https://github.com/rango-lf"</a><i class="fa-brands fa-github"></i></a>
+        <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
       </div>
+        <div class="widget">
+        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
+      </div>
+    <img src="https://rainy.gay/pride/bv/progress.png">
+      <div style="display: flex; align-items: center; gap: 15px; background-color: #f5f5f5; padding: 15px 25px; border-radius: 8px; border: 1px solid #ddd;">
+    <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=prev" style="color: #333; text-decoration: none; font-size: 1.5rem;">←</a>
+<a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/" target="_blank">
+<img src="https://WebRing.skule.ca/img/icon.svg" alt="SKULE WebRing" style="width: 32px; height: 32px;"/>
+</a>
+<a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=next" style="color: #333; text-decoration: none; font-size: 1.5rem;">→</a>
+</div>
+      </div>
+<!-- Replace 'your-website.com' with your actual website URL -->
     </div>
 
-    <footer>
-      <p>rango l.f. / 2025</p>
-      <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-    </footer>
-  </div>
+    <div class="content">
+      <!-- Compact title box aligned with content -->
+      <div class="title-box">
+        <h1>HOLY MACKEREL!</h1>
+      </div>
 
-  <!-- Load sidebar content -->
-  <script src="sidebar.js"></script>
+      <!-- Sample iframe to show alignment -->
+      <section>
+        <img src="https://smithandandersen.com/sites/default/files/styles/tablet_12_column_image/public/2022-03/UofT-Myhal_BannerSize-01_2270x1335.jpg?itok=E8kTEpvY">
+        <p style="font-size: 10px">^ one of my favourite buildings, Myhal.</p>
+        <b>THIS SITE IS UNDERGOING A RENOVATION. PLEASE MIND THE MESS!</b>
+            <p>Hello, I'm Rango LF, a first-year student in the Department of Mechanical and Industrial Engineering at the University of Toronto.</p>
+
+<p>Welcome to my semi-professional website, where I intend to share my experiences, advice, and resources as an engineering student. This site also doubles as a portfolio to showcase my work and experience across the years.</p>
+  <p>If you have questions, ideas, concerns, or just want to connect, please feel free to reach out. Otherwise, thank you for being here. I hope you enjoy your stay.</p>
+        <p>Oh, and before you leave, why not try <a href="45dessert.pdf">this recipe</a> my friend made?</p>
+          
+      </section>
+    </div>
+  <footer>
+    <p>rango l.f. / 2025</p>
+    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobile-nav');
+      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
+      
+      mobileNav.classList.toggle('active');
+      
+      // Toggle hamburger icon between bars and X
+      if (mobileNav.classList.contains('active')) {
+        hamburgerIcon.className = 'fas fa-times';
+      } else {
+        hamburgerIcon.className = 'fas fa-bars';
+      }
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const mobileNav = document.getElementById('mobile-nav');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+      if (!hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
+        mobileNav.classList.remove('active');
+        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
+      }
+    });
+
+    // Close mobile menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const mobileNav = document.getElementById('mobile-nav');
+        mobileNav.classList.remove('active');
+        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
+      }
+    });
+  </script>
 </body>
 </html>

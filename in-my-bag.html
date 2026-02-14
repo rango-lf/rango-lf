@@ -1,797 +1,167 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
-  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
-  <script src="header.js"></script>
-  <title>BLOG POST TITLE</title>
-  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
-  <meta name="author" content="Rango L.F.">
-  
-  <style>
-    /* Root settings */
-    :root {
-      /* column widths */
-      --widthSidebar: 250px;
-      --widthContent: 820px;
-
-      /* general page and text colours */
-      --colorBackground: #f2f2f2;
-      --colorText: darkslategray;
-      --colorLink: darkslategrey;
-
-      /* accent colours */
-      --colorPrimary: #a0d0a0;
-      --colorSecondary: #a0d0a0;
-      --colorTertiary: #a0d0a0;
-
-      /* border and box shadow colours */ 
-      --colorBorder: darkslategrey;
-      --colorShadow: darkslategrey;
-
-      /* background colour for the sections */
-      --colorBackgroundMain: #f2f2f2;
-
-      /* fonts */
-      --fontText: 'DM Mono', sans-serif;
-      --fontTitle: 'w95fa', monospace;
-
-      /* borders */
-      --borderSolid: 1.5px solid darkslategrey;
-      --borderDotted: 1.5px dotted darkslategrey;
-      --borderTree: 1.5px solid darkslategrey;
-
-      /* gallery settings */
-      --columnCount: 2;
-      --columnGap: 8px;
-
-      /* background image FOR ALL PAGES */
-      --imageBackground: none;
-    }
-
-    /* Global site structure */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-flow: column;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--fontText);
-      color: var(--colorText);
-      background-color: var(--colorBackground);
-      background-image: var(--imageBackground);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding-top: 60px; /* Space for fixed header */
-    }
-
-    /* Permanent header navigation */
-    .permanent-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--colorBackground);
-      border-bottom: var(--borderDotted);
-      padding: 8px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .permanent-header .logo {
-      font-family: var(--fontTitle);
-      font-weight: bold;
-      color: var(--colorText);
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    /* Hamburger menu button - hidden on desktop */
-    .hamburger-menu {
-      display: none;
-    }
-
-    .hamburger-toggle {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger-toggle:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Desktop navigation */
-    .desktop-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: none;
-      padding: 0;
-    }
-
-    .desktop-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 6px 12px;
-      font-size: 15px;
-    }
-
-    .desktop-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Mobile navigation - hidden by default */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--colorBackground);
-      border-top: var(--borderSolid);
-      border-bottom: var(--borderSolid);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex-direction: column;
-      padding: 8px 16px;
-      z-index: 1001;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-
-    .mobile-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .mobile-nav a:last-child {
-      margin-bottom: 0;
-    }
-
-    main {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;
-      flex: 1;
-    }
-
-    main > .sidebar {
-      flex: 0 0 var(--widthSidebar);
-      padding: 1em;
-    }
-
-    main > .content {
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 20em;
-      max-width: var(--widthContent);
-      padding: 1em;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      width: 100%;
-      border-top: var(--borderDotted);
-      background-color: var(--colorBackground);
-      padding: 0 1em;
-      font-size: 0.7em;
-      margin-top: auto;
-    }
-
-    /* Back button styling */
-    .back-button {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 10px 1em;
-      width: fit-content;
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .back-button a {
-      font-family: var(--fontTitle);
-      font-size: 0.9em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .back-button a:hover {
-      color: var(--colorText);
-      background: none;
-    }
-
-    .back-button:hover {
-      background-color: var(--colorBorder);
-    }
-
-    .back-button:hover a {
-      color: var(--colorBackground);
-    }
-
-    /* Title box styling - compact and aligned with content width */
-    .title-box {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 15px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .title-box h1 {
-      margin: 0;
-      padding: 0;
-      font-family: var(--fontTitle);
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    /* Widget styling with borders and shadows */
-    .sidebar > .widget {
-      background-color: var(--colorBackgroundMain);
-      border: var(--borderSolid);
-      box-shadow: 0.3em 0.3em var(--colorShadow);
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-
-    .sidebar > .widget h3 {
-      margin: 0 0 8px 0;
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      font-size: 1em;
-    }
-
-    .sidebar > .widget p {
-      margin: 8px 0 0 0;
-      font-size: 0.9em;
-    }
-
-    .sidebar > .widget img {
-      width: 100%;
-      margin: 8px 0;
-      border: 1px solid var(--colorBorder);
-    }
-
-    /* Table of Contents styling */
-    .toc {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .toc li {
-      margin-bottom: 6px;
-    }
-
-    .toc a {
-      text-decoration: none;
-      color: var(--colorText);
-      font-size: 0.9em;
-      display: block;
-      padding: 4px 8px;
-      border-left: 2px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .toc a:hover {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-      color: var(--colorText);
-    }
-
-    .toc .active {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-    }
-
-    /* Nested TOC items */
-    .toc .toc-level-2 {
-      padding-left: 16px;
-      font-size: 0.8em;
-    }
-
-    .toc .toc-level-3 {
-      padding-left: 32px;
-      font-size: 0.75em;
-    }
-
-    /* Hide TOC widget on mobile */
-    .toc-widget {
-      display: block;
-    }
-
-    /* Global text settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--fontTitle);
-      word-wrap: break-word;
-    }
-
-    p {
-      font-family: var(--fontText);
-    }
-
-    b {
-      color: darkslategray;
-    }
-
-    a {
-      color: var(--colorLink);
-    }
-
-    a:hover {
-      color: var(--colorBackground);
-      background-color: var(--colorLink);
-    }
-
-    button, .button {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background-color: var(--colorPrimary);
-      border: 1px solid var(--colorPrimary);
-      padding: 8px 12px;
-    }
-
-    button:hover, .button:hover {
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-    }
-
-    hr {
-      border: 0;
-      border-top: var(--borderDotted);
-      margin: 1em 0;
-      width: 100%;
-    }
-
-    blockquote {
-      margin: 1.5em;
-      padding-left: 1.5em;
-      border-left: 1px solid var(--colorSecondary);
-    }
-
-    /* Sections */
-    section {
-      border: 1.5px solid var(--colorBorder);
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-      padding: 1em;
-      box-shadow: 0.5em 0.5em var(--colorBorder);
-      margin: 0 1em 2em 1em;
-      width: calc(100% - 2em);
-      scroll-margin-top: 80px; /* Account for fixed header when jumping to sections */
-    }
-
-    section h1 {
-      text-transform: uppercase;
-      padding: 0 1em;
-      color: var(--colorBackground);
-      background: var(--colorText);
-    }
-
-    section h2 {
-      border-bottom: 1px solid var(--colorBorder);
-      scroll-margin-top: 80px;
-    }
-
-    section h3 {
-      scroll-margin-top: 80px;
-    }
-
-    section img {
-      width: auto;
-      border: 1px solid var(--colorBorder);
-    }
-
-    section p {
-      padding: 0 1em;
-      max-inline-size: 700px;
-    }
-
-    /* Flex columns */
-    section > .flex-columns {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    .flex-columns > .flex-text {
-      width: 70%;
-    }
-
-    .flex-columns > .flex-image {
-      width: 25%;
-      margin: 15px;
-    }
-
-    .flex-columns > .flex-image > img {
-      width: auto;
-      padding: 0 1em;
-    }
-
-    /* Half width sections */
-    .half-width {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      min-height: 300px;
-    }
-
-    .half-width section {
-      width: calc(50% - 2em);
-      margin: 0 1em 2em 1em;
-    }
-
-    /* Mobile responsiveness */
-    @media screen and (max-width: 768px) {
-      body {
-        padding-top: 60px; /* Adjusted for mobile header height */
-      }
-
-      .permanent-header {
-        padding: 8px 12px;
-      }
-
-      /* Show hamburger menu on mobile */
-      .hamburger-menu {
-        display: block;
-      }
-
-      /* Hide desktop nav on mobile */
-      .desktop-nav {
-        display: none;
-      }
-
-      /* Hide TOC widget on mobile */
-      .toc-widget {
-        display: none;
-      }
-
-      main {
-        flex-direction: column;
-      }
-
-      main > .sidebar {
-        flex: none;
-        width: 100%;
-        order: 2;
-        padding: 8px;
-      }
-
-      main > .content {
-        order: 1;
-        padding: 8px;
-        max-width: 100%;
-      }
-
-      .back-button {
-        margin: 0 0 10px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .title-box {
-        margin: 0 0 15px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      section {
-        margin: 0 0 2em 0;
-        width: 100%;
-      }
-
-      section > .flex-columns {
-        flex-direction: column;
-      }
-
-      .flex-columns > .flex-text,
-      .flex-columns > .flex-image {
-        width: 100%;
-      }
-
-      .half-width {
-        flex-direction: column;
-      }
-
-      .half-width section {
-        width: 100%;
-        margin: 0 0 2em 0;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hamburger-toggle {
-        padding: 6px 8px;
-        font-size: 14px;
-      }
-
-      .mobile-nav a {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>what's in my bag - your name's site</title>
+    <meta name="description" content="obligatory what's in my bag post">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  <!-- Permanent header navigation -->
-  <!-- Add your header content here -->
+    <!-- Header loaded via JS -->
+    <div id="header-container"></div>
 
-  <main>
-    <div class="sidebar"> 
-      <!-- Table of Contents Widget -->
-      <div class="widget toc-widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTENTS.</h2>
-        <ul class="toc" id="toc">
-          <!-- TOC will be auto-generated by JavaScript -->
-        </ul>
-      </div>
-
-      <div class="widget">
-        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
-      </div>
-      <img src="https://rainy.gay/pride/bv/progress.png"> 
-
-    </div>
-
-    <div class="content">
-      <!-- Back button -->
-      <div class="back-button">
-        <a href="blog.html">
-          <i class="fas fa-arrow-left"></i>
-          Back to Blog
-        </a>
-      </div>
-
-      <!-- Compact title box aligned with content -->
-      <div class="title-box">
-        <h1>OBLIGATORY "WHAT'S IN MY BAG" POST.</h1>
-      </div>
-
-      <!-- Blog post content sections -->
-      <section id="introduction">
-        <h1>INTRO</h1>
-<p><b>NOTE: I am NOT sponsored by any of the brands featured in this blog post.</b></p>
-
-<p>They say that one's bag is the window into the soul. And by "they", I mean I made this quote up.</p>
-
-<p>I've been wanting to hop on the "what's in my bag" bandwagon for quite a while now, and with my first year of university rapidly approaching, it seems like an appropriate occasion to do so. Many different variations of this trend can be found on the net--from tech bros, entire subreddits dedicated to "everyday carries" (r/EDC), artist communities, and fellow engineering students on TikTok. It's an interesting form of self-presentation in which others can get a glimpse into your daily life and personal stories based on the possessions you choose to showcase.</p>
-
-<p>Aside from that, I hope this can give some pointers to any future students who have questions on what they should pack for a day on campus.</p>
-      </section>
-
-<section id="THE BAG.">
-
-<h1>THE BAG</h1>
-<img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1819.jpg" style="height: 350px">
-<p>1. <b>THE NORTH FACE VAULT BACKPACK (27 L)</b>: A gift from my step-father who had this backpack sitting in his drawer unused. It has a basic dual-compartment layout with a padded laptop sleeve, two side pockets, and a daisy chain. Notably, it also has well-padded shoulder straps and a sternum buckle, which are firsts for me in the backpack department. At least within my circle of family and friends, The North Face products have a great track record for their quality, so I'm banking on this one lasting me through undergrad.</p> 
-  
-  <p>2. <b>SAFETY ALARM</b>: I bought one online after recommendations from my aunt and older cousin who take the TTC regularly. It also comes with a light. Toronto is a relatively safe place for most people, especially in comparison to other major North American cities, but I'd rather be safe than sorry.</p> 
-  
-    <p>3. <b>CARABINER W/ HAIRTIES</b>: I don't have long hair, but I always keep several on hand for other people. #WomeninSTEM or something.</p> 
-
+    <div class="main-content">
+        <!-- Post Header -->
+        <section class="home-section">
+            <div class="home-card">
+                <div class="card-stack">
+                    <div class="card">
+                        <h1>obligatory "what's in my bag" post</h1>
+                        <h2>a glimpse into my daily carry</h2>
+                        <p>
+                            <strong>posted:</strong> november 1, 2025<br>
+                            <strong>tags:</strong> university, personal
+                        </p>
+                    </div>
+                    <div class="card-shadow-1"></div>
+                    <div class="card-shadow-2"></div>
+                    <div class="card-shadow-3"></div>
+                </div>
+            </div>
         </section>
-      <section id="side-pockets">
 
-<h1>SIDE POCKETS</h1>
+        <div class="wrapper">
+            <!-- Navigation -->
+            <div style="margin-bottom: 20px;">
+                <a href="blog.html" style="font-family: 'Chicago', monospace; text-decoration: none; color: black;">
+                    ← back to blog
+                </a>
+            </div>
 
-<p>4. <b>OWALA FREESIP WATER BOTTLE (24 ml)</b>: I bought this over a year ago after my cheap plastic water bottle finally got obliterated. Shamefully, I was influenced by the Owala hype train, but I can certainly attest to its advertised convenience, temperature insulation, and durability. It is, however, a slight pain to clean the mouthpiece due to how narrow it is. Mould grows easily around the rubber components if I don't sanitize the parts regularly.</p> 
+            <!-- Intro -->
+            <div class="window" id="intro">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">intro</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><strong>NOTE: I am NOT sponsored by any of the brands featured in this blog post.</strong></p>
 
-        <p>5. <b>CHEAP MINI-UMBRELLA:</b> I stole this from the family shoe closet a few years ago and kept it in my school backpacks ever since. Despite it's crappy build quality and ugly purple colour (in my opinion), this umbrella has saved me from many a storm. One of the flimsy metal arms broke and lost a screw, so I had to improvise by connecting the joints with a paperclip. We'll see if it can survive the Toronto weather.</p> 
+                    <p>They say that one's bag is the window into the soul. And by "they", I mean I made this quote up.</p>
 
+                    <p>I've been wanting to hop on the "what's in my bag" bandwagon for quite a while now, and with my first year of university rapidly approaching, it seems like an appropriate occasion to do so. Many different variations of this trend can be found on the net—from tech bros, entire subreddits dedicated to "everyday carries" (r/EDC), artist communities, and fellow engineering students on TikTok. It's an interesting form of self-presentation in which others can get a glimpse into your daily life and personal stories based on the possessions you choose to showcase.</p>
 
-      </section>
-      
+                    <p>Aside from that, I hope this can give some pointers to any future students who have questions on what they should pack for a day on campus.</p>
+                </div>
+            </div>
 
-      <section id="FRONT POCKET.">
-        <h1>FRONT POCKET</h1>
-        
-        <img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1821.jpg" style="height:350px">
-        <p>6. <b>FREDDY FAZBEAR WALLET</b>: My legendary Freddy Fazwallet. I bought this as a birthday gift for myself three years ago and I hope I can continue using this way into my 30s and 40s for shits and giggles. Attached is an Umbrella Corporation (Resident Evil) card-holder for my PRESTO fare. Other than necessary cards and IDs, I always keep some cash and coin on me if I'm in a pinch.</p> 
-        <p>7. <b>CASIO FX-991CW SCIENTIFIC CALCULATOR</b>: One of two(?) scientific calculators approved by the University of Toronto Faculty of Applied Science and Engineering. I still don't actually know how to use this to its full potential. Since everybody and their mother will have one of these, I put my name and contact on the back, and I recommend everyone else to do the same.</p> 
-        <p>8. <b>SUNGLASSES</b>: Aviator-style sunglasses I got for free from my job. They make me look cooler than I actually am.</p> 
-        <p>9. <b>PADS, TAMPONS, THROW-UP BAGS, BAND-AIDS</b>:  I keep these in a plastic bag in the zip-up compartment. Even if I don't need them, I'm prepared to give them to peers who do.</p> 
-         <p>10. <b>MEDICATION CASE</b>: I got a cheap organizer and some labels off Amazon. Stocked inside are Gravol, Pepto Bismol, generic anti-histamines, Tylenol, and nasal decongestants.</p> 
-        <p>11. <b>MISC.</b>: Chapstick, tissues, hand balm, etc.</p> 
-      </section>
-      
-      <section id="MAIN POCKET">
-        <h1>MAIN POCKET</h1>
-        <img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1827.jpg" style="height:350px">
-          <p>12. <b>PENCIL CASE</b>: A trusty Herschel pencil case I've had for four years. Inside are various coloured highlighters, mechanical pencils, pens, a ruler, a pair of scissors, erasers, a gluestick and some white-out.</p> 
-        <p>13. <b>CHARGERS & POWERBANK</b>: I keep an EAFU portable powerbank and two cables with charging blocks for all my devices. I store these in a mesh zip-up bag to prevent tangling. Long days on campus from evening to night means most eng. students will need to rely on a re-charge at least once.</p> 
-        <p>14. <b>JOURNAL</b>: I am trying to be more "mindful" and "reflective"--whatever that may mean. I mostly just vent, rant, and record out-of-pocket or funny quotes here.</p> 
-        <p>15. <b>IPAD PRO 11" & PENCIL PRO</b>: I've had this since 9th grade and it still handles everything like a beast. I primarily use it for taking notes and completing assignments on OneNote, which automatically syncs with the desktop app on my laptop.</p> 
-         <p>16. <b>LENOVO YOGA 2-IN-1 LAPTOP (14" AMD)</b>: My most essential piece of tech, besides my smartphone. I got it for a discount during the Lenovo 2024 summer sale and ever since then, I've loved this laptop. Its 2-in-1 design and inclusion of a pen have made it a seamless means of taking notes during class and doing design work with AutoCAD, KiCad, etc. So far, it has been able to keep up with demanding programs and some games like the Sims 4. Despite the praises I have for this laptop, I am worried about potential hinge failures that seem to be a reoccuring theme in 2-in-1 devices.</p> 
-        <p>17. <b>LOGITECH M240 WIRELESS MOUSE</b>: I bought this bluetooth mouse for about $20.00 on Amazon. It's compact, connects smoothly, and I haven't had any complaints with it thus far. I'd highly recommend any student to use a mouse for the sake of comfort and precision while working/studying.</p> 
-        <p>18. <b>ACCORDIAN FOLDER</b>: Most course content is digitized on Quercus/Canvas nowadays, but I keep an accordian folder for any sheets and scrap paper I need to keep.</p> 
-        <p>19. <b>FIRST AID KIT</b>: Bandaids, gloves, gauze, and more. Comes in handy especially while working in design teams.</p> 
-      </section>
+            <!-- The Bag -->
+            <div class="window" style="margin-top: 30px;" id="the-bag">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">the bag</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1819.jpg" style="max-width: 100%; height: auto; border: 2px solid black; margin-bottom: 20px;">
+                    
+                    <p><strong>1. THE NORTH FACE VAULT BACKPACK (27 L)</strong>: A gift from my step-father who had this backpack sitting in his drawer unused. It has a basic dual-compartment layout with a padded laptop sleeve, two side pockets, and a daisy chain. Notably, it also has well-padded shoulder straps and a sternum buckle, which are firsts for me in the backpack department. At least within my circle of family and friends, The North Face products have a great track record for their quality, so I'm banking on this one lasting me through undergrad.</p>
+                    
+                    <p><strong>2. SAFETY ALARM</strong>: I bought one online after recommendations from my aunt and older cousin who take the TTC regularly. It also comes with a light. Toronto is a relatively safe place for most people, especially in comparison to other major North American cities, but I'd rather be safe than sorry.</p>
+                    
+                    <p><strong>3. CARABINER W/ HAIRTIES</strong>: I don't have long hair, but I always keep several on hand for other people. #WomeninSTEM or something.</p>
+                </div>
+            </div>
+
+            <!-- Side Pockets -->
+            <div class="window" style="margin-top: 30px;" id="side-pockets">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">side pockets</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><strong>4. OWALA FREESIP WATER BOTTLE (24 ml)</strong>: I bought this over a year ago after my cheap plastic water bottle finally got obliterated. Shamefully, I was influenced by the Owala hype train, but I can certainly attest to its advertised convenience, temperature insulation, and durability. It is, however, a slight pain to clean the mouthpiece due to how narrow it is. Mould grows easily around the rubber components if I don't sanitize the parts regularly.</p>
+
+                    <p><strong>5. CHEAP MINI-UMBRELLA</strong>: I stole this from the family shoe closet a few years ago and kept it in my school backpacks ever since. Despite it's crappy build quality and ugly purple colour (in my opinion), this umbrella has saved me from many a storm. One of the flimsy metal arms broke and lost a screw, so I had to improvise by connecting the joints with a paperclip. We'll see if it can survive the Toronto weather.</p>
+                </div>
+            </div>
+
+            <!-- Front Pocket -->
+            <div class="window" style="margin-top: 30px;" id="front-pocket">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">front pocket</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1821.jpg" style="max-width: 100%; height: auto; border: 2px solid black; margin-bottom: 20px;">
+                    
+                    <p><strong>6. FREDDY FAZBEAR WALLET</strong>: My legendary Freddy Fazwallet. I bought this as a birthday gift for myself three years ago and I hope I can continue using this way into my 30s and 40s for shits and giggles. Attached is an Umbrella Corporation (Resident Evil) card-holder for my PRESTO fare. Other than necessary cards and IDs, I always keep some cash and coin on me if I'm in a pinch.</p>
+                    
+                    <p><strong>7. CASIO FX-991CW SCIENTIFIC CALCULATOR</strong>: One of two(?) scientific calculators approved by the University of Toronto Faculty of Applied Science and Engineering. I still don't actually know how to use this to its full potential. Since everybody and their mother will have one of these, I put my name and contact on the back, and I recommend everyone else to do the same.</p>
+                    
+                    <p><strong>8. SUNGLASSES</strong>: Aviator-style sunglasses I got for free from my job. They make me look cooler than I actually am.</p>
+                    
+                    <p><strong>9. PADS, TAMPONS, THROW-UP BAGS, BAND-AIDS</strong>: I keep these in a plastic bag in the zip-up compartment. Even if I don't need them, I'm prepared to give them to peers who do.</p>
+                    
+                    <p><strong>10. MEDICATION CASE</strong>: I got a cheap organizer and some labels off Amazon. Stocked inside are Gravol, Pepto Bismol, generic anti-histamines, Tylenol, and nasal decongestants.</p>
+                    
+                    <p><strong>11. MISC.</strong>: Chapstick, tissues, hand balm, etc.</p>
+                </div>
+            </div>
+
+            <!-- Main Pocket -->
+            <div class="window" style="margin-top: 30px;" id="main-pocket">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">main pocket</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <img src="https://file.garden/Zsll79RXvkqRnlqG/IMG_1827.jpg" style="max-width: 100%; height: auto; border: 2px solid black; margin-bottom: 20px;">
+                    
+                    <p><strong>12. PENCIL CASE</strong>: A trusty Herschel pencil case I've had for four years. Inside are various coloured highlighters, mechanical pencils, pens, a ruler, a pair of scissors, erasers, a gluestick and some white-out.</p>
+                    
+                    <p><strong>13. CHARGERS & POWERBANK</strong>: I keep an EAFU portable powerbank and two cables with charging blocks for all my devices. I store these in a mesh zip-up bag to prevent tangling. Long days on campus from evening to night means most eng. students will need to rely on a re-charge at least once.</p>
+                    
+                    <p><strong>14. JOURNAL</strong>: I am trying to be more "mindful" and "reflective"—whatever that may mean. I mostly just vent, rant, and record out-of-pocket or funny quotes here.</p>
+                    
+                    <p><strong>15. IPAD PRO 11" & PENCIL PRO</strong>: I've had this since 9th grade and it still handles everything like a beast. I primarily use it for taking notes and completing assignments on OneNote, which automatically syncs with the desktop app on my laptop.</p>
+                    
+                    <p><strong>16. LENOVO YOGA 2-IN-1 LAPTOP (14" AMD)</strong>: My most essential piece of tech, besides my smartphone. I got it for a discount during the Lenovo 2024 summer sale and ever since then, I've loved this laptop. Its 2-in-1 design and inclusion of a pen have made it a seamless means of taking notes during class and doing design work with AutoCAD, KiCad, etc. So far, it has been able to keep up with demanding programs and some games like the Sims 4. Despite the praises I have for this laptop, I am worried about potential hinge failures that seem to be a reoccuring theme in 2-in-1 devices.</p>
+                    
+                    <p><strong>17. LOGITECH M240 WIRELESS MOUSE</strong>: I bought this bluetooth mouse for about $20.00 on Amazon. It's compact, connects smoothly, and I haven't had any complaints with it thus far. I'd highly recommend any student to use a mouse for the sake of comfort and precision while working/studying.</p>
+                    
+                    <p><strong>18. ACCORDIAN FOLDER</strong>: Most course content is digitized on Quercus/Canvas nowadays, but I keep an accordian folder for any sheets and scrap paper I need to keep.</p>
+                    
+                    <p><strong>19. FIRST AID KIT</strong>: Bandaids, gloves, gauze, and more. Comes in handy especially while working in design teams.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <footer>
-    <p>rango l.f. / 2025</p>
-    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-  </footer>
+    <!-- Footer loaded via JS -->
+    <div id="footer-container"></div>
 
-  <script>
-    // Auto-generate Table of Contents
-    function generateTOC() {
-      const toc = document.getElementById('toc');
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
-      
-      toc.innerHTML = '';
-      
-      headings.forEach(function(heading, index) {
-        // Create an ID for the heading if it doesn't have one
-        if (!heading.id) {
-          heading.id = 'heading-' + index;
-        }
-        
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        
-        a.href = '#' + heading.id;
-        a.textContent = heading.textContent;
-        a.onclick = function(e) {
-          e.preventDefault();
-          scrollToSection(heading.id);
-        };
-        
-        // Add appropriate class based on heading level
-        if (heading.tagName === 'H2') {
-          a.className = 'toc-level-2';
-        } else if (heading.tagName === 'H3') {
-          a.className = 'toc-level-3';
-        }
-        
-        li.appendChild(a);
-        toc.appendChild(li);
-      });
-    }
-
-    // Smooth scroll to section
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
-        // Update active state
-        updateActiveTOCItem(sectionId);
-      }
-    }
-
-    // Update active TOC item
-    function updateActiveTOCItem(activeId) {
-      const tocLinks = document.querySelectorAll('.toc a');
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + activeId) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // Highlight current section in TOC on scroll
-    function highlightCurrentSection() {
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
-      const scrollPosition = window.scrollY + 100;
-      
-      let currentSection = '';
-      
-      headings.forEach(heading => {
-        const sectionTop = heading.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          currentSection = heading.id;
-        }
-      });
-      
-      if (currentSection) {
-        updateActiveTOCItem(currentSection);
-      }
-    }
-
-    // Mobile menu functionality
-    function toggleMobileMenu() {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-      
-      if (mobileNav) {
-        mobileNav.classList.toggle('active');
-        
-        // Toggle hamburger icon between bars and X
-        if (mobileNav.classList.contains('active')) {
-          hamburgerIcon.className = 'fas fa-times';
-        } else {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      generateTOC();
-    });
-
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (mobileNav && hamburgerMenu && !hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-        if (hamburgerIcon) {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    });
-
-    // Close mobile menu when window is resized to desktop size
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        const mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav) {
-          mobileNav.classList.remove('active');
-          const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-          if (hamburgerIcon) {
-            hamburgerIcon.className = 'fas fa-bars';
-          }
-        }
-      }
-    });
-  </script>
+    <script src="components.js"></script>
 </body>
 </html>

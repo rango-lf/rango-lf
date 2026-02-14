@@ -1,604 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
-  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
- <script src="header.js"></script>
-  <title>ABOUT ME</title>
-  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
-  <meta name="author" content="Rango L.F.">
-  
-  <style>
-    /* Root settings */
-    :root {
-      /* column widths */
-      --widthSidebar: 250px;
-      --widthContent: 820px;
-
-      /* general page and text colours */
-      --colorBackground: #f2f2f2;
-      --colorText: darkslategray;
-      --colorLink: darkslategrey;
-
-      /* accent colours */
-      --colorPrimary: #a0d0a0;
-      --colorSecondary: #a0d0a0;
-      --colorTertiary: #a0d0a0;
-
-      /* border and box shadow colours */ 
-      --colorBorder: darkslategrey;
-      --colorShadow: darkslategrey;
-
-      /* background colour for the sections */
-      --colorBackgroundMain: #f2f2f2;
-
-      /* fonts */
-      --fontText: 'DM Mono', sans-serif;
-      --fontTitle: 'w95fa', monospace;
-
-      /* borders */
-      --borderSolid: 1.5px solid darkslategrey;
-      --borderDotted: 1.5px dotted darkslategrey;
-      --borderTree: 1.5px solid darkslategrey;
-
-      /* gallery settings */
-      --columnCount: 2;
-      --columnGap: 8px;
-
-      /* background image FOR ALL PAGES */
-      --imageBackground: none;
-    }
-
-    /* Global site structure */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-flow: column;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--fontText);
-      color: var(--colorText);
-      background-color: var(--colorBackground);
-      background-image: var(--imageBackground);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding-top: 60px; /* Space for fixed header */
-    }
-
-    /* Permanent header navigation */
-    .permanent-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--colorBackground);
-      border-bottom: var(--borderDotted);
-      padding: 8px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .permanent-header .logo {
-      font-family: var(--fontTitle);
-      font-weight: bold;
-      color: var(--colorText);
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    /* Hamburger menu button - hidden on desktop */
-    .hamburger-menu {
-      display: none;
-    }
-
-    .hamburger-toggle {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger-toggle:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Desktop navigation */
-    .desktop-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: none;
-      padding: 0;
-    }
-
-    .desktop-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 6px 12px;
-      font-size: 15px;
-    }
-
-    .desktop-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Mobile navigation - hidden by default */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--colorBackground);
-      border-top: var(--borderSolid);
-      border-bottom: var(--borderSolid);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex-direction: column;
-      padding: 8px 16px;
-      z-index: 1001;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-
-    .mobile-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .mobile-nav a:last-child {
-      margin-bottom: 0;
-    }
-
-    main {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;
-      flex: 1;
-    }
-
-    main > .sidebar {
-      flex: 0 0 var(--widthSidebar);
-      padding: 1em;
-    }
-
-    main > .content {
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 20em;
-      max-width: var(--widthContent);
-      padding: 1em;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      width: 100%;
-      border-top: var(--borderDotted);
-      background-color: var(--colorBackground);
-      padding: 0 1em;
-      font-size: 0.7em;
-      margin-top: auto;
-    }
-
-    /* Title box styling - compact and aligned with content width */
-    .title-box {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 15px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .title-box h1 {
-      margin: 0;
-      padding: 0;
-      font-family: var(--fontTitle);
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    /* Widget styling with borders and shadows */
-    .sidebar > .widget {
-      background-color: var(--colorBackgroundMain);
-      border: var(--borderSolid);
-      box-shadow: 0.3em 0.3em var(--colorShadow);
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-
-    .sidebar > .widget h3 {
-      margin: 0 0 8px 0;
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      font-size: 1em;
-    }
-
-    .sidebar > .widget p {
-      margin: 8px 0 0 0;
-      font-size: 0.9em;
-    }
-
-    .sidebar > .widget img {
-      width: 100%;
-      margin: 8px 0;
-      border: 1px solid var(--colorBorder);
-    }
-
-    /* Global text settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--fontTitle);
-      word-wrap: break-word;
-    }
-
-    p {
-      font-family: var(--fontText);
-    }
-
-    b {
-      color: var(--colorSecondary);
-    }
-
-    a {
-      color: var(--colorLink);
-    }
-
-    a:hover {
-      color: var(--colorBackground);
-      background-color: var(--colorLink);
-    }
-
-    button, .button {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background-color: var(--colorPrimary);
-      border: 1px solid var(--colorPrimary);
-      padding: 8px 12px;
-    }
-
-    button:hover, .button:hover {
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-    }
-
-    hr {
-      border: 0;
-      border-top: var(--borderDotted);
-      margin: 1em 0;
-      width: 100%;
-    }
-
-    blockquote {
-      margin: 1.5em;
-      padding-left: 1.5em;
-      border-left: 1px solid var(--colorSecondary);
-    }
-
-    /* Sections */
-    section {
-      border: 1.5px solid var(--colorBorder);
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-      padding: 1em;
-      box-shadow: 0.5em 0.5em var(--colorBorder);
-      margin: 0 1em 2em 1em;
-      width: calc(100% - 2em);
-    }
-
-    section h1 {
-      text-transform: uppercase;
-      padding: 0 1em;
-      color: var(--colorBackground);
-      background: var(--colorText);
-    }
-
-    section h2 {
-      border-bottom: 1px solid var(--colorBorder);
-    }
-
-    section img {
-      width: auto;
-      border: 1px solid var(--colorBorder);
-    }
-
-    section p {
-      padding: 0 1em;
-      max-inline-size: 700px;
-    }
-
-    /* Flex columns */
-    section > .flex-columns {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    .flex-columns > .flex-text {
-      width: 70%;
-    }
-
-    .flex-columns > .flex-image {
-      width: 25%;
-      margin: 15px;
-    }
-
-    .flex-columns > .flex-image > img {
-      width: auto;
-      padding: 0 1em;
-    }
-
-    /* Two-column layout for bottom sections */
-    .two-column-container {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      gap: 0;
-    }
-
-    .two-column-container section {
-      flex: 1;
-      min-width: 300px;
-      margin: 0 1em 2em 1em;
-    }
-
-    /* Ensure equal height for the two columns */
-    .two-column-container section {
-      height: 250px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .section-content {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .section-content ul {
-      margin: 0;
-      padding-left: 1.5em;
-    }
-
-    .section-content li {
-      margin-bottom: 0.5em;
-    }
-
-    /* Mobile responsiveness */
-    @media screen and (max-width: 768px) {
-      body {
-        padding-top: 60px; /* Adjusted for mobile header height */
-      }
-
-      .permanent-header {
-        padding: 8px 12px;
-      }
-
-      /* Show hamburger menu on mobile */
-      .hamburger-menu {
-        display: block;
-      }
-
-      /* Hide desktop nav on mobile */
-      .desktop-nav {
-        display: none;
-      }
-
-      main {
-        flex-direction: column;
-      }
-
-      main > .sidebar {
-        flex: none;
-        width: 100%;
-        order: 2;
-        padding: 8px;
-      }
-
-      main > .content {
-        order: 1;
-        padding: 8px;
-        max-width: 100%;
-      }
-
-      .title-box {
-        margin: 0 0 15px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      section {
-        margin: 0 0 2em 0;
-        width: 100%;
-      }
-
-      section > .flex-columns {
-        flex-direction: column;
-      }
-
-      .flex-columns > .flex-text,
-      .flex-columns > .flex-image {
-        width: 100%;
-      }
-
-      /* Stack columns vertically on mobile */
-      .two-column-container {
-        flex-direction: column;
-      }
-
-      .two-column-container section {
-        margin: 0 0 2em 0;
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hamburger-toggle {
-        padding: 6px 8px;
-        font-size: 14px;
-      }
-
-      .mobile-nav a {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about - rango-lf</title>
+    <meta name="description" content="about me and my work">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!-- Permanent header navigation -->
-  
+    <!-- Header loaded via JS -->
+    <div id="header-container"></div>
 
-  <main>
-    <div class="sidebar"> 
-      <!-- Sidebar widgets with box styling -->
-
-
-      <div class="widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
-                  <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
-          <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
-        <a style="font-size: 25px" href="https://github.com/rango-lf"><i class="fa-brands fa-github"></i></a>
-        <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
-      </div>
-        <div class="widget">
-        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
-      </div>
-    <img src="https://rainy.gay/pride/bv/progress.png">
-    </div>
-
-    <div class="content">
-      <!-- Compact title box aligned with content -->
-      <div class="title-box">
-        <h1>ABOUT ME.</h1>
-      </div>
-
-      <!-- Main about section -->
-      <section>
-            <div class="flex-columns">
-              <div class="flex-image">
-                <img src="https://rangowritings.wordpress.com/wp-content/uploads/2024/01/img_3562.jpeg" style="height: 170px; border: none">
-              </div>
-              <div class="flex-text">
-                <p style="font-size: 15px">Most people call me Rango, but other variations of my name include "Commander", Django", "Tango", and "Rambo". I prefer masculine terminology (he/him) when referring to me online. In-person, I don't care.</p>
-    <p style="font-size: 15px">I was born and raised in Richmond; a small city that is part of the Metro Vancouver area in BC. Both my father (civil) and older sister (eng. physics) are engineers from UBC, so I chose to attend UofT out of spite. (I'm joking).</p>
-                                             </div>
+    <div class="main-content">
+        <!-- About Hero Section -->
+        <section class="home-section">
+            <div class="home-card">
+                <div class="card-stack">
+                    <div class="card">
+                        <h1>about me</h1>
+                        <p>
+                           Most people call me Rango, but other variations of my name include "Commander", Django", "Tango", and "Rambo". I prefer masculine terminology (he/him) when referring to me online. In-person, I don't care.
+                        </p>
+                      <p>
+Currently, I intend on completing a BASc in Mechanical Engineering, followed by a MASc and PhD (discipline/field still undecided). Eventually, I'd like to become an engineering professor, or work in the industry as an R&D engineer.</p>
+                        <p>I hope I can spend my academic career exploring as many fields, and as much of them, as I can. My core motto, if you will, is to always stay curious.</p>
+                        <p>
+                            If you wish to learn more about me, <a href="more_about.html">see here →</a>
+                        </p>
+                    </div>
+                    <div class="card-shadow-1"></div>
+                    <div class="card-shadow-2"></div>
+                    <div class="card-shadow-3"></div>
+                </div>
             </div>
-               <p style="font-size: 15px">Throughout high school, I was quite odd, eccentric, and lonely. I found myself spending a lot of time watching and reading things online, which led to a highly-intense fixation on Chernobyl and nuclear reactors. This passion led me to pursue a BASc in Mechanical Engineering. My long-term goal is to complete a MASc in Nuclear Engineering and, eventually, a PhD in Engineering Education. This is subject to change, as my research interests are incredibly broad and include: biomechanics/biomedical systems, healthcare, AI/ML, engineering ethics, public policy, and more. I hope I can spend my academic career exploring as many fields, and as much of them, as I can. My core motto, if you will, is to always stay curious.</p>
-            <p>Beyond topics traditionally associated with science and engineering, I am deeply interested in political science and social justice; particularly in examining the ways engineers have contributed to colonialism, warfare, and systemic injustices, and how they can now play a role in dismantling these structures.</p>
-            <p style="font-size: 15px">In real life, I do not look exactly as pictured above. I can usually be found in the MIE common room, located in the Mining Building, when I'm not in class or busy with something else. Don't be afraid to talk to me!</p>
-      </section>
-
-      <!-- Two-column layout for Recent Updates and Currently sections -->
-      <div class="two-column-container">
-        <section>
-          <h2>TALK TO ME ABOUT</h2>
-          <div class="section-content">
-            <ul>
-              <li>Skule!</li>
-              <li>Chernobyl</li>
-              <li><i>The Iliad</i>, <i>The Odyssey</i>, the Trojan War Cycle, etc.</li>
-              <li>Kendrick Lamar</li>
-              <li>EPIC: The Musical</li>
-              <li>Video games (e.g. The Last of Us, The Sims 4, Resident Evil, Hades)</li>
-              <li>Fanfiction</li>
-              <li>Lists and spreadsheets</li>
-            </ul>
-          </div>
         </section>
+
+        <!-- Background & Education -->
+        <div class="wrapper">
+            <div class="windows-grid">
+                <div class="window">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">education</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                      <b> BASc in Mechanical Engineering</b><br>
+                        <p><strong>University of Toronto</strong> • 2025-2030<br>
+                          
+                          Minor in Artificial Intelligence Engineering
+                  <br>Certificate in Nuclear Engineering</br>
+                       
+                        
+                  </div>
+                </div>
+
+                <div class="window">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">interests</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        
+                            → <strong>Artificial Intelligence & Machine Learning</strong> — applications in healthcare, materials development, and energy systems<br><br>
+                            → <strong>Nuclear Materials</strong> — corrosion and irradiation of Gen III+/IV reactor component materials<br><br>
+                            → <strong>Engineering Macroethics</strong> — societal-level risks of technologies (e.g. AI, nuclear weapons)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+          
+
             
-        <section>
-          <h2>CURRENTLY INVOLVED IN</h2>
-          <div class="section-content">
-            <ul>
-              <li>The UTSM (University of Toronto Supermileage) Prototype Mechanical team</li>
-              <li>The UTWind (University of Toronto Wind Turbine) Power Systems team</li>
-              <li>The Engineering Society Office of Returning Officers</li>
-            </ul>
-          </div>
-        </section>
-      </div>
+        </div>
     </div>
-  </main>
 
-  <footer>
-    <p>rango l.f. / 2025</p>
-    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-  </footer>
+    <!-- Footer loaded via JS -->
+    <div id="footer-container"></div>
 
-  <script>
-    function toggleMobileMenu() {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-      
-      mobileNav.classList.toggle('active');
-      
-      // Toggle hamburger icon between bars and X
-      if (mobileNav.classList.contains('active')) {
-        hamburgerIcon.className = 'fas fa-times';
-      } else {
-        hamburgerIcon.className = 'fas fa-bars';
-      }
-    }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (!hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
-      }
-    });
-
-    // Close mobile menu when window is resized to desktop size
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        const mobileNav = document.getElementById('mobile-nav');
-        mobileNav.classList.remove('active');
-        document.querySelector('.hamburger-toggle i').className = 'fas fa-bars';
-      }
-    });
-  </script>
+    <script src="components.js"></script>
 </body>
 </html>

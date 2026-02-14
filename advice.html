@@ -1,1271 +1,487 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
-  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
-  <script src="header.js"></script>
-  <title>ADVICE</title>
-  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
-  <meta name="author" content="Rango L.F.">
-  
-  <style>
-    /* Root settings */
-    :root {
-      /* column widths */
-      --widthSidebar: 250px;
-      --widthContent: 820px;
-
-      /* general page and text colours */
-      --colorBackground: #f2f2f2;
-      --colorText: darkslategray;
-      --colorLink: darkslategrey;
-
-      /* accent colours */
-      --colorPrimary: #a0d0a0;
-      --colorSecondary: #a0d0a0;
-      --colorTertiary: #a0d0a0;
-
-      /* border and box shadow colours */ 
-      --colorBorder: darkslategrey;
-      --colorShadow: darkslategrey;
-
-      /* background colour for the sections */
-      --colorBackgroundMain: #f2f2f2;
-
-      /* fonts */
-      --fontText: 'DM Mono', sans-serif;
-      --fontTitle: 'w95fa', monospace;
-
-      /* borders */
-      --borderSolid: 1.5px solid darkslategrey;
-      --borderDotted: 1.5px dotted darkslategrey;
-      --borderTree: 1.5px solid darkslategrey;
-
-      /* gallery settings */
-      --columnCount: 2;
-      --columnGap: 8px;
-
-      /* background image FOR ALL PAGES */
-      --imageBackground: none;
-    }
-
-    /* Global site structure */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-flow: column;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--fontText);
-      color: var(--colorText);
-      background-color: var(--colorBackground);
-      background-image: var(--imageBackground);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding-top: 60px; /* Space for fixed header */
-    }
-
-    /* Permanent header navigation */
-    .permanent-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--colorBackground);
-      border-bottom: var(--borderDotted);
-      padding: 8px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .permanent-header .logo {
-      font-family: var(--fontTitle);
-      font-weight: bold;
-      color: var(--colorText);
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    /* Hamburger menu button - hidden on desktop */
-    .hamburger-menu {
-      display: none;
-    }
-
-    .hamburger-toggle {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger-toggle:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Desktop navigation */
-    .desktop-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: none;
-      padding: 0;
-    }
-
-    .desktop-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 6px 12px;
-      font-size: 15px;
-    }
-
-    .desktop-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Mobile navigation - hidden by default */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--colorBackground);
-      border-top: var(--borderSolid);
-      border-bottom: var(--borderSolid);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex-direction: column;
-      padding: 8px 16px;
-      z-index: 1001;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-
-    .mobile-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .mobile-nav a:last-child {
-      margin-bottom: 0;
-    }
-
-    main {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;
-      flex: 1;
-    }
-
-    /* Sidebar structure */
-    main > .sidebar {
-      flex: 0 0 var(--widthSidebar);
-      padding: 1em;
-    }
-
-    /* Sticky TOC widget for desktop only */
-    .toc-widget {
-      position: sticky;
-      top: 80px; /* Account for fixed header */
-      height: fit-content;
-      max-height: calc(100vh - 100px);
-      overflow-y: auto;
-      /* Smooth scrolling for the TOC */
-      scroll-behavior: smooth;
-      margin-bottom: 16px;
-    }
-
-    /* Static widgets remain normal */
-    .static-widget {
-      position: static;
-    }
-
-    main > .content {
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 20em;
-      max-width: var(--widthContent);
-      padding: 1em;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      width: 100%;
-      border-top: var(--borderDotted);
-      background-color: var(--colorBackground);
-      padding: 0 1em;
-      font-size: 0.7em;
-      margin-top: auto;
-    }
-
-    /* Back button styling */
-    .back-button {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 10px 1em;
-      width: fit-content;
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .back-button a {
-      font-family: var(--fontTitle);
-      font-size: 0.9em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .back-button a:hover {
-      color: var(--colorText);
-      background: none;
-    }
-
-    .back-button:hover {
-      background-color: var(--colorBorder);
-    }
-
-    .back-button:hover a {
-      color: var(--colorBackground);
-    }
-
-    /* Title box styling - compact and aligned with content width */
-    .title-box {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 15px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .title-box h1 {
-      margin: 0;
-      padding: 0;
-      font-family: var(--fontTitle);
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    /* Widget styling with borders and shadows */
-    .sidebar > .widget {
-      background-color: var(--colorBackgroundMain);
-      border: var(--borderSolid);
-      box-shadow: 0.3em 0.3em var(--colorShadow);
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-
-    .sidebar > .widget h3 {
-      margin: 0 0 8px 0;
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      font-size: 1em;
-    }
-
-    .sidebar > .widget p {
-      margin: 8px 0 0 0;
-      font-size: 0.9em;
-    }
-
-    .sidebar > .widget img {
-      width: 100%;
-      margin: 8px 0;
-      border: 1px solid var(--colorBorder);
-    }
-
-    /* Table of Contents styling */
-    .toc {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .toc li {
-      margin-bottom: 6px;
-    }
-
-    .toc a {
-      text-decoration: none;
-      color: var(--colorText);
-      font-size: 0.9em;
-      display: block;
-      padding: 4px 8px;
-      border-left: 2px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .toc a:hover {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-      color: var(--colorText);
-    }
-
-    .toc .active {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-    }
-
-    /* Nested TOC items */
-    .toc .toc-level-2 {
-      padding-left: 16px;
-      font-size: 0.8em;
-    }
-
-    .toc .toc-level-3 {
-      padding-left: 32px;
-      font-size: 0.75em;
-    }
-
-    /* Global text settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--fontTitle);
-      word-wrap: break-word;
-    }
-
-    p {
-      font-family: var(--fontText);
-    }
-
-    b {
-      color: darkslategray;
-    }
-
-    a {
-      color: var(--colorLink);
-    }
-
-    a:hover {
-      color: var(--colorBackground);
-      background-color: var(--colorLink);
-    }
-
-    button, .button {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background-color: var(--colorPrimary);
-      border: 1px solid var(--colorPrimary);
-      padding: 8px 12px;
-    }
-
-    button:hover, .button:hover {
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-    }
-
-    hr {
-      border: 0;
-      border-top: var(--borderDotted);
-      margin: 1em 0;
-      width: 100%;
-    }
-
-    blockquote {
-      margin: 1.5em;
-      padding-left: 1.5em;
-      border-left: 1px solid var(--colorSecondary);
-    }
-
-    /* Improved list styling with better spacing */
-    li {
-      margin-bottom: 12px;
-      line-height: 1.6;
-      padding-left: 8px;
-    }
-
-    ul {
-      padding-left: 20px;
-      margin: 16px 0;
-    }
-
-    /* Nested lists with reduced spacing */
-    ul ul {
-      margin: 8px 0 8px 0;
-    }
-
-    ul ul li {
-      margin-bottom: 8px;
-    }
-
-    ul ul ul li {
-      margin-bottom: 6px;
-    }
-
-    /* Details and Summary styling for collapsible sections */
-    details {
-      margin: 16px 0;
-      background-color: var(--colorBackgroundMain);
-    }
-
-    summary {
-      font-family: var(--fontTitle);
-      font-size: 1.1em;
-      font-weight: normal;
-      padding: 8px 16px;
-      cursor: pointer;
-      background-color: transparent;
-      border-bottom: 1px solid var(--colorBorder);
-      transition: background-color 0.2s ease;
-      user-select: none;
-      scroll-margin-top: 80px;
-      list-style: none;
-      outline: none;
-    }
-
-    summary:hover {
-      background-color: var(--colorPrimary);
-      color: var(--colorText);
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    summary::marker {
-      display: none;
-    }
-
-    summary::before {
-      content: "▶";
-      display: inline-block;
-      margin-right: 8px;
-      transition: transform 0.2s ease;
-      font-size: 0.8em;
-    }
-
-    details[open] summary::before {
-      transform: rotate(90deg);
-    }
-
-    details .details-content {
-      padding: 16px;
-    }
-
-    details .details-content > *:first-child {
-      margin-top: 0;
-    }
-
-    details .details-content > *:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Sections */
-    section {
-      border: 1.5px solid var(--colorBorder);
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-      padding: 1em;
-      box-shadow: 0.5em 0.5em var(--colorBorder);
-      margin: 0 1em 2em 1em;
-      width: calc(100% - 2em);
-      scroll-margin-top: 80px; /* Account for fixed header when jumping to sections */
-    }
-
-    section h1 {
-      text-transform: uppercase;
-      padding: 0 1em;
-      color: var(--colorBackground);
-      background: var(--colorText);
-    }
-
-    section h2 {
-      border-bottom: 1px solid var(--colorBorder);
-      scroll-margin-top: 80px;
-    }
-
-    section h3 {
-      scroll-margin-top: 80px;
-    }
-
-    section img {
-      width: auto;
-      border: 1px solid var(--colorBorder);
-    }
-
-    section p {
-      padding: 0 1em;
-      max-inline-size: 700px;
-    }
-
-    /* Flex columns */
-    section > .flex-columns {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    .flex-columns > .flex-text {
-      width: 70%;
-    }
-
-    .flex-columns > .flex-image {
-      width: 25%;
-      margin: 15px;
-    }
-
-    .flex-columns > .flex-image > img {
-      width: auto;
-      padding: 0 1em;
-    }
-
-    /* Half width sections */
-    .half-width {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      min-height: 300px;
-    }
-
-    .half-width section {
-      width: calc(50% - 2em);
-      margin: 0 1em 2em 1em;
-    }
-
-    /* Mobile responsiveness */
-    @media screen and (max-width: 768px) {
-      body {
-        padding-top: 60px; /* Adjusted for mobile header height */
-      }
-
-      .permanent-header {
-        padding: 8px 12px;
-      }
-
-      /* Show hamburger menu on mobile */
-      .hamburger-menu {
-        display: block;
-      }
-
-      /* Hide desktop nav on mobile */
-      .desktop-nav {
-        display: none;
-      }
-
-      main {
-        flex-direction: column;
-      }
-
-      /* Remove sticky positioning and TOC functionality on mobile */
-      main > .sidebar {
-        position: static;
-        top: auto;
-        height: auto;
-        max-height: none;
-        overflow-y: visible;
-        flex: none;
-        width: 100%;
-        order: 2;
-        padding: 8px;
-      }
-
-      /* Hide TOC widget on mobile */
-      .sidebar .widget:first-child {
-        display: none;
-      }
-
-      main > .content {
-        order: 1;
-        padding: 8px;
-        max-width: 100%;
-      }
-
-      .back-button {
-        margin: 0 0 10px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .title-box {
-        margin: 0 0 15px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      section {
-        margin: 0 0 2em 0;
-        width: 100%;
-      }
-
-      section > .flex-columns {
-        flex-direction: column;
-      }
-
-      .flex-columns > .flex-text,
-      .flex-columns > .flex-image {
-        width: 100%;
-      }
-
-      .half-width {
-        flex-direction: column;
-      }
-
-      .half-width section {
-        width: 100%;
-        margin: 0 0 2em 0;
-      }
-
-      /* Mobile list spacing adjustments */
-      li {
-        margin-bottom: 10px;
-      }
-
-      ul ul li {
-        margin-bottom: 6px;
-      }
-
-      /* Mobile details/summary adjustments */
-      summary {
-        padding: 10px 12px;
-        font-size: 1em;
-      }
-
-      details .details-content {
-        padding: 12px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hamburger-toggle {
-        padding: 6px 8px;
-        font-size: 14px;
-      }
-
-      .mobile-nav a {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-
-      /* Further mobile adjustments for very small screens */
-      li {
-        margin-bottom: 8px;
-      }
-
-      summary {
-        padding: 8px 10px;
-        font-size: 0.95em;
-      }
-
-      details .details-content {
-        padding: 10px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>advice - your name's site</title>
+    <meta name="description" content="university advice and resources">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  <!-- Permanent header navigation -->
-  <!-- Add your header content here -->
+    <!-- Header loaded via JS -->
+    <div id="header-container"></div>
 
-  <main>
-    <div class="sidebar"> 
-      <!-- Table of Contents Widget -->
-      <div class="widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">QUICK LINKS.</h2>
-        <ul class="toc" id="toc">
-          <!-- TOC will be auto-generated by JavaScript -->
-        </ul>
-      </div>
-      
-       <div class="widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTACT</h2>
-                  <a style="font-size: 25px;" href="mailto:rango.leefu@mail.utoronto.ca"><i class="fa-solid fa-envelope"></i></a>
-          <a style="font-size: 25px;" href="https://www.linkedin.com/in/rango-lee-fu-7351b52b7/"><i class="fa-brands fa-linkedin"></i></a>
-        <a style="font-size: 25px" href="https://github.com/rango-lf"</a><i class="fa-brands fa-github"></i></a>
-        <p style="font-size: 12px">Please allow 2-3 business days for a response.</p>
-      </div>
+    <div class="main-content">
+        <!-- Intro Section -->
+        <section class="home-section">
+            <div class="home-card">
+                <div class="card-stack">
+                    <div class="card">
+                        <h1>university advice</h1>
+                        <h2>tips, lessons, and resources from engineering</h2>
+                        <p>
+                            this is a collection of advice from my time at UofT Engineering. these are 
+                            things i wish i'd known earlier, resources that saved me, and lessons learned 
+                            the hard way.
+                        </p>
+                        <p>
+                            this page is a <strong>work in progress</strong> and will be regularly updated. 
+                            reach out if you have questions or suggestions for new topics.
+                        </p>
+                    </div>
+                    <div class="card-shadow-1"></div>
+                    <div class="card-shadow-2"></div>
+                    <div class="card-shadow-3"></div>
+                </div>
+            </div>
+        </section>
 
-      <div class="widget">
-        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
-      </div>
-      <img src="https://rainy.gay/pride/bv/progress.png"> 
+        <div class="wrapper">
+            <!-- First Year Survival Guide -->
+            <div class="window" id="first-year">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">first year survival guide</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <ul>
+                        <li>UofT engineering is <em>difficult</em>, not <em>impossible</em>. Mind your mindset—the difference between struggling and drowning is how you talk to yourself about the struggle.</li>
+                        
+                        <li>Take APS162 (Calculus I) over the summer. You'll enter fall with one less course and be better prepared for the fast pace. More details in my APS162 blog post.</li>
+                        
+                        <li>Imposter syndrome is a rite of passage. You'll feel like you don't deserve to be here while everyone around you seems effortlessly brilliant. News flash: they're all thinking the same thing.</li>
+                        
+                        <li><em>You are not alone.</em> The Skule community is incredibly supportive. I've never been turned down when asking for help from peers, upper-years in Discord servers, or alumni.</li>
+                        
+                        <li>Reach out for support when you're struggling—don't wait until you're drowning. The First Year Office offers academic advisors, review sessions, and counselling referrals.</li>
+                        
+                        <li>Redefine success for yourself. Most of us came in with 90s from high school. That's unrealistic here.
+                            <ul>
+                                <li>Maybe success is passing all your courses, maintaining hobbies, or just not having a breakdown. Whatever it is, be honest about whether it's achievable. The Dean's List isn't worth your sanity.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>Believe that you can do hard things. As cliché as it sounds, this is the best thing you can do for yourself.
+                            <ul>
+                                <li>Professor Shai Cohen told us that every student has an inner critic saying "you can't do it", "you're stupid", "you don't belong". This mindset causes most academic struggles. Walk into an exam thinking you'll fail, and you probably will.</li>
+                                <li>Building self-confidence is a long battle. It gets easier every day, but you have to get up and push through every single day.</li>
+                                <li>If you can't talk yourself into "I can"—fake it. Lie to yourself until it becomes true.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>Grades aren't everything. Getting your first sub-60 midterm is a reality check, but it's normal and expected.
+                            <ul>
+                                <li>"Truss" the curve. A 55 might be above average in some courses. Check class statistics before spiraling.</li>
+                                <li>One bad grade—or even one bad semester—doesn't define your career. You have time to recover.</li>
+                                <li>Your mental and physical health are worth more than a few percentage points. Burning out for a marginally better GPA is a losing strategy.</li>
+                                <li>Many successful engineers barely scraped by in first year. Academic performance and real-world competence aren't perfectly correlated.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>Go outside and touch grass. Join clubs, attend EngSoc events, try hackathons, go to career fairs. These have been the best parts of my UofT experience.</li>
+                        
+                        <li>Stay healthy. Eat veggies, drink water, take meds, practice hygiene, try sports, and get enough sleep.
+                            <ul>
+                                <li><em>Do not</em> use caffeine as a substitute for sleep. You'll screw yourself long-term by depending on energy drinks.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- Course Overviews -->
+            <div class="window" style="margin-top: 30px;" id="courses">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">course overviews</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><em>Note: These are first year courses I took as a mech student.</em></p>
+                    
+                    <h3 style="margin-top: 20px;">Fall Semester</h3>
+                    <ul>
+                        <li><strong>APS100</strong> - Orientation to Engineering: Difficulty 2/10 | Workload 3/10</li>
+                        <li><strong>APS110/APS164</strong> - Engineering Chemistry and Materials Science</li>
+                        <li><strong>APS111</strong> - Engineering Strategies and Practice I</li>
+                        <li><strong>CIV100/APS160</strong> - Mechanics</li>
+                        <li><strong>MAT186/APS162</strong> - Calculus I</li>
+                        <li><strong>MAT188</strong> - Linear Algebra</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 20px;">Winter Semester</h3>
+                    <ul>
+                        <li><strong>APS106</strong> - Fundamentals of Computer Programming</li>
+                        <li><strong>ECE110</strong> - Electrical Fundamentals</li>
+                        <li><strong>MAT187/APS163</strong> - Calculus II</li>
+                        <li><strong>APS112</strong> - Engineering Strategies and Practice II</li>
+                        <li><strong>MIE100</strong> - Dynamics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Discipline Selection & Course Resources -->
+            <div class="windows-grid" style="margin-top: 30px;">
+                <div class="window" id="discipline">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">discipline selection</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <p><em>Work in progress—check back soon for advice on choosing your engineering discipline.</em></p>
+                    </div>
+                </div>
+
+                <div class="window" id="resources">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">course resources</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <ul>
+                            <li><a href="https://www.samarq.org/notes" target="_blank">Samar Q.'s course resources</a> - notes, past tests, and study materials</li>
+                            <li><a href="https://arnav-patil-12.github.io/notes/year-one/" target="_blank">Arnav's notes</a> for Core 8 courses</li>
+                            <li><a href="https://docs.google.com/document/d/1Vvgq8Mac_tG_wHCdZGfBGMb91uwZMqLjhaFvVGb4GM4/edit" target="_blank">"Golden List"</a> - notes, slides, videos for first semester. Watch Shai Cohen's lectures!</li>
+                            <li><a href="https://courses.skule.ca/" target="_blank">Skule Courses</a> - repository of quizzes, tests, and exams</li>
+                            <li><a href="https://courses.skule.ca/anticalendar/frosh" target="_blank">F!rosh Anti-Calendar</a> - reviews and tips for each course</li>
+                           
+                        <li><a href="https://drive.google.com/drive/folders/17R2Jvm-g4l6a4w681e8LFXGSkAWMDTGg" target="_blank">First-year textbooks Drive</a> (check syllabus for correct edition)</li>
+                        <li><a href="https://docs.google.com/document/d/1on4LkDt-TJiRzdiBEbudW1rjmzBU3TZcCoz8O7cQUMo/edit" target="_blank">Past tests and exams</a> for MAT188, MAT187, MAT186</li>
+                        <li><a href="https://docs.google.com/document/d/1on4LkDt-TJiRzdiBEbudW1rjmzBU3TZcCoz8O7cQUMo/edit" target="_blank">Guide to UofT course codes</a></li>
+                        <li><a href="https://tutorial.math.lamar.edu/" target="_blank">Paul's Online Notes</a> - tutorials, practice problems, and cheat sheets for calculus</li>
+                    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            <!-- Academic Services -->
+            <div class="windows-grid" style="margin-top: 30px;">
+                <div class="window" id="academic-services">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">academic services</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <ul>
+                            <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/" target="_blank">engSuccess Mentors</a> - upper-year peer mentors for time management, note-taking, and academic challenges</li>
+                            <li><a href="https://firstyear.engineering.utoronto.ca/preparing-for-university/" target="_blank">Guide to First Year</a> - academic support info, pre-school prep, summer learning</li>
+                            <li><a href="https://engineering.calendar.utoronto.ca/" target="_blank">Engineering Academic Calendar</a> - program requirements, courses, regulations</li>
+                            <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/" target="_blank">Engineering Student Portal</a> - petitions, program transfers, letters</li>
+                            <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/" target="_blank">Skule Tutors</a> - PhD and MASc students for paid tutoring</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="window" id="study-tips">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">study tips & time management</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <p><em>Work in progress—more study strategies coming soon.</em></p>
+                        <p style="margin-top: 15px;">P.S. Get a free <a href="https://www.notion.com/product/notion-for-education" target="_blank">Notion Pro</a> account with your student email.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campus Life -->
+            <div class="window" style="margin-top: 30px;" id="campus-life">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">campus life</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <h3>Clubs & Activities</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">Residence</h3>
+                    <p><em>Note: I can only speak for Chestnut Residence.</em></p>
+                    <ul>
+                        <li>Chestnut houses most engineering students, but you can also choose another residence or one of the nine colleges. See <a href="https://future.utoronto.ca/housing" target="_blank">all housing options here</a>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Commuting -->
+            <div class="window" style="margin-top: 30px;" id="commuting">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">commuting tips</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>Check out the <a href="https://commuter.skule.ca/resources-tips" target="_blank">Skule Commuter Students Directorship</a> for more resources!</p>
+                    
+                    <ul style="margin-top: 15px;">
+                        <li>Be productive on your commute if possible (if you don't get motion sick). For 40+ minute commutes, do light work, read, or catch up on sleep.</li>
+                        <li>Practice your route before school starts to learn timing, transfers, and shortcuts.</li>
+                        <li>Avoid rush hours (7:30-9:30 AM, 4:30-6:30 PM) when possible.</li>
+                        <li>Arrive 5-10 minutes before class starts. Plan with Transit app, Google Maps, or Apple Maps.</li>
+                        <li>Walking through Medical Science Building from Queen's Park saves 2-3 minutes.</li>
+                        <li>After your initial PRESTO payment, you can travel free for the next two hours.</li>
+                        <li>If you live near UofT Mississauga, shuttle buses run between there and St. George ($7 per ride, $650 semester pass).</li>
+                    </ul>
+
+                    <h3 style="margin-top: 20px;">GO Trains</h3>
+                    <ul>
+                        <li>Schedules are very accurate. Doors close 1-2 minutes before departure.</li>
+                        <li>Best for Oakville, Brampton, or Milton commuters.</li>
+                        <li>Get off at Union Station, take Line 1 to Queen's Park.</li>
+                        <li>Set a default trip. If your trip has a default set, you only tap on. Different trips require tapping on and off.</li>
+                        <li>Forgot to tap off? You'll be charged to the last stop. Appeal for refund at <a href="https://www.gotransit.com/en" target="_blank">gotransit.com</a>.</li>
+                    </ul>
+
+                    <h3 style="margin-top: 20px;">TTC</h3>
+                    <ul>
+                        <li>Best for Kipling, Vaughan, or North York commuters.</li>
+                        <li>Schedules are inconsistent and often delayed by traffic/weather.</li>
+                        <li>Trains run every 2-3 minutes during rush hour, 4-5 minutes off-peak.</li>
+                        <li>Download TTC Watch app and check <a href="https://www.ttc.ca/service-alerts" target="_blank">TTC website</a> for real-time tracking.</li>
+                        <li>Four stations near campus: Queen's Park (closest to Engineering), Museum, St. George, Spadina.</li>
+                        <li>From Finch side (Line 1), walk from College station (12 minutes)—may save time versus riding to Queen's Park.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Career Development -->
+            <div class="window" style="margin-top: 30px;" id="career">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">career development</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <h3>Internships, Research & Co-op</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">Resume & Cover Letter</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">Networking</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">Interview Preparation</h3>
+                    <p><em>Work in progress</em></p>
+                </div>
+            </div>
+
+            <!-- Finances -->
+            <div class="window" style="margin-top: 30px;" id="finances">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">freebies & discounts (!)</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><em>Most require your TCard or student email.</em></p>
+                    <ul>
+                        <li>10% off groceries over $50 at Maisie's Independent City Market (Manulife Centre, Bay & Bloor) on Tuesdays only</li>
+                        <li>Free student Tuesdays at Royal Ontario Museum</li>
+                        <li>15% discount at Shopper's Drug Mart on Bloor St.</li>
+                        <li>Free condoms, lube, menstrual products, peer counselling at <a href="https://www.secutoronto.org/" target="_blank">Sexual Education Centre</a></li>
+                        <li>Discounted movie passes at any Cineplex location</li>
+                        <li><a href="https://www.isic.org/" target="_blank">International Student Identity Card (ISIC)</a> for discounts on everything. Virtual cards are $20 one-time.</li>
+                        <li><a href="https://onesearch.library.utoronto.ca/ic/available-software" target="_blank">Free software for engineering students</a> with activation instructions</li>
+                        <li>Free black-and-white printing at any ECF lab. See <a href="https://undergrad.engineering.utoronto.ca/campus-facilities/engineering-computing-facility-ecf/ecf-printing/printers-paper-quota/" target="_blank">quota details</a></li>
+                        <li>Software discounts through <a href="https://uoft.onthehub.com/" target="_blank">OnTheHub</a> (Microsoft Project, Visual Studio, Adobe CC, Norton)</li>
+                        <li>Free streaming via <a href="https://onesearch.library.utoronto.ca/streaming-video" target="_blank">UofT Libraries</a></li>
+                        <li>Free year of <a href="https://pplx.ai/studentsoffer" target="_blank">Perplexity Pro</a></li>
+                        <li>Free year of <a href="https://cursor.com/students" target="_blank">Cursor Pro</a></li>
+                        <li>Free <a href="https://www.notion.com/product/notion-for-education" target="_blank">Notion Pro</a></li>
+                        <li>r/Piracy Wiki Megathread for digital media (shhh...)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scholarships & Work -->
+            <div class="windows-grid" style="margin-top: 30px;">
+                <div class="window" id="scholarships">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">scholarships & aid</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <p><em>Work in progress</em></p>
+                    </div>
+                </div>
+
+                <div class="window" id="work">
+                    <div class="window-bar">
+                        <div class="window-dots">
+                            <div class="window-dot"></div>
+                            <div class="window-dot"></div>
+                        </div>
+                        <div class="window-title">work-study & jobs</div>
+                        <div style="width: 22px;"></div>
+                    </div>
+                    <div class="window-content">
+                        <p><em>Work in progress</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Requirements -->
+            <div class="window" style="margin-top: 30px;" id="tech">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">tech requirements</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <h3>Calculator</h3>
+                    <p><strong>Only these models are permitted during exams:</strong></p>
+                    <ul>
+                        <li>Casio FX-991 (any suffix)</li>
+                        <li>Sharp EL-W516 (any suffix)</li>
+                        <li>Sharp EL-520 (any suffix)</li>
+                    </ul>
+
+                    <h3 style="margin-top: 20px;">Laptop</h3>
+                    <p>Invest wisely—your device needs to last 4+ years. Extras like an external mouse and webcam are helpful.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>Minimum specs based on application requirements:</strong></p>
+                    <ul>
+                        <li><strong>Windows:</strong> Intel or AMD 64-bit processor, at least 4 cores</li>
+                        <li><strong>MacOS:</strong> M2+ chips; older Intel Macs need 4+ cores</li>
+                        <li><strong>RAM:</strong> 8GB minimum, 16GB+ highly recommended</li>
+                        <li><strong>Storage:</strong> 256GB SSD minimum, 512GB SSD recommended</li>
+                    </ul>
+
+                    <p style="margin-top: 12px;"><strong>Why Windows > MacOS for engineering:</strong></p>
+                    <ul>
+                        <li>Compatible with all engineering software (SOLIDWORKS, Altium, etc.)</li>
+                        <li>Easy to set up dual-boots</li>
+                        <li>Better port selection</li>
+                        <li>Easy to sync with Apple devices despite using Windows</li>
+                        <li>MacOS causes constant issues for engineering students—just go Windows</li>
+                    </ul>
+
+                    <h3 style="margin-top: 20px;">Tablet (Optional but Helpful)</h3>
+                    <p>iPad, Samsung Galaxy Tab, or Microsoft Surface Pro for note-taking and assignments.</p>
+                    <ul>
+                        <li>No need to carry notebooks and stationery</li>
+                        <li>Easy to insert slides, PDFs, images into notes</li>
+                        <li>Sync notes across devices for access on phone and laptop</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Productivity Apps -->
+            <div class="window" style="margin-top: 30px;" id="apps">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">productivity apps</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><em>Work in progress—more recommendations coming soon.</em></p>
+                    <ul>
+                        <li>Check out this <a href="https://paint-tractor-7ee.notion.site/Homebase-hankun-s-template-rev-1-16965582d36d801cb92ad476637c6811" target="_blank">Notion template</a> designed for UofT Engineering students by Hankun.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="window" style="margin-top: 30px;" id="faq">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">frequently asked questions</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <h3>Admissions & Applications</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">Program-Specific Questions</h3>
+                    <p><em>Work in progress</em></p>
+
+                    <h3 style="margin-top: 20px;">General University Questions</h3>
+                    <p><em>Work in progress</em></p>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="window" style="margin-top: 30px;">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">get in touch</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>Questions or suggestions? Reach out!</p>
+                    <p style="margin-top: 15px;">
+                        <strong>contact:</strong><br>
+                        email: <a href="mailto:your.email@university.edu">your.email@university.edu</a><br>
+                        linkedin: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a><br>
+                        github: <a href="https://github.com/yourusername" target="_blank">@yourusername</a>
+                    </p>
+                    <p style="margin-top: 15px; font-size: 0.85rem; color: #666;">
+                        Please allow 2-3 business days for a response.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-      <!-- Compact title box aligned with content -->
-      <div class="title-box">
-        <h1>UNIVERSITY ADVICE.</h1>
-      </div>
+    <!-- Footer loaded via JS -->
+    <div id="footer-container"></div>
 
-      <!-- Blog post content sections -->
-      <section id="introduction">
-        <h1>INTRODUCTION</h1>
-        <p>Welcome to my university advice page! These are some tips, lessons, and resources I've acquired during my time in UofT Engineering. This will forever remain a <b>WORK IN PROGRESS</b> and will be regularly updated.</p>
-        <p>Please reach out if you have specific questions or suggestions for new topics.</p>
-      </section>
-
-      <section id="engineering-specific">
-        <h1>FIRST YEAR-SPECIFIC ADVICE</h1>
-        
-        <details id="first-year-survival">
-          <summary>First Year Survival Guide</summary>
-          <div class="details-content">
-            <ul>
-              <li>The UofT engineering program is <i>difficult</i>, not <i>impossible</i>. But you will need to <a href="https://michael-hldr.github.io/advice/mind-your-mindset">mind your mindset</a>, as my friend Michael writes about in the linked page. The difference between struggling and drowning often comes down to how you talk to yourself about the struggle.</li>
-              <li>Take APS162: Calculus for Engineers I over the summer. It will allow you to enter the fall semester with one less course on your plate and it prepared me well for the fast pace of my first-year courses. I discuss this course further in <a href="aps162-propaganda.html">this blog post</a></li>
-<li>Imposter syndrome is basically a rite of passage here. I felt like I didn't deserve to be here--like I was some kind of underachiever who'd somehow slipped through the cracks while everyone around me was effortlessly brilliant. Guess what; they were all thinking the same thing about themselves.</li>
-<li><i>You are not alone.</i> I cannot stress enough how supportive the Skule (TM) community is here. I've never been turned down when I've asked for help from peers in my classes and tutorials, upper-years in Discord servers, and Alumni who have long since graduated. Engineering is a team sport.</li>
-<li>In university, the onus is on you to reach out for support when you're struggling. Don't wait until you're feeling the pinch to seek help! The <a href="https://undergrad.engineering.utoronto.ca/first-year-office-2/first-year-office/">First Year Office</a> advertises their resources heavily, and I can confirm that the academic advisors, academic review sessions, and counselling referrals have been incredibly helpful thus far.</li>
-<li>You will likely need to redefine what success looks like for you. Most of us came in with high school grades in the 90s, which is usually unrealistic to expect in a rigorous program like this.</li>
-              <ul><li>Maybe success is passing all your courses. Maybe it's maintaining your hobbies. Maybe it's just not having a breakdown. Whatever it is, it doesn't have to look like everyone else's definition, but you must be honest with yourself on whether or not those expectations are achievable. Having your name on the Dean's List is not worth your sanity.</li></ul>
-
-              <li>You need to learn to believe in yourself. You need to believe that <i>you can do hard things.</i> As cliche and easier-said-than-done as it sounds, this is the best thing you can do for yourself.</li>
-<ul><li>My linear algebra teacher, Professor Shai Cohen, once told us that every student he's met has an inner critic inside of their head that tells them "you can't do it", "you're stupid", "you don't deserve to be here". He believes that this mindset is what causes the bulk of students' academic struggles, and I can attest to the fact that if you walk into an exam thinking you're going to fail, you likely will.</li>
-<li>Building self-confidence is a long, tough battle that I myself am still fighting. It gets easier everyday; the hard part is getting up every single day and pushing through it. But it does get easier(!).</li>
-<li>If you think you have no idea what you're doing and can't talk yourself into <i>"I can"</i>--lie, lie, and lie to yourself until it is true. Fake it till you make it isn't just a platitude; it's a legit strategy.</li></ul>
-<li>Grades are not the end-all, be-all. It is always, without fail, a massive reality check to first-year students when they get their midterms back and receive a grade under 60. This is to be expected. This is normal. And this is not the end of the world.</li>
-              <ul><li>"Truss" (haha) the curve. A 55 might literally be above average in some courses. Check the class statistics before you spiral.</li>
-              <li>One bad grade—or even one bad semester—does not define your entire academic career. You have time to recover, and people do it all the time.</li>
-              <li>Your mental and physical health are worth more than a few extra percentage points. Burning yourself out for a marginally better GPA is a losing strategy in the long run.</li>
-              <li>Many successful upper-year students and professional engineers I know barely scraped by in first year. Academic performance and real-world competence are not perfectly correlated.</li></ul>
-<li>Go outside and touch grass. Join clubs, attend events (there are plenty hosted by EngSoc and discipline clubs, for example), go to career/program fairs, try out a hackathon. These have been the best parts of my UofT experience thus far and they give my brain a much-needed break from grinding.</li>
-<li>Try to stay healthy. This will look different for everyone, but in general: eat your veggies, drink water, take your meds, practice hygiene, try a new sport, and most importantly, get enough sleep!</li>
-              <ul><li>Elaborating on the sleep part, please <i>do not</i> use caffeine as a substitute for sleep. You are going to screw yourself in the long run by depending on energy drinks to make it through the day.</li></ul>
-              
-            </ul>
-          </div>
-        </details>
-
-        <details id="capstone-projects">
-          <summary>Course Overviews</summary>
-          <div class="details-content">
-             <p>Please note that these are <i>not</i> all of the first year courses, only the ones that I took as a mech.</p>
-            <h3>Fall Semester</h3>
-            <ul>
-            <li><b>APS100 - Orientation to Engineering:</b></li>
-              <ul><li>Difficulty: 2/10 | Workload: 3/10</li></ul>
-            <li><b>APS110/APS164 - Engineering Chemistry and Materials Science:</b></li>
-            <li><b>APS111 - Engineering Strategies and Practice I:</b></li>
-            <li><b>CIV100/APS160 - Mechanics:</b></li>
-            <li><b>MAT186/APS162 - Calculus I:</b></li>
-            <li><b>MAT188 - Linear Algebra:</b></li>
-            </ul>
-            
-            <h3>Winter Semester</h3>
-            <ul>
-            <li><b>APS106 - Fundamentals of Computer Programming:</b></li>
-            <li><b>ECE110 - Electrical Fundamentals:</b></li>
-            <li><b>MAT187/APS163 - Calculus II:</b></li>
-            <li><b>APS112 - Engineering Strategies and Practice II:</b></li>
-            <li><b>MIE100 - Dynamics</b></li>
-            </ul>
-              
-            </ul>
-          </div>
-        </details>
-
-        <details id="discipline-selection">
-          <summary>Discipline Selection</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="course-resources">
-          <summary>Course Resources</summary>
-          <div class="details-content">
-            <p>WIP</p>
-            <ul>
-                <li><a href="https://www.samarq.org/notes">Samar Q.'s course resources</a> contain notes, past midterms and assignments, and other study materials.</li>
-                <li><a href="https://arnav-patil-12.github.io/notes/year-one/">Arnav's course notes</a> for most of the first-year Core 8 courses.</li>
-              <li>The <a href="https://docs.google.com/document/d/1Vvgq8Mac_tG_wHCdZGfBGMb91uwZMqLjhaFvVGb4GM4/edit?tab=t.0#heading=h.yfu4axfcd3so">"Golden List"</a>, a Google Doc with notes, slides, and lecture videos for all of the first semester courses. Watch Shai Cohen's recorded lectures for Calc(!!)</li>
-              <li>The <a href="https://courses.skule.ca/">Skule Courses site</a>, created by EngSoc, is a large repository of previous quizzes, tests, and exams for practice. The <a href="https://courses.skule.ca/anticalendar/frosh">F!rosh Anti-Calendar</a> includes reviews and tips for each first-year course. </li>
-              <li>A Drive of <a href="https://drive.google.com/drive/folders/17R2Jvm-g4l6a4w681e8LFXGSkAWMDTGg">first-year textbooks</a>. (Some of them may be outdated, so double check your syallbus for what edition your course coordinator wants you to use).</li>
-               <li><a href="https://docs.google.com/document/d/1on4LkDt-TJiRzdiBEbudW1rjmzBU3TZcCoz8O7cQUMo/edit?usp=sharing">Past tests and exams</a> for MAT188, MAT187, and MAT186. (These exams are from when Prof. Burbulla coordinated the aforementioned courses).</li>
-              <li>A <a href="https://docs.google.com/document/d/1on4LkDt-TJiRzdiBEbudW1rjmzBU3TZcCoz8O7cQUMo/edit?usp=sharing">guide to UofT course codes</a>.</li>
-              <li><a href="https://tutorial.math.lamar.edu/">Paul's Online Notes</a> contain a wealth of tutorials, practice problems, and cheat sheets for calculus.</li>
-
-            </ul>
-          </div>
-        </details>
-      </section>
-
-      <section id="academics">
-        <h1>ACADEMIC RESOURCES</h1>
-
-        <details id="academic-services">
-          <summary>Academic Services</summary>
-          <div class="details-content">
-            <ul>
-              <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/">UofT engSuccess Mentors</a> are upper-year peer mentors that can help you with time management, note-taking, and tackling any other academic challenges you may be facing.</li>
-              <li><a href="https://firstyear.engineering.utoronto.ca/preparing-for-university/">Guide to First Year</a> offers info on academic support staff/the First Year Office, what you need to do before school starts, and summer learning opportunities.</li>
-              <li><a href="https://engineering.calendar.utoronto.ca/">Engineering Academic Calendar</a> for information on program requirements, offered courses, and academic regulations.</li>
-              <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/">Engineering Student Portal</a> for filing petitions, requesting program transfers, requesting letters, and other admin matters.</li>
-              <li><a href="https://undergrad.engineering.utoronto.ca/skule-life/the-engineering-portal/">Skule Tutors</a> are PhD and MASc students who provide paid tutoring services. They are overseen by the Engineering Society.</li>
-            </ul>
-          </div>
-        </details>
-        
-        <details id="study-tips">
-          <summary>Study Tips & Strategies</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="time-management">
-          <summary>Time Management</summary>
-          <div class="details-content">
-            <ul>
-            <li>P.S. You can get a free <a href="https://www.notion.com/product/notion-for-education">Notion Pro</a> account with your student email.</li>
-              </ul>
-          </div>
-        </details>
-
-        <details id="course-selection">
-          <summary>Course Selection</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-      </section>
-
-      <section id="campus-life">
-        <h1>CAMPUS LIFE</h1>
-        
-        <details id="clubs-activities">
-          <summary>Clubs & Activities</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="networking">
-          <summary>Residence</summary>
-          <div class="details-content">
-            <p>WIP</p>
-            <p>NOTE: I can only speak for Chestnut Residence.</p>
-            <li>Chestnut Residence houses the majority of engineering students, but you can also opt to live in another residence or one of the nine colleges instead. See <a href="https://future.utoronto.ca/housing">here</a> for all options.</li>
-          </div>
-        </details>
-
-        <details id="work-life-balance">
-          <summary>Commuting</summary>
-          <div class="details-content">
-            <ul>
-              <li>Check out the <a href="https://commuter.skule.ca/resources-tips">Skule Commuter Students Directorship</a> for more resources and tips! Most of the ones below are taken straight from their site.</li>
-              <li>Try to be productive on your commute (given you don't get motion sick easily). If your commute is longer than 40 minutes, you might want to do some light work, read, or catch up on sleep.</li>
-              <li>Practice your commute route before school starts so you know how long it takes, where you need to transfer, and any short-cuts you can take.</li>
-              <li>Not always possible, but try to avoid rush hours from 7:30-9:30 AM or 4:30-6:30 PM.</li>
-              <li>Arrive at your destination at least 5-10 minutes before class starts. You can plan this out with the Transit app, Google Maps, or Apple Maps.</li>
-              <li>If you are commuting from Queen's park, try to walk through Medical Science Building which will save you a solid 2-3 minutes each time.</li>
-              <li>After your initial payment using your PRESTO card (for TTC, GO, and most local transit systems) you can travel free of cost for the next two hours.</li>
-              <li>If you live close to the UofT Mississauga campus, you can take a shuttle bus between there and St.George. Rides are $7 with a $650 semester pass.</li>
-              <li><b>For the GO Trains:</b>
-                <ul>
-                  <li>GO Train schedules are usually very accurate, and doors close 1-2 minutes before departure.</li>
-                  <li>If you are travelling from Oakville, Brampton, or Milton, a GO train is likely your best method of commute.</li>
-                  <li>Get off at Union Station, and take Line 1 up to Queen's Park Station.</li>
-                  <li>Don't forget to set a default trip. If your PRESTO card has a default trip set for travel between two stations, you only have to tap on it. If you take a trip that begins or ends at a different station, you have to tap on and off.
-                    <ul>
-                      <li>If you forget to tap off at the end of your trip, you will be charged the fare to the last stop on the line. You can always appeal a refund by filling out the webform on <a href="https://www.gotransit.com/en">gotransit.com</a>.</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><b>For the TTC:</b>
-                <ul>
-                   <li>If you are travelling from Kipling, Vaughan, or North York, the TTC subway is likely your best method of commute.</li>
-                  <li>TTC has completely inconsistent schedules that are (often) delayed by traffic, weather, etc.</li>
-                    <ul>
-                      <li>TTC trains are usually every 2-3 mins during rush hour and 4-5 mins during off-peak hours.</li>
-                    </ul>
-                    <ul>
-                      <li>I recommend downloading an app, such as the TTC Watch for Toronto, and using the official <a href="https://www.ttc.ca/service-alerts">TTC website</a> for real-time tracking and updates.</li>
-                    </ul>
-                  </li>
-                  <li>There are four subway stations on or very near the University of Toronto: Queen's Park Station, Museum Station, St. George Station and Spadina Station. Queen's Park is the the closest to the Engineering Buildings.</li>
-                  <li>If you are commuting from the Finch side (Line 1), you can walk to campus from College station (about a 12-minute walk). This may actually save you time compared to riding the subway all the way to Queen's Park (thanks Michael).</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </details>
-      </section>
-
-      <section id="career-development">
-        <h1>CAREER DEVELOPMENT</h1>
-        
-        <details id="internships">
-          <summary>Internships, Research, & Co-op</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="resume-tips">
-          <summary>Resume & Cover Letter Tips</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="interview-prep-networking">
-          <summary>Networking</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-        
-        <details id="interview-prep">
-          <summary>Interview Preparation</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-      </section>
-
-      <section id="finances">
-        <h1>FINANCES</h1>
-        
-        <details id="side-hustles">
-          <summary>Freebies & Discounts(!!)</summary>
-          <div class="details-content">
-            <p>P.S. Most of these require you to present your TCard or student email.</p>
-            <ul>
-              <li>10% off groceries on purchases over $50 at Maisie's Independent City Market (in the Manulife Centre at Bay and Bloor). Discount is only available on Tuesdays.</li>
-              <li>Free student Tuesdays at the Royal Ontario Museum</li>
-              <li>15% discount on Shopper's Drug Mart on Bloor St.</li>
-              <li>Free condoms, lube, menstrual products, peer counselling, and more at the <a  href="https://www.secutoronto.org/">Sexual Education Centre</a>.</li>
-              <li>Discounted Admit One and Great Escape movie passes at any Cineplex location.</li>
-              <li>The <a href="https://www.isic.org/">International Student Identity Card (ISIC)</a> provides discounts for almost everything. Virtual cards are a $20 one-time purchase.</li>
-              <li>A <a href="https://onesearch.library.utoronto.ca/ic/available-software">list of free software</a> for engineering students, including instructions on how to activate them.</li>
-              <li>Engineering students can get free black-and-white printing at any ECF lab. See quota details <a href="https://undergrad.engineering.utoronto.ca/campus-facilities/engineering-computing-facility-ecf/ecf-printing/printers-paper-quota/">here</a></li>
-              <li>Discounts for software (e.g. Microsoft Project, Visual Studio Enterprise, Adobe CC, Norton AntiVirus, etc.) through <a href="https://uoft.onthehub.com/WebStore/Security/Signin.aspx?rurl=%2fWebStore%2fProductsByMajorVersionList.aspx%3fcmi_cs%3d1%26cmi_mnuMain%3df189368a-f0a6-e811-8109-000d3af41938">OnTheHub</a></li>
-              <li>Free video, film, and TV streaming services through <a href="https://onesearch.library.utoronto.ca/streaming-video">UofT Libraries</a></li>
-              <li>One free year of <a href="https://pplx.ai/studentsoffer">Perplexity Pro</a>.</li>
-              <li>One free year of <a href="https://cursor.com/students?utm_source=canva&utm_medium=iframely">Cursor Pro</a>.</li>
-              <li>Free <a href="https://www.notion.com/product/notion-for-education">Notion Pro</a>.</li>
-              <li>The <a href="https://www.reddit.com/r/Piracy/wiki/megathread/">r/Piracy Wiki Megathread </a> for almost all digital media, but shhhhh.... you didn't hear it from me.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details id="scholarships">
-          <summary>Scholarships & Financial Aid</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="side-hustles-work">
-          <summary>Work-Study & Other Part-time Work</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-      </section>
-
-      <section id="tech-tools">
-        <h1>TECH & TOOLS</h1>
-        
-        <details id="software-recommendations">
-          <summary>Tech Requirements</summary>
-          <div class="details-content">
-            <ul>
-            <li>You will only be permitted to use the following calculator models during exams. <b>Please make sure you purchase the correct model.</b></li>
-            <ul>
-              <li>Casio FX-991 (any suffix is acceptable)</li>
-              <li>Sharp EL-W516 (any suffix is acceptable)</li>
-              <li>Sharp EL-520 (any suffix is acceptable)</li>
-            </ul>
-            <li>Given the amount of time you'll be using a laptop, ensure you invest wisely into a device that will meet all of your needs for the next 4+ years.</li>
-            <ul>
-              <li>Extras like an external bluetooth mouse and webcam (if needed) are also incredibly helpful.</li>
-            </ul>
-            <li>The necessary specs below are based on application system requirements:</li>
-            <ul>
-              <li><b>For Windows-based systems:</b> either Intel or AMD 64-bit processors will suffice, and ensure you have at least 4 cores.</li>
-              <li><b>For MacOS-based systems:</b> M2 and higher chips will suffice; older Intel-based MacBooks should have at least 4 cores.</li>
-              <li>At least <b>8 GB</b> and <b>ideally 16+ GB</b> RAM.</li>
-               <li>Minimum <b>256 GB SSD</b> storage, but <b>512 GB SSD</b> is highly recommended.</li>
-            </ul>
-            <li>I'm definitely biased, but I'll always recommend Windows over MacOS if you are planning to buy a new laptop for the following reasons:</li>
-            <ul><li>Windows is compatible with all engineering software (e.g. SOLIDWORKS, Altium, etc.) you'll use in your program, unlike MacOS.</li>
-              <li>It's easy to set up dual-boots on a Windows system.</li>
-              <li>Many MacBooks are lacking in necessary ports.</li>
-              <li>If you already have Apple devices (e.g. iPad, iPhone), it's not too difficult to sync data with Windows.</li>
-              <li>MacOS is just painful and exasperating to deal with; my friends who use Macs are constantly running into issues. Go with Windows. Please.</li>
-            </ul>
-            <li>Although it's not necessary, a tablet (iPad, Samsung Galaxy Tab, Microsoft Surface Pro, etc.) is fantastic for note-taking and completing assignments.</li>
-            <ul>
-              <li>I personally have been using an iPad Pro and 2nd Gen Apple Pencil after taking notes on paper for a long time.</li>
-              <li>Tablets greatly help with organization and storage; you won't have to carry around all of your notebooks and stationary.</li>
-              <li>It's easy to insert slides (when many profs utilise), PDFs, and images into digital notes.</li>
-              <li>If your note-taking app syncs across devices, you can view and search your notes on your phone and laptop.</li>
-            </ul>
-              </ul>
-          </div>
-        </details>
-
-        <details id="productivity-apps">
-          <summary>Productivity Apps</summary>
-          <div class="details-content">
-            <p>WIP</p>
-            <ul>
-              <li>Check out this <a href="https://paint-tractor-7ee.notion.site/Homebase-hankun-s-template-rev-1-16965582d36d801cb92ad476637c6811">Notion template</a> designed specifically for UofT Engineering students. Made by Hankun.</li>
-            </ul>
-          </div>
-        </details>
-      </section>
-
-      <section id="faq">
-        <h1>FREQUENTLY ASKED QUESTIONS</h1>
-        
-        <details id="admission-questions">
-          <summary>Admission & Application Questions</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="program-questions">
-          <summary>Program-Specific Questions</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-
-        <details id="general-questions">
-          <summary>General University Questions</summary>
-          <div class="details-content">
-            <p>WIP</p>
-          </div>
-        </details>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <p>rango l.f. / 2025</p>
-    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-  </footer>
-
-  <script>
-    // Auto-generate Table of Contents (desktop only)
-    function generateTOC() {
-      if (window.innerWidth <= 768) return; // Don't generate TOC on mobile
-      
-      const toc = document.getElementById('toc');
-      const headings = document.querySelectorAll('section h1, summary');
-      
-      toc.innerHTML = '';
-      
-      headings.forEach(function(heading, index) {
-        // Create an ID for the heading if it doesn't have one
-        if (!heading.id) {
-          heading.id = 'heading-' + index;
-        }
-        
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        
-        a.href = '#' + heading.id;
-        a.textContent = heading.textContent;
-        a.onclick = function(e) {
-          e.preventDefault();
-          scrollToSection(heading.id);
-        };
-        
-        // Add appropriate class based on heading level
-        if (heading.tagName === 'SUMMARY') {
-          a.className = 'toc-level-2';
-        } else if (heading.tagName === 'H3') {
-          a.className = 'toc-level-3';
-        }
-        
-        li.appendChild(a);
-        toc.appendChild(li);
-      });
-    }
-
-    // Smooth scroll to section
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // If it's a summary element, open the details
-        if (element.tagName === 'SUMMARY') {
-          const details = element.closest('details');
-          if (details && !details.open) {
-            details.open = true;
-          }
-        }
-        
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
-        // Update active state
-        updateActiveTOCItem(sectionId);
-      }
-    }
-
-    // Update active TOC item and scroll it into view
-    function updateActiveTOCItem(activeId) {
-      if (window.innerWidth <= 768) return; // Don't update on mobile
-      
-      const tocLinks = document.querySelectorAll('.toc a');
-      const sidebar = document.querySelector('.sidebar');
-      let activeLink = null;
-      
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + activeId) {
-          link.classList.add('active');
-          activeLink = link;
-        }
-      });
-      
-      // Scroll the active TOC item into view within the sidebar
-      if (activeLink && sidebar) {
-        const sidebarRect = sidebar.getBoundingClientRect();
-        const linkRect = activeLink.getBoundingClientRect();
-        
-        // Check if the active link is outside the visible area of the sidebar
-        if (linkRect.top < sidebarRect.top || linkRect.bottom > sidebarRect.bottom) {
-          // Calculate the scroll position to center the active link in the sidebar
-          const sidebarScrollTop = sidebar.scrollTop;
-          const linkOffsetTop = activeLink.offsetTop;
-          const sidebarHeight = sidebar.clientHeight;
-          const linkHeight = activeLink.offsetHeight;
-          
-          const targetScrollTop = linkOffsetTop - (sidebarHeight / 2) + (linkHeight / 2);
-          
-          sidebar.scrollTo({
-            top: targetScrollTop,
-            behavior: 'smooth'
-          });
-        }
-      }
-    }
-
-    // Highlight current section in TOC on scroll (desktop only)
-    function highlightCurrentSection() {
-      if (window.innerWidth <= 768) return; // Don't highlight on mobile
-      
-      const headings = document.querySelectorAll('section h1, summary');
-      const scrollPosition = window.scrollY + 120; // Slightly increased offset for better accuracy
-      
-      let currentSection = '';
-      
-      headings.forEach(heading => {
-        const sectionTop = heading.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          currentSection = heading.id;
-        }
-      });
-      
-      if (currentSection) {
-        updateActiveTOCItem(currentSection);
-      }
-    }
-
-    // Mobile menu functionality
-    function toggleMobileMenu() {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-      
-      if (mobileNav) {
-        mobileNav.classList.toggle('active');
-        
-        // Toggle hamburger icon between bars and X
-        if (mobileNav.classList.contains('active')) {
-          hamburgerIcon.className = 'fas fa-times';
-        } else {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      generateTOC();
-    });
-
-    // Listen for scroll events to highlight current section (desktop only)
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      // Throttle scroll events for better performance
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = setTimeout(highlightCurrentSection, 10);
-    });
-
-    // Regenerate TOC on window resize
-    window.addEventListener('resize', function() {
-      generateTOC();
-      
-      // Close mobile menu when window is resized to desktop size
-      if (window.innerWidth > 768) {
-        const mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav) {
-          mobileNav.classList.remove('active');
-          const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-          if (hamburgerIcon) {
-            hamburgerIcon.className = 'fas fa-bars';
-          }
-        }
-      }
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (mobileNav && hamburgerMenu && !hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-        if (hamburgerIcon) {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    });
-  </script>
+    <script src="components.js"></script>
 </body>
 </html>

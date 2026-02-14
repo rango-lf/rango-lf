@@ -1,853 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="https://pixelsafari.neocities.org/favicon/object/tech/disc.gif">
-  <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
-  <script src="header.js"></script>
-  <title>APS162 PROPAGANDA</title>
-  <meta name="description" content="Rango L.F.'s undergraduate engineering blog">
-  <meta name="author" content="Rango L.F.">
-  
-  <style>
-    /* Root settings */
-    :root {
-      /* column widths */
-      --widthSidebar: 250px;
-      --widthContent: 820px;
-
-      /* general page and text colours */
-      --colorBackground: #f2f2f2;
-      --colorText: darkslategray;
-      --colorLink: darkslategrey;
-
-      /* accent colours */
-      --colorPrimary: #a0d0a0;
-      --colorSecondary: #a0d0a0;
-      --colorTertiary: #a0d0a0;
-
-      /* border and box shadow colours */ 
-      --colorBorder: darkslategrey;
-      --colorShadow: darkslategrey;
-
-      /* background colour for the sections */
-      --colorBackgroundMain: #f2f2f2;
-
-      /* fonts */
-      --fontText: 'DM Mono', sans-serif;
-      --fontTitle: 'w95fa', monospace;
-
-      /* borders */
-      --borderSolid: 1.5px solid darkslategrey;
-      --borderDotted: 1.5px dotted darkslategrey;
-      --borderTree: 1.5px solid darkslategrey;
-
-      /* gallery settings */
-      --columnCount: 2;
-      --columnGap: 8px;
-
-      /* background image FOR ALL PAGES */
-      --imageBackground: none;
-    }
-
-    /* Global site structure */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-flow: column;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--fontText);
-      color: var(--colorText);
-      background-color: var(--colorBackground);
-      background-image: var(--imageBackground);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding-top: 60px; /* Space for fixed header */
-    }
-
-    /* Permanent header navigation */
-    .permanent-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--colorBackground);
-      border-bottom: var(--borderDotted);
-      padding: 8px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .permanent-header .logo {
-      font-family: var(--fontTitle);
-      font-weight: bold;
-      color: var(--colorText);
-      text-decoration: none;
-      margin-right: auto;
-    }
-
-    /* Hamburger menu button - hidden on desktop */
-    .hamburger-menu {
-      display: none;
-    }
-
-    .hamburger-toggle {
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      color: var(--colorText);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger-toggle:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Desktop navigation */
-    .desktop-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: none;
-      padding: 0;
-    }
-
-    .desktop-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 6px 12px;
-      font-size: 15px;
-    }
-
-    .desktop-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    /* Mobile navigation - hidden by default */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--colorBackground);
-      border-top: var(--borderSolid);
-      border-bottom: var(--borderSolid);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex-direction: column;
-      padding: 8px 16px;
-      z-index: 1001;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background: var(--colorPrimary);
-      border: var(--borderSolid);
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 4px;
-      text-align: center;
-    }
-
-    .mobile-nav a:hover {
-      background-color: var(--colorBorder);
-      color: var(--colorBackground);
-    }
-
-    .mobile-nav a:last-child {
-      margin-bottom: 0;
-    }
-
-    main {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;
-      flex: 1;
-    }
-
-    main > .sidebar {
-      flex: 0 0 var(--widthSidebar);
-      padding: 1em;
-    }
-
-    main > .content {
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 1 20em;
-      max-width: var(--widthContent);
-      padding: 1em;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      width: 100%;
-      border-top: var(--borderDotted);
-      background-color: var(--colorBackground);
-      padding: 0 1em;
-      font-size: 0.7em;
-      margin-top: auto;
-    }
-
-    /* Back button styling */
-    .back-button {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 10px 1em;
-      width: fit-content;
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .back-button a {
-      font-family: var(--fontTitle);
-      font-size: 0.9em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .back-button a:hover {
-      color: var(--colorText);
-      background: none;
-    }
-
-    .back-button:hover {
-      background-color: var(--colorBorder);
-    }
-
-    .back-button:hover a {
-      color: var(--colorBackground);
-    }
-
-    /* Title box styling - compact and aligned with content width */
-    .title-box {
-      background-color: var(--colorPrimary);
-      border: var(--borderSolid);
-      box-shadow: 3px 3px 0 var(--colorShadow);
-      padding: 8px 16px;
-      margin: 0 1em 15px 1em;
-      width: calc(100% - 2em);
-      max-width: calc(var(--widthContent) - 2em);
-    }
-
-    .title-box h1 {
-      margin: 0;
-      padding: 0;
-      font-family: var(--fontTitle);
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    /* Widget styling with borders and shadows */
-    .sidebar > .widget {
-      background-color: var(--colorBackgroundMain);
-      border: var(--borderSolid);
-      box-shadow: 0.3em 0.3em var(--colorShadow);
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-
-    .sidebar > .widget h3 {
-      margin: 0 0 8px 0;
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      font-size: 1em;
-    }
-
-    .sidebar > .widget p {
-      margin: 8px 0 0 0;
-      font-size: 0.9em;
-    }
-
-    .sidebar > .widget img {
-      width: 100%;
-      margin: 8px 0;
-      border: 1px solid var(--colorBorder);
-    }
-
-    /* Table of Contents styling */
-    .toc {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .toc li {
-      margin-bottom: 6px;
-    }
-
-    .toc a {
-      text-decoration: none;
-      color: var(--colorText);
-      font-size: 0.9em;
-      display: block;
-      padding: 4px 8px;
-      border-left: 2px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .toc a:hover {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-      color: var(--colorText);
-    }
-
-    .toc .active {
-      background-color: var(--colorPrimary);
-      border-left-color: var(--colorBorder);
-    }
-
-    /* Nested TOC items */
-    .toc .toc-level-2 {
-      padding-left: 16px;
-      font-size: 0.8em;
-    }
-
-    .toc .toc-level-3 {
-      padding-left: 32px;
-      font-size: 0.75em;
-    }
-
-    /* Hide TOC widget on mobile */
-    .toc-widget {
-      display: block;
-    }
-
-    /* Global text settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--fontTitle);
-      word-wrap: break-word;
-    }
-
-    p {
-      font-family: var(--fontText);
-    }
-
-    b {
-      color: darkslategray;
-    }
-
-    a {
-      color: var(--colorLink);
-    }
-
-    a:hover {
-      color: var(--colorBackground);
-      background-color: var(--colorLink);
-    }
-
-    button, .button {
-      font-family: var(--fontTitle);
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--colorText);
-      background-color: var(--colorPrimary);
-      border: 1px solid var(--colorPrimary);
-      padding: 8px 12px;
-    }
-
-    button:hover, .button:hover {
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-    }
-
-    hr {
-      border: 0;
-      border-top: var(--borderDotted);
-      margin: 1em 0;
-      width: 100%;
-    }
-
-    blockquote {
-      margin: 1.5em;
-      padding-left: 1.5em;
-      border-left: 1px solid var(--colorSecondary);
-    }
-
-    /* Sections */
-    section {
-      border: 1.5px solid var(--colorBorder);
-      background-color: var(--colorBackgroundMain);
-      color: var(--colorText);
-      padding: 1em;
-      box-shadow: 0.5em 0.5em var(--colorBorder);
-      margin: 0 1em 2em 1em;
-      width: calc(100% - 2em);
-      scroll-margin-top: 80px; /* Account for fixed header when jumping to sections */
-    }
-
-    section h1 {
-      text-transform: uppercase;
-      padding: 0 1em;
-      color: var(--colorBackground);
-      background: var(--colorText);
-    }
-
-    section h2 {
-      border-bottom: 1px solid var(--colorBorder);
-      scroll-margin-top: 80px;
-    }
-
-    section h3 {
-      scroll-margin-top: 80px;
-    }
-
-    section img {
-      width: auto;
-      border: 1px solid var(--colorBorder);
-    }
-
-    section p {
-      padding: 0 1em;
-      max-inline-size: 700px;
-    }
-
-    /* Flex columns */
-    section > .flex-columns {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    .flex-columns > .flex-text {
-      width: 70%;
-    }
-
-    .flex-columns > .flex-image {
-      width: 25%;
-      margin: 15px;
-    }
-
-    .flex-columns > .flex-image > img {
-      width: auto;
-      padding: 0 1em;
-    }
-
-    /* Half width sections */
-    .half-width {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      min-height: 300px;
-    }
-
-    .half-width section {
-      width: calc(50% - 2em);
-      margin: 0 1em 2em 1em;
-    }
-
-    /* Mobile responsiveness */
-    @media screen and (max-width: 768px) {
-      body {
-        padding-top: 60px; /* Adjusted for mobile header height */
-      }
-
-      .permanent-header {
-        padding: 8px 12px;
-      }
-
-      /* Show hamburger menu on mobile */
-      .hamburger-menu {
-        display: block;
-      }
-
-      /* Hide desktop nav on mobile */
-      .desktop-nav {
-        display: none;
-      }
-
-      /* Hide TOC widget on mobile */
-      .toc-widget {
-        display: none;
-      }
-
-      main {
-        flex-direction: column;
-      }
-
-      main > .sidebar {
-        flex: none;
-        width: 100%;
-        order: 2;
-        padding: 8px;
-      }
-
-      main > .content {
-        order: 1;
-        padding: 8px;
-        max-width: 100%;
-      }
-
-      .back-button {
-        margin: 0 0 10px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .title-box {
-        margin: 0 0 15px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      section {
-        margin: 0 0 2em 0;
-        width: 100%;
-      }
-
-      section > .flex-columns {
-        flex-direction: column;
-      }
-
-      .flex-columns > .flex-text,
-      .flex-columns > .flex-image {
-        width: 100%;
-      }
-
-      .half-width {
-        flex-direction: column;
-      }
-
-      .half-width section {
-        width: 100%;
-        margin: 0 0 2em 0;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .hamburger-toggle {
-        padding: 6px 8px;
-        font-size: 14px;
-      }
-
-      .mobile-nav a {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-    }
-    li {
-      margin-bottom: 12px;
-      line-height: 1.6;
-      padding-left: 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aps162 propaganda - your name's site</title>
+    <meta name="description" content="why you should take calculus over the summer">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/128de1c489.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  <!-- Permanent header navigation -->
-  <!-- Add your header content here -->
+    <!-- Header loaded via JS -->
+    <div id="header-container"></div>
 
-  <main>
-    <div class="sidebar"> 
-      <!-- Table of Contents Widget -->
-      <div class="widget toc-widget">
-        <h2 style="color: #f2f2f2; background-color: darkslategray; margin-top: 5px; margin-bottom: 5px; padding: 3px">CONTENTS.</h2>
-        <ul class="toc" id="toc">
-          <!-- TOC will be auto-generated by JavaScript -->
-        </ul>
-      </div>
-
-      <div class="widget">
-        <p style="font-size: 10px">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any concerns or questions regarding this site, please email me.</p>
-      </div>
-      <img src="https://rainy.gay/pride/bv/progress.png"> 
-    </div>
-
-    <div class="content">
-      <!-- Back button -->
-      <div class="back-button">
-        <a href="blog.html">
-          <i class="fas fa-arrow-left"></i>
-          Back to Blog
-        </a>
-      </div>
-
-      <!-- Compact title box aligned with content -->
-      <div class="title-box">
-        <h1>APS162 PROPAGANDA.</h1>
-      </div>
-
-      <!-- Blog post content sections -->
-      <section id="introduction">
-        <h1>WHAT?</h1>
-<p><b>DISCLAIMER: The information provided below is (somewhat) accurate as of 2025. Course details are always subject to change depending on the coordinator/instructor.</b></p>
-
-<p>Do you enjoy calculus? Are you good at calculus? Regardless of how you answered those two questions, you should probably take APS162: Calculus for Engineers I if you're an incoming UofT Engineering Frosh.</p>
-
-<p>APS162 is one of two online and asynchronous courses--the other being APS164: Introductory Chemistry from a Materials Perspective--offered to incoming first years during the summer. This course is equivalent to MAT186: Calculus I, thus allowing you to fulfill that credit ahead of the school year and lighten up your fall semester if you so choose.</p>
-
-<p>The course runs from mid-July to mid-August; about 6-7 weeks in total. Lectures, which I highly recommend following along with, are pre-recorded by the lovely Shai Cohen (treasure him). There are weekly instructional tutorials over Zoom, a series of weekly assignments, and a final exam. Further details on the course can be found <a href="https://undergrad.engineering.utoronto.ca/first-year-office-2/first-year-updates-deadlines/early-start-courses/">here</a>.</p>
-        
-<p>This blog post aims to provide an overview of the course content and insights from my experience, which I hope will inform any incoming Froshies who are contemplating how to spend their summer before school starts..</p>
-      </section>
-
-<section id="THE BAG.">
-
-<h1>WHY?</h1>
-
-<p>I was first made aware about APS162 while searching for first-year advice from the most reliable source of information: Reddit. The course was advertised by upper-years as a saving grace from the apparently hellish MAT186 that has historically been one of the most difficult first year courses. The other selling points were that APS162 had zero midterms, flexible scheduling, a free textbook, and an easy-going professor.  
-</p> 
-  
-  <p>With minimal summer plans other than working a part-time job and a week-long road trip, it seemed like a no-brainer to get this course out of the way and spare myself from a six-course semester. Additionally, my MAT186 blocks were scheduled for 9 AM, which would likely kill any motivation I'd have to get up in the morning.
-</p> 
-  
-    <p>I won't lie to you, calculus is my greatest kryptonite. It has always been my lowest mark among all of the STEM courses I took throughout high school (and somehow, I miraculously got into engineering). Despite math not loving me, I love math. I love problem-solving. I love the satisfaction of seeing the skills I've painstakingly developed produce results. So, even though I wasn't totally confident in my skills to tackle this course, I was eager to spend my summer doing something I enjoy, improving my mathematical proficiency before the fall semester, and redeeming myself from my high school mark.
-</p> 
-
+    <div class="main-content">
+        <!-- Post Header -->
+        <section class="home-section">
+            <div class="home-card">
+                <div class="card-stack">
+                    <div class="card">
+                        <h1>aps162 propaganda</h1>
+                        <h2>why you should (probably) take calculus over the summer</h2>
+                        <p>
+                            <strong>posted:</strong> september 23, 2025<br>
+                            <strong>tags:</strong> university, advice
+                        </p>
+                    </div>
+                    <div class="card-shadow-1"></div>
+                    <div class="card-shadow-2"></div>
+                    <div class="card-shadow-3"></div>
+                </div>
+            </div>
         </section>
-      <section id="side-pockets">
 
-<h1>WHAT YOU LEARN</h1>
+        <div class="wrapper">
+            <!-- Navigation -->
+            <div style="margin-bottom: 20px;">
+                <a href="blog.html" style="font-family: 'Chicago', monospace; text-decoration: none; color: black;">
+                    ← back to blog
+                </a>
+            </div>
 
-<p>Most of the content in APS162 should be review from high school, especially if you did AP or IB. However, and expectedly, the content I was assessed on was certainly more difficult than high school.</p>
+            <!-- What? -->
+            <div class="window" id="what">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">what?</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><strong>DISCLAIMER: The information provided below is (somewhat) accurate as of 2025. Course details are always subject to change depending on the coordinator/instructor.</strong></p>
 
-<p>Initially, you'll first review some <b>pre-calculus concepts: trig, inverse and log functions, polynomials, etc.</b> This was a very short unit that was quickly glossed over, so if your pre-calculus fundamentals are lacking, I strongly recommend reviewing them before the course even starts.</p>
+                    <p>Do you enjoy calculus? Are you good at calculus? Regardless of how you answered those two questions, you should probably take APS162: Calculus for Engineers I if you're an incoming UofT Engineering Frosh.</p>
 
-        <p>Second up is <b>limits and continuity</b>. This was a chunky unit where you'll learn how to evaluate one-sided limits, two-sided limits, infinite limits, limits to infinity, squeeze theorem, the idea of continuity, and some intermediate value theorem. Even though limits was my best unit in high school calculus, I felt that it was more difficult this time around due to the sheer number of rules, theorems, and properties I had to learn and remember. Don't take this unit for granted, as the concepts in limits lays the foundation for the rest of Calculus I.</p>
+                    <p>APS162 is one of two online and asynchronous courses—the other being APS164: Introductory Chemistry from a Materials Perspective—offered to incoming first years during the summer. This course is equivalent to MAT186: Calculus I, thus allowing you to fulfill that credit ahead of the school year and lighten up your fall semester if you so choose.</p>
 
-        <p>The third, fourth, and fifth units were <b>derivatives and applications of derivatives</b>. Derivatives were quite straight-forward with its properties and rules. However, the content of applications of derivatives was so dense that it was given two units. Optimization, related rates, graphing, and mean value theorem were the <i>worst</i> for me. I still cannot for the life of me figure out any of those problems without significant assistance, and it's very, very embarrassing. Dear reader, please humiliate me further by doing better with derivative application questions than I did.</p>
+                    <p>The course runs from mid-July to mid-August; about 6-7 weeks in total. Lectures, which I highly recommend following along with, are pre-recorded by the lovely Shai Cohen (treasure him). There are weekly instructional tutorials over Zoom, a series of weekly assignments, and a final exam. Further details on the course can be found <a href="https://undergrad.engineering.utoronto.ca/first-year-office-2/first-year-updates-deadlines/early-start-courses/" target="_blank">here</a>.</p>
+                    
+                    <p>This blog post aims to provide an overview of the course content and insights from my experience, which I hope will inform any incoming Froshies who are contemplating how to spend their summer before school starts.</p>
+                </div>
+            </div>
 
-        <p>Last, but certainly not least were <b>integration and applications of integration</b>--which, if you come from the standard Ontario curriculum, will likely be new to you. Having completed high school in BC, I already had some exposure to integration, so it wasn't entirely foreign or challenging for me. In these units, you'll learn about definite and indefinite integrals, u-substitution, average value, the fundamental theorem of calculus, area, volume, and physical applications of integrals. Once again, application questions screwed me. Please do not make the mistake that I did and slack off on the final week. Challenging physical application questions will show up on the final and will screw you if you haven't practiced thoroughly.</p>
+            <!-- Why? -->
+            <div class="window" style="margin-top: 30px;" id="why">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">why?</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>I was first made aware about APS162 while searching for first-year advice from the most reliable source of information: Reddit. The course was advertised by upper-years as a saving grace from the apparently hellish MAT186 that has historically been one of the most difficult first year courses. The other selling points were that APS162 had zero midterms, flexible scheduling, a free textbook, and an easy-going professor.</p>
+                    
+                    <p>With minimal summer plans other than working a part-time job and a week-long road trip, it seemed like a no-brainer to get this course out of the way and spare myself from a six-course semester. Additionally, my MAT186 blocks were scheduled for 9 AM, which would likely kill any motivation I'd have to get up in the morning.</p>
+                    
+                    <p>I won't lie to you, calculus is my greatest kryptonite. It has always been my lowest mark among all of the STEM courses I took throughout high school (and somehow, I miraculously got into engineering). Despite math not loving me, I love math. I love problem-solving. I love the satisfaction of seeing the skills I've painstakingly developed produce results. So, even though I wasn't totally confident in my skills to tackle this course, I was eager to spend my summer doing something I enjoy, improving my mathematical proficiency before the fall semester, and redeeming myself from my high school mark.</p>
+                </div>
+            </div>
 
+            <!-- What You Learn -->
+            <div class="window" style="margin-top: 30px;" id="learn">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">what you learn</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>Most of the content in APS162 should be review from high school, especially if you did AP or IB. However, and expectedly, the content I was assessed on was certainly more difficult than high school.</p>
 
+                    <p>Initially, you'll first review some <strong>pre-calculus concepts: trig, inverse and log functions, polynomials, etc.</strong> This was a very short unit that was quickly glossed over, so if your pre-calculus fundamentals are lacking, I strongly recommend reviewing them before the course even starts.</p>
 
-      </section>
-      
+                    <p>Second up is <strong>limits and continuity</strong>. This was a chunky unit where you'll learn how to evaluate one-sided limits, two-sided limits, infinite limits, limits to infinity, squeeze theorem, the idea of continuity, and some intermediate value theorem. Even though limits was my best unit in high school calculus, I felt that it was more difficult this time around due to the sheer number of rules, theorems, and properties I had to learn and remember. Don't take this unit for granted, as the concepts in limits lays the foundation for the rest of Calculus I.</p>
 
-      <section id="FRONT POCKET.">
-        <h1>WHAT YOU DO</h1>
-        <p>According to the 2025 syllabus, our final mark was broken down as the following:</p>
-        <p><b>(15% total; 3% each) WeBWork</b></p>
-        <p>This was arguably the most annoying part of the course. WeBWork is an online homework program where required and optional practice questions for each unit were posted every week. I'm not sure if the question sets were pulled from a pre-made bank, or if the coordinator personally selected them, but I found them quite difficult and  confusing--even moreso than the written assignments. WeBWork will mark your answer incorrectly if you have any formatting errors, which was painful to deal with. Fortunately, we were granted unlimited attempts for each problem set. Unfortunately, WeBWork is used by most of my current and future math classes, so get comfortable with this particular brand of suffering.</p>
-        <p><b>(25% total; 5% each) Assignments</b></p>
-        <p>Assignments occupied the bulk of my time spent on coursework in this class. There were 5 in total, consisting of 3-5 very difficult questions. Since you are expected to spend a week completing each assignment, the problems were impossible or near-impossible to do without help from peers--so lean on them for help! The course utilizes a discussion forum platform called <i>Piazza</i> where students can ask and answer each other's questions. Don't be a dingus like me; please ask for help as your peers are more than willing to provide it!</p> 
-<p>All of the assignments were marked by TAs on Gradescope who, in my opinion, were quite fair with their expectations. I'd say the most important tip to achieve maximum marks is to show <i>all</i> work clearly. This includes stating any theorems and rules you used (e.g. "by squeeze theorem", "use chain rule") as if you're walking someone step-by-step through solving the question. Also, box your answers and complete your work neatly (ask me how I know with my God-awful hand-writing). </p>
+                    <p>The third, fourth, and fifth units were <strong>derivatives and applications of derivatives</strong>. Derivatives were quite straight-forward with its properties and rules. However, the content of applications of derivatives was so dense that it was given two units. Optimization, related rates, graphing, and mean value theorem were the <em>worst</em> for me. I still cannot for the life of me figure out any of those problems without significant assistance, and it's very, very embarrassing. Dear reader, please humiliate me further by doing better with derivative application questions than I did.</p>
 
-          <p><b>(20%) Modelling Essay</b></p>
-        <p>This was the assignment that made everyone crash out. We were given a list of pre-approved topics to explore in our essay and an example from a previous year to inform our essay structure. For the vast majority of the class, it was our first ever mathematical essay, which sounds like an oxymoron but is unfortunately very real. Topics ranged from geography to economics to physics applications--all requiring you to build mathematical models and then actually understand what they mean.</p>
-<p>The good news is that it's only 20% of your grade. The bad news is that it requires you to pretend you're a mathematician, a writer, and someone who understands the real world all at once. Choose your topic wisely, refer to previous essay examples, follow the formatting guidelines, and <i>start early</i>. I started my brainstorming and drafting a week before the essay was officially announced by the instructor. This isn't something you can bang out the night before. Please don't be like the guy in my class who livestreamed his essay speedrun at the final hour (it was funny though).</p>
+                    <p>Last, but certainly not least were <strong>integration and applications of integration</strong>—which, if you come from the standard Ontario curriculum, will likely be new to you. Having completed high school in BC, I already had some exposure to integration, so it wasn't entirely foreign or challenging for me. In these units, you'll learn about definite and indefinite integrals, u-substitution, average value, the fundamental theorem of calculus, area, volume, and physical applications of integrals. Once again, application questions screwed me. Please do not make the mistake that I did and slack off on the final week. Challenging physical application questions will show up on the final and will screw you if you haven't practiced thoroughly.</p>
+                </div>
+            </div>
 
-        <p><b>(40%) Final</b></p>
-        <p>This exam is worth nearly half your grade and covers everything you've learned over the summer, and you need a minimum of 40% on it to pass the course. It's a 2-hour written exam that tests both your computational skills and your ability to solve application problems from all of the units. 
-<p>Here's where I get to share some delightful news: the exam was significantly more difficult in my year because, apparently, the previous year's exam wasn't deemed challenging enough. The coordinators looked at last year's results, said "these students are having too much fun," and decided to crank up the difficulty.</p>
-<p>I did total garbage, as in, I only completed maybe 5 questions with half-correct answers. Still, I passed with the power of bullshitting. Even if you have absolutely no clue how to complete a question, write down everything you can think of: your assumptions, the given information, any relevant formulas, and whatever logical steps you can muster. The TAs are surprisingly generous with part marks, and showing your thought process can save you from complete disaster. I learned this lesson too late, but you don't have to. Also, do as many practice exams as you can find, time yourself religiously, and maybe invest in some stress-relief activities for afterward.</p>
+            <!-- What You Do -->
+            <div class="window" style="margin-top: 30px;" id="do">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">what you do</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>According to the 2025 syllabus, our final mark was broken down as the following:</p>
+                    
+                    <h3 style="margin-top: 20px;">(15% total; 3% each) WeBWork</h3>
+                    <p>This was arguably the most annoying part of the course. WeBWork is an online homework program where required and optional practice questions for each unit were posted every week. I'm not sure if the question sets were pulled from a pre-made bank, or if the coordinator personally selected them, but I found them quite difficult and confusing—even moreso than the written assignments. WeBWork will mark your answer incorrectly if you have any formatting errors, which was painful to deal with. Fortunately, we were granted unlimited attempts for each problem set. Unfortunately, WeBWork is used by most of my current and future math classes, so get comfortable with this particular brand of suffering.</p>
+                    
+                    <h3 style="margin-top: 20px;">(25% total; 5% each) Assignments</h3>
+                    <p>Assignments occupied the bulk of my time spent on coursework in this class. There were 5 in total, consisting of 3-5 very difficult questions. Since you are expected to spend a week completing each assignment, the problems were impossible or near-impossible to do without help from peers—so lean on them for help! The course utilizes a discussion forum platform called <em>Piazza</em> where students can ask and answer each other's questions. Don't be a dingus like me; please ask for help as your peers are more than willing to provide it!</p>
+                    
+                    <p>All of the assignments were marked by TAs on Gradescope who, in my opinion, were quite fair with their expectations. I'd say the most important tip to achieve maximum marks is to show <em>all</em> work clearly. This includes stating any theorems and rules you used (e.g. "by squeeze theorem", "use chain rule") as if you're walking someone step-by-step through solving the question. Also, box your answers and complete your work neatly (ask me how I know with my God-awful hand-writing).</p>
 
+                    <h3 style="margin-top: 20px;">(20%) Modelling Essay</h3>
+                    <p>This was the assignment that made everyone crash out. We were given a list of pre-approved topics to explore in our essay and an example from a previous year to inform our essay structure. For the vast majority of the class, it was our first ever mathematical essay, which sounds like an oxymoron but is unfortunately very real. Topics ranged from geography to economics to physics applications—all requiring you to build mathematical models and then actually understand what they mean.</p>
+                    
+                    <p>The good news is that it's only 20% of your grade. The bad news is that it requires you to pretend you're a mathematician, a writer, and someone who understands the real world all at once. Choose your topic wisely, refer to previous essay examples, follow the formatting guidelines, and <em>start early</em>. I started my brainstorming and drafting a week before the essay was officially announced by the instructor. This isn't something you can bang out the night before. Please don't be like the guy in my class who livestreamed his essay speedrun at the final hour (it was funny though).</p>
 
-      </section>
-      
-      <section id="MAIN POCKET">
-        <h1>WHAT I THINK</h1>
-        
-        <p>After surviving this summer calculus gauntlet, here are my completely unbiased and definitely not trauma-influenced thoughts:</p>
-        <p><b>THE GOOD:</b></b>
-      <ul><li>In the engineering program, you'll be basically completing new units every week: a summer course like APS162 helps you prepare for this fast and condensed pace. Think of it as training for academic whiplash.
-      <li>The flexible schedule is genuinely nice. You can watch lectures at 2 AM in your pajamas if that's when your brain decides to function.
-      <li>Getting MAT186 out of the way means one less course to worry about in first semester, and avoiding those 9 AM lectures.
-      <li>The professor and TAs were generally helpful and responsive through tutorials, Piazza, and emails.</ul>
-      
-       <p><b>THE REALITY CHECK:</b></b>
-    <ul><li>This course requires serious self-discipline. Without the structure of regular in-person classes, it's easy to fall behind.
-<li>The workload is no joke. This is a full university course compressed into 6 weeks.
-<li>If you're not strong in calculus, this might not be the confidence booster you're hoping for. It could actually be quite humbling (speaking from experience).
-<li>Be prepared for the final exam. Start practicing with past exams at least 1-2 weeks ahead.</ul>
-      </section>
-      
-      <section id="MAIN POCKET">
-        <h1>WHAT MY FRIENDS THINK</h1>
-        
-        <p><b>Meilly C.:</b> "I thought that APS162 was a well-organised and enjoyable course. I liked the ability to work at your own pace over the summer and be fully focused on one course. I would say that I needed to be a lot more disciplined than usual, but I was able to balance the course while doing two other activities over the summer, so I wouldn't say that the workload was too heavy. I wouldn't recommend this course to someone who isn't motivated. (disclaimer: i never went to any tutorials and i also did Calc AB so i already knew most of the content)"</p>
-          
-        <p><i>NOTE: Meilly is clearly built different.</i></p>
-          
-        <p><b>Said I.:</b> "The course itself wasn't too difficult and was manageable but the exam definitely caught me off guard. [I] probably should've practiced doing questions faster."</p>
-        <p><i>NOTE: A sentiment shared by approximately 97% of the class.</i></p>
-        
-        <p><b>Tanmay:</b> "For those of you planning to take APS162 over the summer, I urge, nay, implore you to take advantage of this flexible online course by engaging in "grass-touching" activities with your high school friends - perhaps going outside to play basketball, booking an escape room knowing that your nerdiest friend will carry your team, or [INSERT ENJOYABLE "GRASS-TOUCHING" ACTIVITY HERE]. You may not see these friends for a while, so make long-lasting happy memories with them while you still can 😈 . A couple weeks before the final exam, "lock in" and study past exams - time these and treat them like the actual exam, but do not cry into the paper or use it as a tissue. You can use the APS162 exam to gauge how much to study for future final exams (although the amount of studying necessary to do well will vary from course to course). At some point near the beginning of your time in university, you will feel like you don't belong (unless you are in the Engineering Science program, and have an enormous ego, which is entirely justified by the way 😉 ). Remember, this is not high school - you are here to learn new things and explore, not to aim for high 90s and compete with other students (an 85% and above is already a perfect GPA). There will always be people who are "smarter" than you - learn from them. Lastly, and perhaps most importantly, find people with similar interests and have fun, study, join clubs and design teams together, or "nerd out" with them. Best of luck in your first year!"</p>
-<p><i>NOTE: Tanmay clearly has his life together and we should all aspire to his level of wisdom.</i></p>
-          
-        <p><b>Regina J.:</b> "It was fine until the exam. I was procrastinating too much on studying for the exam since Frosh week and also school started. The exam was terrifying…"</p>
-<p><i>NOTE: Regina speaks for all of us who thought we could wing it. Spoiler alert: we could not.</i></p>
-        <p><b>Benny:</b> "My experience is that you should drop engineering and go into Rotman."</p>
-   <p><i>NOTE: Benny got an A in this course.</i></p>     
-      </section>
-  
-       <section id="CONCLUSION">
-        <h1>CONCLUSION</h1>
-         <p>APS162 is neither the summer vacation course some people hope for, nor the mathematical apocalypse others fear. It's a legitimate university-level calculus course that happens to take place during the summer.</p>
-<p>If you decide to take it, go in with realistic expectations and a solid study schedule. You'll emerge on the other side with a better understanding of calculus, a head start on your engineering degree, and most importantly, new friends.</p>
-<p>And hey, at least you'll never have to take MAT186 at 9 AM. That alone might make it worth it.</p>
-         <p>Good luck, future engineers. May the derivatives be ever in your favor.</p>
-  </section>
+                    <h3 style="margin-top: 20px;">(40%) Final</h3>
+                    <p>This exam is worth nearly half your grade and covers everything you've learned over the summer, and you need a minimum of 40% on it to pass the course. It's a 2-hour written exam that tests both your computational skills and your ability to solve application problems from all of the units.</p>
+                    
+                    <p>Here's where I get to share some delightful news: the exam was significantly more difficult in my year because, apparently, the previous year's exam wasn't deemed challenging enough. The coordinators looked at last year's results, said "these students are having too much fun," and decided to crank up the difficulty.</p>
+                    
+                    <p>I did total garbage, as in, I only completed maybe 5 questions with half-correct answers. Still, I passed with the power of bullshitting. Even if you have absolutely no clue how to complete a question, write down everything you can think of: your assumptions, the given information, any relevant formulas, and whatever logical steps you can muster. The TAs are surprisingly generous with part marks, and showing your thought process can save you from complete disaster. I learned this lesson too late, but you don't have to. Also, do as many practice exams as you can find, time yourself religiously, and maybe invest in some stress-relief activities for afterward.</p>
+                </div>
+            </div>
+
+            <!-- What I Think -->
+            <div class="window" style="margin-top: 30px;" id="think">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">what i think</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>After surviving this summer calculus gauntlet, here are my completely unbiased and definitely not trauma-influenced thoughts:</p>
+                    
+                    <h3 style="margin-top: 20px;">THE GOOD:</h3>
+                    <ul>
+                        <li>In the engineering program, you'll be basically completing new units every week: a summer course like APS162 helps you prepare for this fast and condensed pace. Think of it as training for academic whiplash.</li>
+                        <li>The flexible schedule is genuinely nice. You can watch lectures at 2 AM in your pajamas if that's when your brain decides to function.</li>
+                        <li>Getting MAT186 out of the way means one less course to worry about in first semester, and avoiding those 9 AM lectures.</li>
+                        <li>The professor and TAs were generally helpful and responsive through tutorials, Piazza, and emails.</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 20px;">THE REALITY CHECK:</h3>
+                    <ul>
+                        <li>This course requires serious self-discipline. Without the structure of regular in-person classes, it's easy to fall behind.</li>
+                        <li>The workload is no joke. This is a full university course compressed into 6 weeks.</li>
+                        <li>If you're not strong in calculus, this might not be the confidence booster you're hoping for. It could actually be quite humbling (speaking from experience).</li>
+                        <li>Be prepared for the final exam. Start practicing with past exams at least 1-2 weeks ahead.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- What My Friends Think -->
+            <div class="window" style="margin-top: 30px;" id="friends">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">what my friends think</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p><strong>Meilly C.:</strong> "I thought that APS162 was a well-organised and enjoyable course. I liked the ability to work at your own pace over the summer and be fully focused on one course. I would say that I needed to be a lot more disciplined than usual, but I was able to balance the course while doing two other activities over the summer, so I wouldn't say that the workload was too heavy. I wouldn't recommend this course to someone who isn't motivated. (disclaimer: i never went to any tutorials and i also did Calc AB so i already knew most of the content)"</p>
+                    
+                    <p style="margin-top: 15px;"><em>NOTE: Meilly is clearly built different.</em></p>
+                    
+                    <p style="margin-top: 20px;"><strong>Said I.:</strong> "The course itself wasn't too difficult and was manageable but the exam definitely caught me off guard. [I] probably should've practiced doing questions faster."</p>
+                    
+                    <p style="margin-top: 15px;"><em>NOTE: A sentiment shared by approximately 97% of the class.</em></p>
+                    
+                    <p style="margin-top: 20px;"><strong>Tanmay:</strong> "For those of you planning to take APS162 over the summer, I urge, nay, implore you to take advantage of this flexible online course by engaging in "grass-touching" activities with your high school friends - perhaps going outside to play basketball, booking an escape room knowing that your nerdiest friend will carry your team, or [INSERT ENJOYABLE "GRASS-TOUCHING" ACTIVITY HERE]. You may not see these friends for a while, so make long-lasting happy memories with them while you still can 😈 . A couple weeks before the final exam, "lock in" and study past exams - time these and treat them like the actual exam, but do not cry into the paper or use it as a tissue. You can use the APS162 exam to gauge how much to study for future final exams (although the amount of studying necessary to do well will vary from course to course). At some point near the beginning of your time in university, you will feel like you don't belong (unless you are in the Engineering Science program, and have an enormous ego, which is entirely justified by the way 😉 ). Remember, this is not high school - you are here to learn new things and explore, not to aim for high 90s and compete with other students (an 85% and above is already a perfect GPA). There will always be people who are "smarter" than you - learn from them. Lastly, and perhaps most importantly, find people with similar interests and have fun, study, join clubs and design teams together, or "nerd out" with them. Best of luck in your first year!"</p>
+                    
+                    <p style="margin-top: 15px;"><em>NOTE: Tanmay clearly has his life together and we should all aspire to his level of wisdom.</em></p>
+                    
+                    <p style="margin-top: 20px;"><strong>Regina J.:</strong> "It was fine until the exam. I was procrastinating too much on studying for the exam since Frosh week and also school started. The exam was terrifying…"</p>
+                    
+                    <p style="margin-top: 15px;"><em>NOTE: Regina speaks for all of us who thought we could wing it. Spoiler alert: we could not.</em></p>
+                    
+                    <p style="margin-top: 20px;"><strong>Benny:</strong> "My experience is that you should drop engineering and go into Rotman."</p>
+                    
+                    <p style="margin-top: 15px;"><em>NOTE: Benny got an A in this course.</em></p>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="window" style="margin-top: 30px;" id="conclusion">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <div class="window-dot"></div>
+                        <div class="window-dot"></div>
+                    </div>
+                    <div class="window-title">conclusion</div>
+                    <div style="width: 22px;"></div>
+                </div>
+                <div class="window-content">
+                    <p>APS162 is neither the summer vacation course some people hope for, nor the mathematical apocalypse others fear. It's a legitimate university-level calculus course that happens to take place during the summer.</p>
+                    
+                    <p>If you decide to take it, go in with realistic expectations and a solid study schedule. You'll emerge on the other side with a better understanding of calculus, a head start on your engineering degree, and most importantly, new friends.</p>
+                    
+                    <p>And hey, at least you'll never have to take MAT186 at 9 AM. That alone might make it worth it.</p>
+                    
+                    <p>Good luck, future engineers. May the derivatives be ever in your favor.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <footer>
-    <p>rango l.f. / 2025</p>
-    <p class="template-credits"><a href="https://debtdeath.neocities.org/templates">INSPIRED BY: (C) CC-LINK</a></p>
-  </footer>
+    <!-- Footer loaded via JS -->
+    <div id="footer-container"></div>
 
-  <script>
-    // Auto-generate Table of Contents
-    function generateTOC() {
-      const toc = document.getElementById('toc');
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
-      
-      toc.innerHTML = '';
-      
-      headings.forEach(function(heading, index) {
-        // Create an ID for the heading if it doesn't have one
-        if (!heading.id) {
-          heading.id = 'heading-' + index;
-        }
-        
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        
-        a.href = '#' + heading.id;
-        a.textContent = heading.textContent;
-        a.onclick = function(e) {
-          e.preventDefault();
-          scrollToSection(heading.id);
-        };
-        
-        // Add appropriate class based on heading level
-        if (heading.tagName === 'H2') {
-          a.className = 'toc-level-2';
-        } else if (heading.tagName === 'H3') {
-          a.className = 'toc-level-3';
-        }
-        
-        li.appendChild(a);
-        toc.appendChild(li);
-      });
-    }
-
-    // Smooth scroll to section
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
-        // Update active state
-        updateActiveTOCItem(sectionId);
-      }
-    }
-
-    // Update active TOC item
-    function updateActiveTOCItem(activeId) {
-      const tocLinks = document.querySelectorAll('.toc a');
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + activeId) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // Highlight current section in TOC on scroll
-    function highlightCurrentSection() {
-      const headings = document.querySelectorAll('section h1, section h2, section h3');
-      const scrollPosition = window.scrollY + 100;
-      
-      let currentSection = '';
-      
-      headings.forEach(heading => {
-        const sectionTop = heading.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          currentSection = heading.id;
-        }
-      });
-      
-      if (currentSection) {
-        updateActiveTOCItem(currentSection);
-      }
-    }
-
-    // Mobile menu functionality
-    function toggleMobileMenu() {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-      
-      if (mobileNav) {
-        mobileNav.classList.toggle('active');
-        
-        // Toggle hamburger icon between bars and X
-        if (mobileNav.classList.contains('active')) {
-          hamburgerIcon.className = 'fas fa-times';
-        } else {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      generateTOC();
-    });
-
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobile-nav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (mobileNav && hamburgerMenu && !hamburgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-        if (hamburgerIcon) {
-          hamburgerIcon.className = 'fas fa-bars';
-        }
-      }
-    });
-
-    // Close mobile menu when window is resized to desktop size
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        const mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav) {
-          mobileNav.classList.remove('active');
-          const hamburgerIcon = document.querySelector('.hamburger-toggle i');
-          if (hamburgerIcon) {
-            hamburgerIcon.className = 'fas fa-bars';
-          }
-        }
-      }
-    });
-  </script>
+    <script src="components.js"></script>
 </body>
 </html>

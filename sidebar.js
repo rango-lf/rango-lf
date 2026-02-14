@@ -5,8 +5,8 @@ const sidebarContent = `
 
   <div class="profile">
     <p class="profile-desc">
-      <b><u>RANGO LEE FU</u></b><br>
-      First-year Mechanical & Industrial Engineering student at the University of Toronto
+      <b><u>OBLIGATORY DISCLAIMER</u></b><br>
+     <p style="font-size: 10px; margin-top: 12px;">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT! If you have any questions or concerns, please contact me.</p>
     </p>
   </div>
 
@@ -18,7 +18,14 @@ const sidebarContent = `
     <a href="blog.html">blog</a>
     <a href="resources.html">resources</a>
   </div>
-
+ <!-- SKULE WebRing -->
+    <div class="webring-widget">
+      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=prev">←</a>
+      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/" target="_blank">
+        <img src="https://WebRing.skule.ca/img/icon.svg" alt="SKULE WebRing"/>
+      </a>
+      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=next">→</a>
+    </div>
   <br>
   <div class="contact-section">
     <b>CONTACT</b>
@@ -30,19 +37,8 @@ const sidebarContent = `
   </div>
 
   <br>
-  <div class="sidebar-footer">
-    <img src="https://rainy.gay/pride/bv/progress.png" style="width: 100%; border: 1px solid black; margin-bottom: 12px;">
-    
-    <!-- SKULE WebRing -->
-    <div class="webring-widget">
-      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=prev">←</a>
-      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/" target="_blank">
-        <img src="https://WebRing.skule.ca/img/icon.svg" alt="SKULE WebRing"/>
-      </a>
-      <a href="https://WebRing.skule.ca/#https://rango-lf.github.io/rango-lf/?nav=next">→</a>
-    </div>
 
-    <p style="font-size: 10px; margin-top: 12px;">P.S. The thoughts, advice, and opinions presented on this site reflect the views of the University of Toronto, the Faculty of Applied Science and Engineering, the Engineering Society, and all other affiliated organisations... NOT!</p>
+    
   </div>
 `;
 

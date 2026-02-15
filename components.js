@@ -10,7 +10,7 @@ const headerHTML = `
       <li><a href="blog.html">blog</a></li>
       <li><a href="advice.html">advice</a></li>
       <li><a href="projects & experience.html">projects & experience</a></li>
-      <li><a href="resume.html">resume</a></li>
+      <li><a href="Resume - Rango Lee-Fu (9).pdf">resume</a></li>
     </ul>
   </nav>
 </header>

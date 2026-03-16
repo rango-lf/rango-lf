@@ -10,10 +10,10 @@ function createHeader() {
       </div>
       <nav class="desktop-nav">
         <a href="index.html">home</a>
-        <a href="about.html">about</a>
-        <a href="blog.html">blog</a>
-        <a href="advice.html">advice & resources</a>
-        <a href="construction.html"><s>experience & projects</s></a>
+        <a href="/about">about</a>
+        <a href="/blog">blog</a>
+        <a href="/advice">advice & resources</a>
+        <a href="/construction"><s>experience & projects</s></a>
         <a href="Resume - Rango Lee-Fu (3).pdf" target="_blank">resume</a>
       </nav>
       <nav class="mobile-nav" id="mobile-nav">
